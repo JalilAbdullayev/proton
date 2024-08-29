@@ -56,6 +56,14 @@
                         </span>
                     </a>
                 </li>
+                <li>
+                    <a class="waves-effect waves-dark" href="{{ route('admin.contact') }}" aria-expanded="false">
+                        <i class="mdi mdi-phone"></i>
+                        <span class="hide-menu">
+                            Əlaqə
+                        </span>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
