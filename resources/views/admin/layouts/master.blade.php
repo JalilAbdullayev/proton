@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('back/css/pages/dashboard1.css') }}"/>
     @yield('css')
 </head>
-<body class="skin-default-dark fixed-layout">
+<body class="skin-purple-dark fixed-layout">
 <!-- Preloader - style you can find in spinners.css -->
 <div class="preloader">
     <div class="loader">

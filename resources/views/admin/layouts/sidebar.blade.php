@@ -42,9 +42,17 @@
                 </li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{ route('admin.settings') }}" aria-expanded="false">
-                        <i class="icons-Gear"></i>
+                        <i class="icons-Gears"></i>
                         <span class="hide-menu">
                             Tənzimləmələr
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="waves-effect waves-dark" href="{{ route('admin.about') }}" aria-expanded="false">
+                        <i class="mdi mdi-information"></i>
+                        <span class="hide-menu">
+                            Haqqımızda
                         </span>
                     </a>
                 </li>
