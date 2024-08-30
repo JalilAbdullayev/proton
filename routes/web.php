@@ -5,6 +5,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', SetLocale::class])->
         Route::patch('/', 'update')->name('update');
         Route::get('delete', 'delete')->name('delete');
     });
+
+    Route::resource('team', TeamController::class);
 });
 
 Auth::routes();

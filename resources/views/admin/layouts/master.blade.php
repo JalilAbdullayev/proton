@@ -101,11 +101,8 @@
 <script src="{{ asset("back/node_modules/raphael/raphael-min.js") }}"></script>
 <script src="{{ asset("back/node_modules/morrisjs/morris.min.js") }}"></script>
 <script src="{{ asset("back/node_modules/jquery-sparkline/jquery.sparkline.min.js") }}"></script>
-<!-- Popup message jquery -->
-<script src="{{ asset("back/node_modules/toast-master/js/jquery.toast.js") }}"></script>
 <!-- Chart JS -->
 <script src="{{ asset("back/js/dashboard1.js") }}"></script>
-<script src="{{ asset("back/node_modules/toast-master/js/jquery.toast.js") }}"></script>
 @yield('js')
 </body>
 </html>
