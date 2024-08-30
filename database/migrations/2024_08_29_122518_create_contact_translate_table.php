@@ -9,12 +9,11 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::create('about_translates', function(Blueprint $table) {
+        Schema::create('contact_translate', function(Blueprint $table) {
             $table->id();
-            $table->unsignedTinyInteger('about_id');
-            $table->string('title');
-            $table->text('description');
+            $table->unsignedTinyInteger('contact_id');
             $table->string('lang');
+            $table->string('address');
             $table->timestamps();
         });
     }
@@ -23,6 +22,6 @@ return new class extends Migration {
      * Reverse the migrations.
      */
     public function down(): void {
-        Schema::dropIfExists('about_translates');
+        Schema::dropIfExists('contact_translate');
     }
 };

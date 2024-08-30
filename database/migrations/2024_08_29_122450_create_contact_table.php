@@ -9,9 +9,11 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::create('abouts', function(Blueprint $table) {
+        Schema::create('contact', function(Blueprint $table) {
             $table->id();
-            $table->string('image');
+            $table->string('email');
+            $table->string('phone', 14);
+            $table->text('map');
             $table->timestamps();
         });
     }
@@ -20,6 +22,6 @@ return new class extends Migration {
      * Reverse the migrations.
      */
     public function down(): void {
-        Schema::dropIfExists('abouts');
+        Schema::dropIfExists('contact');
     }
 };

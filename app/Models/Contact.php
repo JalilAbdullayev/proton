@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Contact extends Model {
+    protected $table = 'contact';
     protected $fillable = [
         'email',
         'phone',
