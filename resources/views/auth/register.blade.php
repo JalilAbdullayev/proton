@@ -89,9 +89,11 @@
                     </div>
                     <div class="form-group m-b-0">
                         <div class="col-sm-12 text-center">
-                            Hesabınız var? <a href="{{ route('login') }}" class="text-info m-l-5"><b>
+                            Hesabınız var? <a href="{{ route('login') }}" class="text-info m-l-5">
+                                <strong>
                                     Giriş
-                                </b></a>
+                                </strong>
+                            </a>
                         </div>
                     </div>
                 </form>

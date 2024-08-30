@@ -64,7 +64,7 @@
                 <input type="password" class="form-control" name="password_old" id="password-old" maxlength="255"
                        placeholder="Köhnə Şifrə"/>
                 <label for="password-old" class="form-label text-white-50">
-                    Köhnə Şifrə
+                    Şifrə
                 </label>
             </div>
             @error('password')
@@ -74,7 +74,7 @@
                 <input type="password" class="form-control" name="password" id="password" placeholder="Şifrə"
                        maxlength="255"/>
                 <label for="password" class="form-label text-white-50">
-                    Şifrə
+                    Yeni Şifrə
                 </label>
             </div>
             @error('password')
@@ -84,7 +84,7 @@
                 <input type="password" class="form-control" name="password_confirmation" id="password-confirm"
                        placeholder="Şifrə Təkrar" autocomplete="new-password" maxlength="255"/>
                 <label for="password-confirm" class="form-label text-white-50">
-                    Şifrə Təkrar
+                    Yeni Şifrə Təkrar
                 </label>
             </div>
             @error('password')
