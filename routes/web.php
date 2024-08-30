@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\SetLocale;
@@ -28,6 +29,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', SetLocale::class])->
     });
 
     Route::resource('users', UserController::class);
+
+    Route::controller(ProfileController::class)->prefix('profile')->name('profile.')->group(function() {
+        Route::get('/', 'index')->name('index');
+        Route::patch('/', 'update')->name('update');
+        Route::get('delete', 'delete')->name('delete');
+    });
 });
 
 Auth::routes();
