@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Team;
 use App\Models\TeamTranslate;
+use App\Traits\UploadImage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Str;
 use Illuminate\View\View as ViewResponse;
 
 class TeamController extends Controller {
+    use UploadImage;
+
     /**
      * Display a listing of the resource.
      */
@@ -32,14 +33,7 @@ class TeamController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(Request $request): RedirectResponse {
-        if($request->file('image')) {
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $fileOriginalName = $file->getClientOriginalName();
-            $explode = explode('.', $fileOriginalName);
-            $fileOriginalName = Str::slug($explode[0], '-') . '_' . now()->format('d-m-Y-H-i-s') . '.' . $extension;
-            Storage::putFileAs('public/images/team/', $file, $fileOriginalName);
-        }
+        $fileOriginalName = $this->langStoreImg($request, 'team');
 
         $member = Team::create([
             'image' => $fileOriginalName ? 'images/team/' . $fileOriginalName : null,
@@ -69,20 +63,7 @@ class TeamController extends Controller {
      */
     public function update(Request $request, int $id): RedirectResponse {
         $member = Team::findOrFail($id);
-        if($request->file('image')) {
-            if($member->image) {
-                Storage::delete('public/' . $member->image);
-            }
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $fileOriginalName = $file->getClientOriginalName();
-            $explode = explode('.', $fileOriginalName);
-            $fileOriginalName = Str::slug($explode[0], '-') . '_' . now()->format('d-m-Y-H-i-s') . '.' . $extension;
-            Storage::putFileAs('public/images/team/', $file, $fileOriginalName);
-            $member->update([
-                'image' => 'images/team/' . $fileOriginalName,
-            ]);
-        }
+        $this->langUpdateImg($request, $member, 'team');
 
         for($i = 0; $i < count($request->lang); $i++) {
             TeamTranslate::whereMemberId($id)->whereLang($request->lang[$i])->update([

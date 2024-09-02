@@ -104,6 +104,26 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="mdi mdi-briefcase"></i>
+                        <span class="hide-menu">
+                            Xidmətlər
+                        </span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li>
+                            <a href="{{ route('admin.services.index') }}">
+                                Xidmətlər
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.services.create') }}">
+                                Yeni Xidmət
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

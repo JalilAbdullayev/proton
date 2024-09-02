@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
@@ -38,6 +39,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', SetLocale::class])->
     });
 
     Route::resource('team', TeamController::class);
+    Route::resource('services', ServiceController::class);
 });
 
 Auth::routes();
