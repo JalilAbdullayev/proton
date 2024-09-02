@@ -53,7 +53,7 @@ class TeamController extends Controller {
                 'lang' => $request->lang[$i],
             ]);
         }
-        return Redirect::back();
+        return Redirect::route('admin.team.index');
     }
 
     /**
