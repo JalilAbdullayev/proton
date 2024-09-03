@@ -80,7 +80,7 @@
     </form>
 @endsection
 @section('js')
-    <script src="{{ asset('back/node_modules/select2/dist/js/select2.full.min.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('back/node_modules/select2/dist/js/select2.full.min.js')}}"></script>
     <script>
         $("#icon").select2();
         $(document).ready(function() {

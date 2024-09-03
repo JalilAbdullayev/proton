@@ -50,6 +50,18 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', SetLocale::class])->
 
     Route::resource('category', CategoryController::class);
     Route::post('category/status', [CategoryController::class, 'status'])->name('category.status');
+
+    Route::resource('portfolio', PortfolioController::class);
+    Route::prefix('portfolio')->name('portfolio.')->group(function() {
+        Route::post('status', [PortfolioController::class, 'status'])->name('status');
+        Route::controller(PortfolioImageController::class)->prefix('{id}/images')->name('images.')->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::post('/', 'store');
+            Route::post('status', 'status')->name('status');
+            Route::put('/', 'featured')->name('featured');
+            Route::delete('/', 'delete')->name('delete');
+        });
+    });
 });
 
 Auth::routes();

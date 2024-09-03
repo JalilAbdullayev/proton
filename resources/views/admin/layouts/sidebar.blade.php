@@ -152,6 +152,26 @@
                         </span>
                     </a>
                 </li>
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="ti-gallery"></i>
+                        <span class="hide-menu">
+                            Portfolio
+                        </span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li>
+                            <a href="{{ route('admin.portfolio.index') }}">
+                                Portfolio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.portfolio.create') }}">
+                                Yeni Proyekt
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
