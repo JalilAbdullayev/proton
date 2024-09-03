@@ -6,6 +6,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\SocialController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\SetLocale;
@@ -40,6 +41,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', SetLocale::class])->
 
     Route::resource('team', TeamController::class);
     Route::resource('services', ServiceController::class);
+
+    Route::resource('socials', SocialController::class);
+    Route::post('socials/status', [SocialController::class, 'status'])->name('socials.status');
 });
 
 Auth::routes();

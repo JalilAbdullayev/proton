@@ -124,6 +124,26 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="fa-solid fa-users"></i>
+                        <span class="hide-menu">
+                            Sosial
+                        </span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li>
+                            <a href="{{ route('admin.socials.index') }}">
+                                Sosial
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.socials.create') }}">
+                                Yeni Sosial
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
