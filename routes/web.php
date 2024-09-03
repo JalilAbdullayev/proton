@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\PortfolioImageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingsController;
@@ -44,6 +47,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', SetLocale::class])->
 
     Route::resource('socials', SocialController::class);
     Route::post('socials/status', [SocialController::class, 'status'])->name('socials.status');
+
+    Route::resource('category', CategoryController::class);
+    Route::post('category/status', [CategoryController::class, 'status'])->name('category.status');
 });
 
 Auth::routes();

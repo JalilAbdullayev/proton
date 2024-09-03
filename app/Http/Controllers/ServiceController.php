@@ -78,7 +78,7 @@ class ServiceController extends Controller {
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Service $service) {
+    public function update(Request $request, Service $service): RedirectResponse {
 
         $this->langUpdateImg($request, $service, 'services');
 

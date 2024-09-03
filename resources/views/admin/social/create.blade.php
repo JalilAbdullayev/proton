@@ -67,7 +67,7 @@
                 </select>
                 <div id="icon-preview" class="my-3"></div>
             </div>
-            @error('url')
+            @error('icon')
             <div class="alert alert-danger">
                 {{ $message }}
             </div>

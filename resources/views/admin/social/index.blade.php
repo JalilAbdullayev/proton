@@ -66,7 +66,7 @@
                         {!! $item->icon !!}
                     </td>
                     <td>
-                        <input type="checkbox" @checked($item->status) class="js-switch status" data-size="small"
+                        <input type="checkbox" @checked($item->status) class="js-switch" data-size="small"
                                data-secondary-color="#f62d51"/>
                     </td>
                     <td>
@@ -113,7 +113,7 @@
                 }
             });
         });
-        $('.status').change(function() {
+        $('.js-switch').change(function() {
             let id = $(this).closest('tr').attr('id');
             $.ajax({
                 url: "{{ route('admin.socials.status') }}",

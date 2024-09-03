@@ -144,6 +144,14 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a class="waves-effect waves-dark" href="{{ route('admin.category.index') }}" aria-expanded="false">
+                        <i class="mdi mdi-folder-multiple"></i>
+                        <span class="hide-menu">
+                            Kateqoriyalar
+                        </span>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

@@ -66,8 +66,9 @@
                         </option>
                     @endforeach
                 </select>
+                <div id="icon-preview" class="my-3"></div>
             </div>
-            @error('url')
+            @error('icon')
             <div class="alert alert-danger">
                 {{ $message }}
             </div>
@@ -82,5 +83,13 @@
     <script src="{{ asset('back/node_modules/select2/dist/js/select2.full.min.js')}}" type="text/javascript"></script>
     <script>
         $("#icon").select2();
+        $(document).ready(function() {
+            var iconClass = $('#icon').val();
+            $('#icon-preview').html(iconClass).addClass('fs-1');
+            $('#icon').change(function() {
+                iconClass = $(this).val();
+                $('#icon-preview').html(iconClass).addClass('fs-1');
+            });
+        });
     </script>
 @endsection
