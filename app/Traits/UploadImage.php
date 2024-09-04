@@ -41,4 +41,27 @@ trait UploadImage {
             ]);
         }
     }
+
+    public function multipleImg($request, $model, $imageModel, $directory, $foreignKey): void {
+        if($request->file('images')) {
+            $now = now()->format('YmdHis');
+            $modelId = $model->id;
+            $imagesData = array_map(static function($image, $index) use ($now, $modelId, $directory, $foreignKey) {
+                $extension = $image->getClientOriginalExtension();
+                $name = $image->getClientOriginalName();
+                $slug = Str::slug($name, '-') . '_' . $now . '.' . $extension;
+                Storage::putFileAs("public/{$directory}/", $image, $slug);
+                return [
+                    $foreignKey => $modelId,
+                    'image' => $slug,
+                    'featured' => $index === 0 ? 1 : 0,
+                    'status' => 1,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ];
+            }, $request->file('images'), array_keys($request->file('images')));
+
+            $imageModel::insert($imagesData);
+        }
+    }
 }

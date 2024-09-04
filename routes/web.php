@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BlogImageController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainController;
@@ -66,6 +68,18 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', SetLocale::class])->
 
     Route::resource('tag', TagController::class);
     Route::post('tag/status', [TagController::class, 'status'])->name('tag.status');
+
+    Route::resource('blog', BlogController::class);
+    Route::prefix('blog')->name('blog.')->group(function() {
+        Route::post('status', [BlogController::class, 'status'])->name('status');
+        Route::controller(BlogImageController::class)->prefix('{id}/images')->name('images.')->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::post('/', 'store');
+            Route::post('status', 'status')->name('status');
+            Route::put('/', 'featured')->name('featured');
+            Route::delete('/', 'delete')->name('delete');
+        });
+    });
 });
 
 Auth::routes();

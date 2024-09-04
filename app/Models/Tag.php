@@ -17,4 +17,8 @@ class Tag extends Model {
     public function translate(): HasMany {
         return $this->hasMany(TagTranslate::class, 'tag_id', 'id');
     }
+
+    public function articles(): BelongsToMany {
+        return $this->belongsToMany(Blog::class, 'blog_tags', 'tag_id', 'article_id')->withTimestamps();
+    }
 }
