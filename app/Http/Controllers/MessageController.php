@@ -10,13 +10,13 @@ use Illuminate\View\View as ViewResponse;
 
 class MessageController extends Controller {
     public function index(): ViewResponse {
-        $messages = Message::all();
-        return view('admin.message.index', compact('messages'));
+        $data = Message::all();
+        return view('admin.messages.index', compact('data'));
     }
 
     public function show(int $id): ViewResponse {
         $message = Message::findOrFail($id);
-        return view('admin.message.show', compact('message'));
+        return view('admin.messages.show', compact('message'));
     }
 
     public function store(Request $request): RedirectResponse {
@@ -27,6 +27,13 @@ class MessageController extends Controller {
             'subject' => $request->subject,
             'message' => $request->message
         ]);
-        return Redirect::back()->with('success', 'Your message has been sent successfully.');
+        return Redirect::back()->withSuccess('Mesajınız uğurla göndərildi.');
+    }
+
+    public function delete(int $id): RedirectResponse {
+        $message = Message::findOrFail($id);
+        $message->delete();
+        return Redirect::back()->withSuccess('Mesajınız uğurla silindi.');
+
     }
 }

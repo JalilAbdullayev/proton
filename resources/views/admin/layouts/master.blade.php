@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet"/>
     @yield('css')
 </head>
 <body class="skin-purple-dark fixed-layout">
@@ -106,6 +107,19 @@
 <script src="{{ asset("back/node_modules/jquery-sparkline/jquery.sparkline.min.js") }}"></script>
 <!-- Chart JS -->
 <script src="{{ asset("back/js/dashboard1.js") }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            autoClose: 1500,
+            timer: 1500,
+            background: '#303641',
+            timerProgressBar: true,
+            title: "{{(session('success'))}}",
+        })
+    </script>
+@endif
 @yield('js')
 </body>
 </html>

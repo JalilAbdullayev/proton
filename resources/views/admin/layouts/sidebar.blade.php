@@ -65,6 +65,14 @@
                     </a>
                 </li>
                 <li>
+                    <a class="waves-effect waves-dark" href="{{ route('admin.message.index') }}" aria-expanded="false">
+                        <i class="mdi mdi-message"></i>
+                        <span class="hide-menu">
+                            Mesajlar
+                        </span>
+                    </a>
+                </li>
+                <li>
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i class="mdi mdi-account-multiple"></i>
                         <span class="hide-menu">
