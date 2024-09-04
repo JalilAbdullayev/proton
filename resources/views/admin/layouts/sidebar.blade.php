@@ -153,6 +153,14 @@
                     </a>
                 </li>
                 <li>
+                    <a class="waves-effect waves-dark" href="{{ route('admin.tag.index') }}" aria-expanded="false">
+                        <i class="mdi mdi-tag-multiple"></i>
+                        <span class="hide-menu">
+                            Teqlər
+                        </span>
+                    </a>
+                </li>
+                <li>
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i class="ti-gallery"></i>
                         <span class="hide-menu">

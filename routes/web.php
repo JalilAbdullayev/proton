@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SocialController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\SetLocale;
@@ -62,6 +63,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', SetLocale::class])->
             Route::delete('/', 'delete')->name('delete');
         });
     });
+
+    Route::resource('tag', TagController::class);
+    Route::post('tag/status', [TagController::class, 'status'])->name('tag.status');
 });
 
 Auth::routes();

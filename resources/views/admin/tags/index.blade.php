@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', 'Kateqoriyalar')
+@section('title', 'Teqlər')
 @section('css')
     <link rel="stylesheet" href="{{ asset('back/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css') }}"/>
     <link rel="stylesheet"
@@ -61,7 +61,7 @@
                             </a>
                         </li>
                     </ul>
-                    <form action="{{ route('admin.category.store') }}" method="POST">
+                    <form action="{{ route('admin.tag.store') }}" method="POST">
                         @csrf
                         <div class="tab-content">
                             <div class="tab-pane p-20 active" id="en" role="tabpanel">
@@ -140,7 +140,7 @@
                                        data-secondary-color="#f62d51"/>
                             </td>
                             <td>
-                                <a href="{{ route('admin.category.edit', $item->id) }}" class="btn btn-outline-warning">
+                                <a href="{{ route('admin.tag.edit', $item->id) }}" class="btn btn-outline-warning">
                                     <i class="ti-pencil-alt"></i>
                                 </a>
                                 <button class="btn btn-outline-danger">
@@ -170,7 +170,7 @@
         $('.btn-outline-danger').click(function() {
             let id = $(this).closest('tr').attr('id');
             $.ajax({
-                url: '{{ route('admin.category.destroy', ':id') }}'.replace(':id', id),
+                url: '{{ route('admin.tag.destroy', ':id') }}'.replace(':id', id),
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}',
@@ -188,7 +188,7 @@
         $('.js-switch').change(function() {
             let id = $(this).closest('tr').attr('id');
             $.ajax({
-                url: "{{ route('admin.category.status') }}",
+                url: "{{ route('admin.tag.status') }}",
                 type: "POST",
                 async: false,
                 data: {
