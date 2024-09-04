@@ -29,7 +29,7 @@
                     </li>
                 </ol>
                 <a href="{{ route('admin.team.create') }}"
-                   class="btn btn-primary d-none d-lg-block m-l-15 text-white">
+                   class="btn btn-purple d-none d-lg-block m-l-15 text-white">
                     <i class="ti-plus"></i> Yeni Üzv
                 </a>
             </div>

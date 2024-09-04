@@ -82,7 +82,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <button type="submit" class="btn btn-primary text-white">
+                                <button type="submit" class="btn btn-purple text-white">
                                     Məlumatları Dəyiş
                                 </button>
                             </div>
@@ -148,7 +148,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <button type="submit" class="btn btn-primary text-white">
+                                <button type="submit" class="btn btn-purple text-white">
                                     Şifrəni Dəyiş
                                 </button>
                             </div>

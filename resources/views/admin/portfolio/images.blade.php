@@ -117,7 +117,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                         Close
                     </button>
-                    <button type="submit" id="saveImage" class="btn btn-primary">
+                    <button type="submit" id="saveImage" class="btn btn-purple">
                         Save
                     </button>
                 </div>

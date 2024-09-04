@@ -90,7 +90,7 @@
             @error('password')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <button type="submit" class="btn w-100 btn-primary text-white">
+            <button type="submit" class="btn w-100 btn-purple text-white">
                 Saxla
             </button>
         </div>

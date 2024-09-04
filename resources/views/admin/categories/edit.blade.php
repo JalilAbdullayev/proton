@@ -16,6 +16,11 @@
                             Ana Səhifə
                         </a>
                     </li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('admin.category.index') }}">
+                            Kateqoriyalar
+                        </a>
+                    </li>
                     <li class="breadcrumb-item active">
                         @yield('title')
                     </li>
