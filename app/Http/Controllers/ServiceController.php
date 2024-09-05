@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use App\Models\ServiceTranslate;
 use App\Traits\UploadImage;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use Illuminate\View\View as ViewResponse;
@@ -57,7 +59,7 @@ class ServiceController extends Controller {
                 'lang' => $request->lang[$i],
             ]);
         }
-        return Redirect::route('admin.services.index');
+        return Redirect::route('admin.services.index')->withSuccess('Xidmət uğurla əlavə edildi.');
     }
 
     /**
@@ -70,7 +72,7 @@ class ServiceController extends Controller {
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Service $service) {
+    public function edit(Service $service): ViewResponse {
         $item = $service;
         return View::make('admin.services.edit', compact('item'));
     }
@@ -92,15 +94,14 @@ class ServiceController extends Controller {
                 'lang' => $request->lang[$i],
             ]);
         }
-
-        return Redirect::route('admin.services.index');
+        return Redirect::route('admin.services.index')->withSuccess('Xidmət uğurla yeniləndi.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Service $service) {
+    public function destroy(Service $service): JsonResponse {
         $service->delete();
-        return Redirect::route('admin.services.index');
+        return Response::json(['id' => $service->id]);
     }
 }

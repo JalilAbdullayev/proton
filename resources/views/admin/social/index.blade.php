@@ -91,42 +91,10 @@
         $('#myTable').DataTable({
             ordering: false
         });
-        var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
         $('.js-switch').each(function() {
-            new Switchery($(this)[0], $(this).data());
+            new Switchery(this, $(this).data());
         });
-        $('.btn-outline-danger').click(function() {
-            let id = $(this).closest('tr').attr('id');
-            $.ajax({
-                url: '{{ route('admin.socials.destroy', ':id') }}'.replace(':id', id),
-                type: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    _method: 'DELETE'
-                },
-                async: false,
-                success: function() {
-                    $('tr#' + id + '').remove();
-                },
-                error: function() {
-                    alert('error');
-                }
-            });
-        });
-        $('.js-switch').change(function() {
-            let id = $(this).closest('tr').attr('id');
-            $.ajax({
-                url: "{{ route('admin.socials.status') }}",
-                type: "POST",
-                async: false,
-                data: {
-                    id: id,
-                    _token: "{{ csrf_token() }}"
-                },
-                error: function() {
-                    alert('error');
-                }
-            })
-        })
+        deletePrompt('sosial medianı', '{{ route('admin.socials.destroy', ':id') }}', 'Sosial media')
+        statusAlert('{{ route('admin.socials.status') }}')
     </script>
 @endsection

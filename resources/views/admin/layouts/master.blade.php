@@ -1,4 +1,4 @@
-@php use Illuminate\Support\Facades\Storage; @endphp
+@php use Illuminate\Support\Facades\Route;use Illuminate\Support\Facades\Storage; @endphp
     <!DOCTYPE html>
 <html lang="{{ Str::replace('_', '-', App::getLocale()) }}">
 <head>
@@ -108,18 +108,122 @@
 <!-- Chart JS -->
 <script src="{{ asset("back/js/dashboard1.js") }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-@if (session('success'))
-    <script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+    })
+
+    function successAlert(message) {
         Swal.fire({
             icon: 'success',
-            autoClose: 1500,
             timer: 1500,
             background: '#303641',
             timerProgressBar: true,
-            title: "{{(session('success'))}}",
+            title: message,
         })
-    </script>
-@endif
+    }
+
+    function errorAlert(message) {
+        Swal.fire({
+            icon: 'error',
+            @unless(Route::is('admin.users.create') || Route::is('admin.users.edit')) timer: 1500, @endunless
+            background: '#303641',
+            timerProgressBar: true,
+            title: message,
+        })
+    }
+
+    function deletePrompt(prompt, route, name) {
+        $('.btn-outline-danger').click(function() {
+            let id = $(this).closest('tr').attr('id');
+            Swal.fire({
+                title: 'Əminsiniz?',
+                text: `Bu ${prompt} silmək istədiyinizdən əminsiniz?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#6F42C1',
+                cancelButtonColor: '#F62D51',
+                confirmButtonText: 'Bəli, Sil',
+                cancelButtonText: 'Xeyr, Geri qayıt',
+            }).then(result => {
+                if(result.isConfirmed) {
+                    $.ajax({
+                        url: route.replace(':id', id),
+                        type: 'POST',
+                        data: {
+                            _method: 'DELETE'
+                        },
+                        async: false,
+                        success: function() {
+                            successAlert(`${name} uğurla silindi`)
+                            $('tr#' + id + '').remove();
+                        },
+                        error: function() {
+                            errorAlert(`${name} silinərkən xəta baş verdi.`)
+                        }
+                    });
+                }
+            })
+        });
+    }
+
+    function statusAlert(route) {
+        $('.js-switch').change(function() {
+            let id = $(this).closest('tr').attr('id');
+            $.ajax({
+                url: route,
+                type: "POST",
+                async: false,
+                data: {
+                    id: id
+                },
+                success: function() {
+                    successAlert('Status dəyişdirildi.')
+                },
+                error: function() {
+                    errorAlert('Status dəyişdirilərkən xəta baş verdi.')
+                }
+            })
+        })
+    }
+
+    function featured(route) {
+        $(document).on('click', '.featured', function() {
+            let id = $(this).closest('tr').attr('id');
+            let self = $(this);
+            $.ajax({
+                url: route.replace(':id', id),
+                type: "POST",
+                async: false,
+                data: {
+                    _method: 'PUT'
+                },
+                success: function() {
+                    successAlert('Şəkil önə çıxarıldı.')
+                    self.removeClass('btn-danger featured').addClass('btn-success featuredImage');
+                    $('.featuredImage').not(self).removeClass('btn-success featuredImage').addClass('btn-danger featured');
+                    self.find('i').removeClass('mdi-star-outline').addClass('mdi-star');
+                    $('.featured').not(self).find('i').removeClass('mdi-star').addClass('mdi-star-outline');
+                },
+                error: function() {
+                    errorAlert('Şəkil önə çıxarılarkən xəta baş verdi.')
+                }
+            })
+        })
+    }
+
+    function deleteImage(route) {
+        deletePrompt('şəkli', route, 'Şəkil')
+    }
+
+    @if(session('success'))
+    successAlert('{{ session('success') }}');
+    @elseif(session('error'))
+    errorAlert('{{ session('error') }}')
+    @endif
+</script>
 @yield('js')
 </body>
 </html>

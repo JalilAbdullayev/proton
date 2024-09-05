@@ -85,49 +85,6 @@
         $('#myTable').DataTable({
             ordering: false
         });
-        $('.btn-outline-danger').click(function() {
-            let id = $(this).closest('tr').attr('id');
-            Swal.fire({
-                title: 'Əminsiniz?',
-                text: 'Bu mesajı silmək istədiyinizdən əminsiniz?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#6F42C1',
-                cancelButtonColor: '#F62D51',
-                confirmButtonText: 'Bəli, Sil',
-                cancelButtonText: 'Xeyr, Geri qayıt',
-            }).then(result => {
-                if(result.isConfirmed) {
-                    $.ajax({
-                        url: '{{ route('admin.message.delete', ':id') }}'.replace(':id', id),
-                        type: 'POST',
-                        data: {
-                            _token: '{{ csrf_token() }}',
-                            _method: 'DELETE'
-                        },
-                        async: false,
-                        success: function() {
-                            Swal.fire({
-                                icon: 'success',
-                                timer: 1500,
-                                background: '#303641',
-                                timerProgressBar: true,
-                                title: 'Mesaj uğurla silindi',
-                            })
-                            $('tr#' + id + '').remove();
-                        },
-                        error: function() {
-                            Swal.fire({
-                                icon: 'error',
-                                timer: 1500,
-                                background: '#303641',
-                                timerProgressBar: true,
-                                title: 'Mesaj silinərkən xəta baş verdi',
-                            })
-                        }
-                    });
-                }
-            })
-        });
+        deletePrompt('mesajı', '{{ route('admin.message.delete', ':id') }}', 'Mesaj')
     </script>
 @endsection

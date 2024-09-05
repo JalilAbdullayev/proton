@@ -39,6 +39,6 @@ class AboutController extends Controller {
                 'description' => $request->description[$i]
             ]);
         }
-        return Redirect::back();
+        return Redirect::back()->withSuccess('Məlumatlar yeniləndi.');
     }
 }

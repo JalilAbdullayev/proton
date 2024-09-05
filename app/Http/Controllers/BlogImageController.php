@@ -40,7 +40,7 @@ class BlogImageController extends Controller {
                 $isFirstImage = false;
             }
         }
-        return Redirect::back();
+        return Redirect::back()->withSuccess('Şəkil(lər) uğurla əlavə edildi.');
     }
 
     public function status(Request $request): JsonResponse {
@@ -52,7 +52,7 @@ class BlogImageController extends Controller {
         return Response::json([
             'id' => $id,
             'status' => $image->status
-        ], 200);
+        ]);
     }
 
     public function featured($id): JsonResponse {
@@ -64,11 +64,14 @@ class BlogImageController extends Controller {
             $image->featured = 1;
             $image->save();
         }
-        return Response::json(['success' => true], 200);
+        return Response::json([
+            'id' => $id,
+            'featured' => $image->featured
+        ]);
     }
 
-    public function delete($id): RedirectResponse {
+    public function delete($id): JsonResponse {
         BlogImage::destroy($id);
-        return Redirect::back();
+        return Response::json(['id' => $id]);
     }
 }

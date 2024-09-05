@@ -50,7 +50,7 @@ class SocialController extends Controller {
             'url' => $request->url,
             'icon' => $request->icon
         ]);
-        return Redirect::route('admin.socials.index');
+        return Redirect::route('admin.socials.index')->withSuccess('Məlumat uğurla əlavə edildi');
     }
 
     /**
@@ -78,15 +78,15 @@ class SocialController extends Controller {
             'url' => $request->url,
             'icon' => $request->icon
         ]);
-        return Redirect::route('admin.socials.index');
+        return Redirect::route('admin.socials.index')->withSuccess('Məlumat uğurla yeniləndi');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Social $social): RedirectResponse {
+    public function destroy(Social $social): JsonResponse {
         $social->delete();
-        return Redirect::route('admin.socials.index');
+        return Response::json(['id' => $social->id]);
     }
 
     public function status(SocialRequest $request): JsonResponse {
@@ -98,6 +98,6 @@ class SocialController extends Controller {
         return Response::json([
             'id' => $id,
             'status' => $social->status
-        ], 200);
+        ]);
     }
 }

@@ -136,61 +136,9 @@
         $('.js-switch').each(function() {
             new Switchery(this, $(this).data());
         });
-        $('.btn-outline-danger').click(function() {
-            let id = $(this).closest('tr').attr('id');
-            $.ajax({
-                url: '{{ route('admin.blog.images.delete', ':id') }}'.replace(':id', id),
-                type: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    _method: 'DELETE'
-                },
-                async: false,
-                success: function() {
-                    $('tr#' + id + '').remove();
-                },
-                error: function() {
-                    alert('error');
-                }
-            });
-        });
-        $('.js-switch').change(function() {
-            let id = $(this).closest('tr').attr('id');
-            $.ajax({
-                url: "{{ route('admin.blog.images.status', ':id') }}".replace(':id', id),
-                type: "POST",
-                async: false,
-                data: {
-                    id: id,
-                    _token: "{{ csrf_token() }}"
-                },
-                error: function() {
-                    alert('error');
-                }
-            })
-        })
-        $('.featured').click(function() {
-            let id = $(this).closest('tr').attr('id');
-            let self = $(this);
-            $.ajax({
-                url: "{{ route('admin.blog.images.featured', ':id') }}".replace(':id', id),
-                type: "POST",
-                async: false,
-                data: {
-                    _method: 'PUT',
-                    _token: "{{ csrf_token() }}"
-                },
-                success: function() {
-                    self.removeClass('btn-danger featured').addClass('btn-success featuredImage');
-                    $('.featuredImage').not(self).removeClass('btn-success featuredImage').addClass('btn-danger featured');
-                    self.find('i').removeClass('mdi-star-outline').addClass('mdi-star');
-                    $('.featured').not(self).find('i').removeClass('mdi-star').addClass('mdi-star-outline');
-                },
-                error: function() {
-                    console.log('error');
-                }
-            })
-        })
+        deleteImage('{{ route('admin.blog.images.delete', ':id') }}')
+        statusAlert('{{ route('admin.blog.images.status') }}')
+        featured('{{ route('admin.blog.images.featured', ':id') }}')
         $('#saveImage').click(function() {
             $('#newImageForm').submit();
         });

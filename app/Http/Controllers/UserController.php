@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
 use Illuminate\View\View as ViewResponse;
 
@@ -36,9 +39,9 @@ class UserController extends Controller {
         $user->password = Hash::make($request->password);
         if($request->password === $request->password_confirmation) {
             $user->save();
-            return Redirect::route('admin.users.index');
+            return Redirect::route('admin.users.index')->withSuccess('İstifadəçi əlavə olundu.');
         }
-        return Redirect::back()->with('error', 'Şifrələr uyğun deyil.');
+        return Redirect::back()->withError('Şifrələr uyğun deyil.');
     }
 
     /**
@@ -58,26 +61,30 @@ class UserController extends Controller {
         $user->email = $request->email;
         if($request->password !== null) {
             if(!Hash::check($request->password_old, $user->password)) {
-                return Redirect::back()->with('error', 'Köhnə şifrə düzgün deyil.');
+                return Redirect::back()->withError('Köhnə şifrə düzgün deyil.');
             }
             if(Hash::check($request->password, $user->password)) {
-                return Redirect::back()->with('error', 'Köhnə şifrə ilə yeni şifrə eynidir.');
+                return Redirect::back()->withError('Köhnə şifrə ilə yeni şifrə eynidir.');
             }
             if($request->password === $request->password_confirmation) {
                 $user->password = Hash::make($request->password);
             } else {
-                return Redirect::back()->with('error', 'Şifrələr uyğun deyil.');
+                return Redirect::back()->withError('Şifrələr uyğun deyil.');
             }
         }
         $user->save();
-        return Redirect::route('admin.users.index');
+        return Redirect::route('admin.users.index')->withSuccess('İstifadəçi məlumatları yeniləndi.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): RedirectResponse {
+    public function destroy(int $id) {
+        if(Auth::user()->id === $id) {
+            User::whereId($id)->delete();
+            return Redirect::route('login');
+        }
         User::whereId($id)->delete();
-        return Redirect::back();
+        return Response::json(['id' => $id]);
     }
 }

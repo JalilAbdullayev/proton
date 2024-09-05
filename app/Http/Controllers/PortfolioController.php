@@ -59,7 +59,7 @@ class PortfolioController extends Controller {
         }
         $this->multipleImg($request, $portfolio, PortfolioImage::class, 'portfolio', 'project_id');
 
-        return Redirect::route('admin.portfolio.index');
+        return Redirect::route('admin.portfolio.index')->withSuccess('Proyekt uğurla əlavə edildi.');
     }
 
     /**
@@ -98,15 +98,15 @@ class PortfolioController extends Controller {
             ]);
         }
 
-        return Redirect::route('admin.portfolio.index');
+        return Redirect::route('admin.portfolio.index')->withSuccess('Proyekt uğurla yeniləndi.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Portfolio $portfolio): RedirectResponse {
+    public function destroy(Portfolio $portfolio): JsonResponse {
         $portfolio->delete();
-        return Redirect::back();
+        return Response::json(['id' => $portfolio->id]);
     }
 
     public function status(Request $request): JsonResponse {
@@ -118,6 +118,6 @@ class PortfolioController extends Controller {
         return Response::json([
             'id' => $id,
             'status' => $portfolio->status
-        ], 200);
+        ]);
     }
 }

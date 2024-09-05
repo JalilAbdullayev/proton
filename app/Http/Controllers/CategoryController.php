@@ -43,7 +43,7 @@ class CategoryController extends Controller {
                 'lang' => $request->lang[$i],
             ]);
         }
-        return Redirect::back();
+        return Redirect::back()->withSuccess('Kateqoriya uğurla yaradıldı.');
     }
 
     /**
@@ -72,15 +72,15 @@ class CategoryController extends Controller {
             ]);
         }
 
-        return Redirect::route('admin.category.index');
+        return Redirect::route('admin.category.index')->withSuccess('Dəyişikliklər uğurla saxlanıldı.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category): RedirectResponse {
+    public function destroy(Category $category): JsonResponse {
         $category->delete();
-        return Redirect::back();
+        return Response::json(['id' => $category->id]);
     }
 
     public function status(Request $request): JsonResponse {
@@ -92,6 +92,6 @@ class CategoryController extends Controller {
         return Response::json([
             'id' => $id,
             'status' => $category->status
-        ], 200);
+        ]);
     }
 }

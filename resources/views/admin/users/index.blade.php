@@ -82,23 +82,6 @@
         $('#myTable').DataTable({
             ordering: false
         });
-        $('.btn-outline-danger').click(function() {
-            let id = $(this).closest('tr').attr('id');
-            $.ajax({
-                url: '{{ route('admin.users.destroy', ':id') }}'.replace(':id', id),
-                type: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    _method: 'DELETE'
-                },
-                async: false,
-                success: function() {
-                    $('tr#' + id + '').remove();
-                },
-                error: function() {
-                    alert('error');
-                }
-            })
-        });
+        deletePrompt('istifadəçini', '{{ route('admin.users.destroy', ':id') }}', 'İstifadəçi')
     </script>
 @endsection

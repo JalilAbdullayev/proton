@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Team;
 use App\Models\TeamTranslate;
 use App\Traits\UploadImage;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
 use Illuminate\View\View as ViewResponse;
 
@@ -47,7 +49,7 @@ class TeamController extends Controller {
                 'lang' => $request->lang[$i],
             ]);
         }
-        return Redirect::route('admin.team.index');
+        return Redirect::route('admin.team.index')->withSuccess('Üzv uğurla əlavə edildi.');
     }
 
     /**
@@ -72,14 +74,14 @@ class TeamController extends Controller {
                 'lang' => $request->lang[$i],
             ]);
         }
-        return Redirect::route('admin.team.index');
+        return Redirect::route('admin.team.index')->withSuccess('Üzv məlumatları uğurla yeniləndi.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id): RedirectResponse {
+    public function destroy(int $id): JsonResponse {
         Team::whereId($id)->delete();
-        return Redirect::back();
+        return Response::json(['id' => $id]);
     }
 }

@@ -31,7 +31,7 @@ class SettingsController extends Controller {
                 'description' => $request->description[$i]
             ]);
         }
-        return Redirect::back();
+        return Redirect::back()->withSuccess('Məlumatlar yeniləndi.');
     }
 
     public function uploadImage(Request $request, $input, $model, $modelInput): void {

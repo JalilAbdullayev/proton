@@ -63,7 +63,7 @@ class BlogController extends Controller {
             ]);
         }
         $this->multipleImg($request, $blog, BlogImage::class, 'blog', 'article_id');
-        return Redirect::route('admin.blog.index');
+        return Redirect::route('admin.blog.index')->withSuccess('Məqalə uğurla yaradıldı.');
     }
 
     /**
@@ -99,16 +99,15 @@ class BlogController extends Controller {
                 'date' => $request->date[$i],
             ]);
         }
-
-        return Redirect::route('admin.blog.index');
+        return Redirect::route('admin.blog.index')->withSuccess('Dəyişikliklər uğurla saxlanıldı.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Blog $blog): RedirectResponse {
+    public function destroy(Blog $blog): JsonResponse {
         $blog->delete();
-        return Redirect::back();
+        return Response::json(['id' => $blog->id]);
     }
 
     public function status(Request $request): JsonResponse {
@@ -120,6 +119,6 @@ class BlogController extends Controller {
         return Response::json([
             'id' => $id,
             'status' => $blog->status
-        ], 200);
+        ]);
     }
 }

@@ -28,6 +28,6 @@ class ContactController extends Controller {
                 'address' => $request->address[$i]
             ]);
         }
-        return Redirect::back();
+        return Redirect::back()->withSuccess('Əlaqə məlumatları saxlanıldı.');
     }
 }

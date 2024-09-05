@@ -89,23 +89,6 @@
         $('#myTable').DataTable({
             ordering: false
         });
-        $('.btn-outline-danger').click(function() {
-            let id = $(this).closest('tr').attr('id');
-            $.ajax({
-                url: '{{ route('admin.team.destroy', ':id') }}'.replace(':id', id),
-                type: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    _method: 'DELETE'
-                },
-                async: false,
-                success: function() {
-                    $('tr#' + id + '').remove();
-                },
-                error: function() {
-                    alert('error');
-                }
-            })
-        });
+        deletePrompt('üzvü', '{{ route('admin.team.destroy', ':id') }}', 'Üzv')
     </script>
 @endsection

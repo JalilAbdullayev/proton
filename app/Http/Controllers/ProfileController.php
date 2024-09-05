@@ -20,7 +20,7 @@ class ProfileController extends Controller {
             'name' => $request->name,
             'email' => $request->email
         ]);
-        return Redirect::back();
+        return Redirect::back()->withSuccess('Profiliniz uğurla yeniləndi.');
     }
 
     public function delete(): RedirectResponse {

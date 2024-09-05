@@ -43,7 +43,7 @@ class TagController extends Controller {
                 'lang' => $request->lang[$i],
             ]);
         }
-        return Redirect::back();
+        return Redirect::back()->withSuccess('Teq uğurla yaradıldı');
     }
 
     /**
@@ -71,15 +71,15 @@ class TagController extends Controller {
                 'lang' => $request->lang[$i],
             ]);
         }
-        return Redirect::route('admin.tag.index');
+        return Redirect::route('admin.tag.index')->withSuccess('Teq uğurla yeniləndi');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tag $tag): RedirectResponse {
+    public function destroy(Tag $tag): JsonResponse {
         $tag->delete();
-        return Redirect::back();
+        return Response::json(['id' => $tag->id]);
     }
 
     public function status(Request $request): JsonResponse {
@@ -91,6 +91,6 @@ class TagController extends Controller {
         return Response::json([
             'id' => $id,
             'status' => $tag->status
-        ], 200);
+        ]);
     }
 }
