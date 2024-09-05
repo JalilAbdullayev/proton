@@ -9,11 +9,12 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::create('contact', function(Blueprint $table) {
+        Schema::create('banner_translate', function(Blueprint $table) {
             $table->id();
-            $table->string('email');
-            $table->string('phone', 19);
-            $table->text('map');
+            $table->foreignId('banner_id')->constrained('banner');
+            $table->string('lang');
+            $table->string('title');
+            $table->text('subtitle');
             $table->timestamps();
         });
     }
@@ -22,6 +23,6 @@ return new class extends Migration {
      * Reverse the migrations.
      */
     public function down(): void {
-        Schema::dropIfExists('contact');
+        Schema::dropIfExists('banner_translate');
     }
 };

@@ -27,7 +27,7 @@
     <div class="loader">
         <div class="loader__figure"></div>
         <p class="loader__label">
-            {{ $settings->translate->where('lang', session('locale'))->first()->title }}
+            {{ $settings->translated->first()->title }}
         </p>
     </div>
 </div>
@@ -41,7 +41,7 @@
                 <a class="navbar-brand d-inline-block" href="{{ route('admin.index') }}" style="width: 30%">
                     <!-- Light Logo text -->
                     <img src="{{ asset(Storage::url($settings->logo)) }}" class="light-logo w-100"
-                         alt="{{ $settings->translate->where('lang', session('locale'))->first()->title }}"/>
+                         alt="{{ $settings->translated->first()->title }}"/>
                 </a>
             </div>
             <!-- End Logo -->
@@ -82,7 +82,7 @@
     <footer class="footer">
         © {{ date('Y') == 2024 ? 2024 : '2024 -' . date('Y') }}
         <a target="_blank" href="">
-            {{ $settings->translate->where('lang', session('locale'))->first()->title }}
+            {{ $settings->translated->first()->title }}
         </a>
     </footer>
     <!-- End footer -->

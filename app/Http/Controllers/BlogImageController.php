@@ -17,7 +17,7 @@ use Illuminate\View\View as ViewResponse;
 class BlogImageController extends Controller {
     public function index($id): ViewResponse {
         $data = BlogImage::whereArticleId($id)->get();
-        $article = Blog::find($id)->translate->where('lang', session('locale'))->first();
+        $article = Blog::find($id)->translated->first();
         return View::make('admin.blog.images', compact('data', 'article'));
     }
 

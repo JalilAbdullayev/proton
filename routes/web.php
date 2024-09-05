@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BlogImageController;
 use App\Http\Controllers\CategoryController;
@@ -89,6 +90,11 @@ Route::middleware(SetLocale::class)->group(function() {
             Route::get('/', 'index')->name('index');
             Route::get('{id}', 'show')->name('show');
             Route::delete('{id}', 'delete')->name('delete');
+        });
+
+        Route::controller(BannerController::class)->prefix('banner')->name('banner')->group(function() {
+            Route::get('/', 'index');
+            Route::put('/', 'update');
         });
     });
 });

@@ -5,14 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Settings extends Model {
-    protected $fillable = [
-        'logo',
-        'favicon',
-    ];
+class Banner extends Model {
+    protected $table = 'banner';
 
     public function translate(): HasMany {
-        return $this->hasMany(SettingTranslate::class);
+        return $this->hasMany(BannerTranslate::class, 'banner_id', 'id');
     }
 
     public function translated(): HasMany {
