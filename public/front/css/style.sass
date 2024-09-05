@@ -1,0 +1,1027 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&display=swap')
+
+*
+    font-family: "Outfit", sans-serif
+    margin: 0
+    padding: 0
+    text-decoration: none
+    list-style-type: none
+    box-sizing: border-box
+    scroll-behavior: smooth
+
+html,
+body
+    height: 100%
+
+iframe
+    width: 100%
+    border-radius: .5rem
+
+body
+    background: linear-gradient(to left, var(--color-main), var(--color-main-dark))
+
+iframe
+    width: 100%
+    border-radius: .5rem
+
+a,
+i, h1,h2, h3, h4, h5, h6,p, ul, ol
+    color: inherit
+    font-weight: inherit
+    text-decoration: inherit
+    padding: 0
+    margin: 0
+
+@import "./partials/cards"
+@import "./partials/_custom_scroll"
+
+.form-control
+    outline: none
+
+    &:focus
+        outline: none
+        box-shadow: none
+
+.overlay
+    position: absolute
+    width: 100%
+    height: 100%
+
+:root
+    --color-main: rgb(51, 70, 209)
+    --color-main-40: rgba(51, 70, 209, .4)
+    --color-main-2: rgb(51, 28, 113)
+    --color-main-dark: rgb(53, 0, 52)
+    --color-main-dark-2: rgb(53, 1, 54)
+    --color-white: rgb(255, 255, 255)
+    --color-white-75: rgba(255, 255, 255, 0.75)
+    --color-black: rgb(38, 38, 38)
+    --color-gray: rgb(163, 163, 163)
+
+// Swiper start
+.swiper
+    width: 100%
+    height: 100%
+
+    .swiper-button-prev,
+    .swiper-button-next
+        width: 50px
+        height: 50px
+        top: 15%
+        border: 1px solid var(--color-white)
+        right: 12%
+        border-radius: 50%
+        transition: all .4s ease
+
+        &::after
+            font-size: 1.3rem
+            font-weight: 600
+            color: var(--color-white)
+
+.swiper-slide
+    display: flex
+    justify-content: center
+    align-items: center
+
+.swiper-slide img
+    display: block
+    width: 100%
+    height: 100%
+
+// Swiper end
+
+// Buttons start
+.btn
+    transition: .5s ease-in-out
+    &.custom-rounded
+        border-radius: 2rem
+        .fa-whatsapp
+            font-size: 1.5rem
+    &:focus
+        outline: none
+        border: none
+        box-shadow: none
+        opacity: 1
+    &.btn-nav
+        display: none
+
+    &.btn-close
+        display: flex
+        align-items: center
+        justify-content: center
+        color: var(--color-white)
+        border: 1px solid var(--color-main)
+        padding: .8rem .8rem
+        border-radius: 50%
+        background: none
+        opacity: 1
+        .feather-x
+            fill: var(--color-white)
+    &.btn-search
+        color: var(--color-white)
+    &.btn-top
+        position: fixed
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 3rem
+        height: 3rem
+        border-radius: 50%
+        background: var(--color-main-dark)
+        transition: .5s
+        transform: scale(0)
+        bottom: .5rem
+        right: .5rem
+        z-index: 3
+        &.active
+            transform: scale(1)
+        .feather
+            width: 1.5rem
+            height: 1.5rem
+            color: var(--color-white)
+    &.btn-main
+        color: var(--color-white)
+        background: var(--color-main)
+        font-size: 1.12rem
+        font-weight: 500
+        padding: .8rem 1rem
+        transition: .5s ease-in-out
+        text-transform: capitalize
+        &:hover
+            color: var(--color-white)
+            background-color: var(--color-main-2)
+            box-shadow: 0 0 10px var(--color-main-dark)
+        &.dark
+            background-color: var(--color-main-dark)
+            &:hover
+                background-color: var(--color-white)
+                color: var(--color-main-dark)
+    &.btn-play
+        display: flex
+        align-items: center
+        justify-content: center
+        width: 4.5rem
+        height: 4.5rem
+        border-radius: 50%
+        background: var(--color-main)
+        padding-left: 1rem
+        .feather
+            color: var(--color-white)
+        &:hover
+            background: var(--color-main-2)
+
+.form-control
+    box-shadow: none
+
+    &.custom-form
+        width: 100%
+        padding: 1rem 1.5rem
+        border-radius: 1.5rem
+        border: .25rem solid var(--color-main-2)
+        // background: transparent
+        &::placeholder
+            transition: .5s
+        &:focus
+            &::placeholder
+                opacity: 0
+// Buttons end
+
+.section-img
+    margin: 1.5rem 0 .8rem 0
+    border-radius: .8rem
+    img
+        display: block
+        border-radius: .8rem
+        max-width: 100%
+        object-fit: cover
+
+// Titles
+.inner-text
+    font-size: 1.2rem
+    font-weight: 500
+    line-height: 1.5rem
+    padding: 1rem 0
+    color: var(--color-white-75)
+
+.icon
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 3.75rem
+    height: 3.75rem
+    background: var(--color-main)
+    border-radius: 50%
+    flex-shrink: 0
+    svg
+        color: var(--color-white-75)
+        width: 2rem
+        height: 2rem
+
+.banner-title
+    font-size: 5.37rem
+    color: var(--color-white)
+    font-weight: 700
+    text-align: center
+    text-transform: capitalize
+
+.blog-title
+    color: var(--color-white)
+    font-size: 2rem
+    font-weight: 600
+
+.section-title-box
+    border-bottom: 1px solid var(--color-white-75)
+    padding: 1rem 0
+
+    .subtitle
+        position: relative
+        display: inline-flex
+        color: var(--color-white)
+        font-size: .95rem
+        font-weight: 500
+        text-transform: uppercase
+        padding-left: 1rem
+
+        &::before
+            position: absolute
+            content: ""
+            width: 8px
+            height: 8px
+            background-color: var(--color-white)
+            border-radius: 50%
+            left: 0
+            top: .2rem
+
+    .section-title
+        font-size: 2.75rem
+        color: var(--color-white)
+        font-weight: 600
+        line-height: 1.2
+        text-transform: capitalize
+        padding: .5rem 0
+
+// Titles end
+
+.images-box
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    gap: 1rem
+
+.image-item
+    position: relative
+    border-radius: .8rem
+    &::before
+        position: absolute
+        content: ""
+        width: 100%
+        height: 100%
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%)
+        border-radius: .8rem
+    img
+        width: 100%
+        object-fit: cover
+        border-radius: .8rem
+    .btn-play
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
+        z-index: 2
+        &::after, &::before
+            position: absolute
+            left: 0
+            top: 0
+            content: ""
+            border-radius: 50%
+            width: 100%
+            height: 100%
+            border: 1px solid rgba(255, 255, 255, 0.4)
+            animation-name: popupBtn
+            animation-duration: 3s
+            animation-timing-function: linear
+            animation-iteration-count: infinite
+// Pagination start
+.pagination
+    display: flex
+    align-items: center
+    justify-content: center
+    gap: 1rem
+    li
+        color: var(--color-white)
+        a
+            width: 2.8rem
+            height: 2.8rem
+            font-size: 1.12rem
+            display: flex
+            flex-shrink: 0
+            align-items: center
+            justify-content: center
+            border: 1px solid var(--color-white)
+            border-radius: 50%
+            transition: .5s ease-in-out
+            &:hover
+                background: var(--color-main)
+                border-color: transparent
+
+// Pagination end
+
+// Header start
+.logo
+    width: 150px
+
+    img
+        width: 100%
+
+.social-network
+    display: flex
+    align-items: center
+    color: var(--color-white)
+    gap: 1rem
+    li
+        a
+            display: block
+            display: flex
+            align-items: center
+            justify-content: center
+            padding: .5rem
+            border-radius: 50%
+            border: 1px solid var(--color-white)
+            transition: .3s
+            &:hover
+                background: var(--color-main)
+                border-color: transparent
+    &.footer
+        li
+            a
+                padding: .8rem .8rem
+.blog-tags
+    display: flex
+    align-items: center
+    flex-wrap: wrap
+    margin: .8rem 0
+    gap: 1rem
+    li
+        a
+            display: block
+            font-size: .85rem
+            padding: .5rem .8rem
+            color: var(--color-white-75)
+            border: 1px solid var(--color-main)
+            border-radius: 1rem
+            transition: .5s
+            &:hover
+                color: var(--color-white)
+                background: var(--color-main)
+header
+    position: absolute
+    width: 100%
+    z-index: 2
+    transition: .3s
+    transform-origin: top
+    &.fixed-header
+        position: fixed
+        background: linear-gradient(to left, var(--color-main), var(--color-main-dark))
+        box-shadow: 0 0 20px var(--color-main-dark)
+        z-index: 11
+
+    .header
+        width: 100%
+        display: flex
+        align-items: center
+        justify-content: space-between
+        color: var(--color-white)
+
+        .custom-navbar
+            display: flex
+            align-items: center
+            gap: 1rem
+            padding: 1rem 0
+            li.nav-item
+                &.mobile-header
+                    display: none
+                a
+                    display: block
+                    padding: 1rem .5rem
+                    font-weight: 500
+
+            .contact-list
+                display: none
+                li
+                    margin-bottom: .5rem
+                    font-size: 1.3rem
+// Header end
+
+// Banner start
+.banner-bg
+    position: relative
+    width: 100%
+    height: 100vh
+    background: linear-gradient(to left, var(--color-main), var(--color-main-dark))
+    background-size: 100% 100%
+
+    .overlay
+        background-image: url(../images/h3_1.png)
+        background-size: cover
+        background-position: center center
+
+    .inner-text
+        text-align: center
+
+    .search-form
+        display: flex
+        align-items: center
+        gap: 1.5rem
+
+        .form-group:first-child
+            flex: 1
+
+.breadcrumb-bg
+    position: relative
+    text-transform: capitalize
+    width: 100%
+    height: 23rem
+    margin-top: 5.75rem
+    background: linear-gradient(90deg, var(--color-main-dark), var(--color-main-40) 100%)
+    border-radius: .5rem
+    z-index: 1
+    .breadcrumb-title
+        color: var(--color-white)
+        font-size: 3rem
+        font-weight: 500
+        padding: .5rem 0
+    .breadcrumb-box
+        color: var(--color-white)
+        display: flex
+        justify-content: center
+        align-items: center
+        li
+            font-size: 1rem
+            font-weight: 500
+            &:not(:first-child)
+                color: var(--color-white-75)
+
+    .breadcrumb-img
+        position: absolute
+        width: 100%
+        height: 100%
+        left: 0
+        top: 0
+        z-index: -1
+// Banner end
+
+// Services start
+.benefit-section
+    border-bottom: 1px solid rgba(255, 255, 255, .45)
+    padding: 3rem 0
+    .service-card
+        transform: translateY(0)
+.swiper-buttons
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    gap: 1rem
+    .swiper-button-next,
+    .swiper-button-prev
+        position: static
+        color: var(--color-white)
+        width: 50px
+        height: 50px
+        border: 1px solid var(--color-main-dark)
+        border-radius: 50%
+        transition: .5s
+        &::after
+            font-size: 1.8rem
+        &:hover
+            background-color: var(--color-main-dark)
+
+.servicesSwiper
+    color: var(--color-white)
+    padding-top: 3rem
+    position: static
+    .service-body
+        a
+            visibility: hidden
+            opacity: 0
+
+// Services end
+
+// Home project start
+.home-projects
+    position: relative
+    padding: 2.5rem 0 6rem 0
+    .homeProjectsSwiper
+        position: static
+        padding-top: 2rem
+        .swiper-buttons
+            margin: 3.5rem 0
+            justify-content: center
+        .swiper-wrapper
+            margin: 0 -18.75rem
+.detail-body
+    .portfolio-info
+        display: grid
+        align-items: center
+        grid-template-columns: repeat(6, 1fr)
+        border: 1px solid rgba(255, 255, 255, .25)
+        li
+            color: var(--color-white-75)
+            padding: 2rem 1.875rem 2.125rem
+            &:not(:last-child)
+                border-right: 1px solid rgba(255, 255, 255, .25)
+        .inner-text
+            color: var(--color-white)
+            padding: .5rem 0 0 0
+        &:first-child
+            border-bottom-left-radius: .5rem
+            border-top-left-radius: .5rem
+        &:last-child
+            border-bottom-right-radius: .5rem
+            border-top-right-radius: .5rem
+    .detail-img
+        border-radius: .8rem
+        img
+            object-fit: cover
+            width: 100%
+            height: 100%
+            border-radius: .8rem
+
+.services-list
+    li
+        display: flex
+        align-items: center
+        gap: 1rem
+        color: var(--color-white-75)
+        font-size: 1.125rem
+        font-weight: 500
+        margin-bottom: .8rem
+        .icon
+            width: 1.5rem
+            height: 1.5rem
+            .feather-check
+                width: 1.2rem
+                height: 1.2rem
+// Home project end
+
+// Home preferences start
+.home-preferences
+    padding: 5rem 0
+    .section-title-box
+        border-bottom: 0
+    .section-img
+        img
+            margin-left: auto
+
+.preferences-section-2
+    .section-img
+        width: 100%
+
+    .successful-projects
+        display: flex
+        align-items: center
+        justify-content: space-between
+        margin-top: 2.5rem
+        .project-item
+            position: relative
+            padding: 0 3.5rem
+            &:first-child
+                padding-left: 0
+                &::after
+                    content: ""
+                    position: absolute
+                    width: 1px
+                    height: 100%
+                    background: var(--color-white-75)
+                    right: 0
+                    top: 0
+            .count
+                font-size: 3rem
+                font-weight: 550
+                color: var(--color-white)
+
+.preferences-list
+    li
+        display: flex
+        align-items: flex-start
+        color: var(--color-white)
+        margin-bottom: 1rem
+        gap: 1rem
+        &:first-child
+            margin-top: 1rem
+        .title
+            font-size: 1.5rem
+            font-weight: 600
+            text-transform: capitalize
+    // Home preferences end
+
+// Partnes start
+.partnersSwiper
+    padding: .8rem 0
+
+.partner-item
+    width: 100%
+    height: 70px
+    display: flex
+    align-items: center
+    justify-content: center
+    border: 1px solid var(--color-main)
+    border-radius: .9rem
+    cursor: pointer
+    transition: all .3s
+    &:hover
+        background: var(--color-main-dark)
+        border-color: transparent
+    a
+        max-width: 100%
+        height: auto
+        img
+            max-width: 100%
+            height: 100%
+// Partners end
+
+// Home contact start
+.contact-form
+    border: 1px solid var(--color-main)
+    border-radius: .5rem
+    padding: 1rem
+    label
+        width: 100%
+    .custom-form
+        background: transparent
+        color: var(--color-white)
+        border-radius: .8rem
+        border: 1px solid var(--color-main)
+        resize: none
+        &::placeholder
+            color: var(--color-white)
+        option
+            background: var(--color-main)
+
+.home_contact
+    .contact-info
+        padding: 1.5rem 0
+        .icon
+            width: 5rem
+            height: 4rem
+            border-radius: .5rem
+            margin-right: 2rem
+            svg
+                width: 3rem
+                height: 3rem
+                color: var(--color-white)
+    .info
+        .inner-text
+            padding: 0
+    a
+        color: var(--color-white)
+        transition: all .5s
+        font-size: 1.5rem
+        font-weight: 600
+        &:hover
+            color: var(--color-main)
+
+.contact-us-section
+    padding: 3rem 0
+    border-bottom: 1px solid rgba(255, 255, 255, .45)
+
+// Home contact end
+
+// About page start
+.our-story
+    padding: 3.5rem 0
+    .section-content
+        padding: 0 3rem
+        .content-body
+            margin-bottom: 1rem
+
+// About page end
+
+// Teams start
+.teams-section
+    .swiper-buttons
+        justify-content: flex-start
+        padding: 1.5rem 0
+        .swiper-button-next, .swiper-button-prev
+            border: 1px solid var(--color-main)
+
+.faq-section
+    border-top: 1px solid var(--color-white-75)
+
+.faq-accordion
+    border-radius: .8rem
+    .accordion-item
+        background-color: var(--color-main-dark)
+        border: 2px solid transparent
+        color: var(--color-white)
+        margin-bottom: 1.25rem
+        transition: .3s
+        border-radius: .8rem
+        overflow: hidden
+        &:has(.show)
+            border: 2px solid var(--color-main)
+        .accordion-header
+            .accordion-button
+                background-color: var(--color-main-dark)
+                color: var(--color-white)
+                box-shadow: none
+                font-size: 1.4rem
+                padding: 1.875rem 1.875rem 1.875rem
+                gap: 1rem
+                .icon
+                    width: 2.25rem
+                    height: 2.25rem
+                    transition: .5s
+                    .feather
+                        width: 1.5rem
+                        height: 1.5rem
+                &.collapsed
+                    .icon
+                        transform: rotate(-45deg)
+                &::after
+                    content: ""
+                    background: none
+        .accordion-body
+            padding: 0 1.875rem 1.56rem 4.75rem
+            .inner-text
+                border-top: 1px solid rgba(255, 255, 255, .15)
+
+// Blog detail start
+.items-center
+    display: flex
+    align-items: center
+    gap: .8rem
+    .feather
+        color: var(--color-white-75)
+
+.blog-detail
+    color: var(--color-white)
+    border-bottom: 1px solid rgba(255, 255, 255, .15)
+    .blog-img
+        margin-bottom: 1.5rem
+        img
+            width: 100%
+    .blog-info
+        color: var(--color-white-75)
+        gap: 1.5rem
+        .auth-info
+            gap: .8rem
+            .auth-img
+                width: 2.3rem
+                height: 2.3rem
+                border-radius: 50%
+                img
+                    width: 100%
+                    object-fit: cover
+            .auth-name
+                font-size: 1.1rem
+                font-weight: 500
+
+    .comment-box
+        padding: 2.25rem 1.65rem 1.875rem
+        border: 3px solid var(--color-main)
+        border-radius: .8rem
+        margin: 2.5rem 0
+        .inner-text
+            padding: 1.5rem 0
+            font-size: 1.25rem
+            color: var(--color-white)
+        .icon
+            display: block
+            width: auto
+            height: auto
+            background: transparent
+            svg
+                width: auto
+                height: auto
+        .auth
+            position: relative
+            display: flex
+            align-items: center
+            justify-content: flex-end
+            font-weight: 500
+            font-size: 1.15rem
+            color: var(--color-gray)
+            .auth-name
+                position: relative
+                &::before
+                    content: ""
+                    position: absolute
+                    width: 2rem
+                    height: 2px
+                    left: -2.45rem
+                    top: 50%
+                    background-color: var(--color-gray)
+
+.right-detail
+    padding: 0 2.5rem
+    .blog-title
+        font-size: 1.5rem
+        font-weight: 500
+    .right-item
+        padding: 2rem 0
+        border-bottom: 1px solid rgba(255, 255, 255, .45)
+        &:last-child
+            border-bottom: 0
+        .form-group
+            position: relative
+            .custom-form
+                color: var(--color-white)
+                border-radius: .5rem
+                border: 1px solid var(--color-main-dark)
+                background: transparent
+                &::placeholder
+                    color: var(--color-white)
+            .btn-search
+                position: absolute
+                top: .6rem
+                right: 0
+// Blog detail end
+
+//  Footer start
+.small-title
+    font-weight: 600
+    font-size: 1.5rem
+    color: var(--color-white)
+.footer-left
+    margin-right: 5.31rem
+
+.footer-right
+    margin-left: 5.31rem
+    .footer-mail
+        font-size: 1.5rem
+        color: var(--color-white)
+        display: flex
+        align-items: center
+        gap: .5rem
+        padding-bottom: 1rem
+        transition: .5s
+        &:hover
+            color: var(--color-main-dark)
+
+.footer-menu
+    color: var(--color-white-75)
+    font-size: 1.1rem
+    font-weight: 500
+    li
+        margin-bottom: 1rem
+.subscribe-form
+    .form-group
+        position: relative
+        .custom-form
+            background: transparent
+            color: var(--color-white)
+            &::placeholder
+                color: var(--color-white)
+        .btn-main
+            position: absolute
+            top: 5px
+            right: 8px
+            border-radius: 50%
+
+.copyright
+    color: var(--color-white-75)
+    font-size: 1.2rem
+    a
+        color: var(--color-white)
+
+// Footer end
+
+.search-modal-container
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100vh
+    background: rgba(0, 0, 0, .9)
+    display: flex
+    align-items: center
+    justify-content: center
+    z-index: 999
+    transition: all 500ms cubic-bezier(0.86, 0, 0.07, 1)
+    transform-origin: top
+    transform: scaleY(0)
+    &.active
+        transform: scaleY(1)
+    .form-group
+        position: relative
+        .custom-form
+            background: transparent
+            color: var(--color-white)
+            &::placeholder
+                color: var(--color-white)
+
+// Media queries
+@media (max-width: 992px)
+    .breadcrumb-bg
+        margin-top: 0
+    .btn
+        &.btn-nav
+            display: inline-block
+    .banner-title
+        font-size: 2rem
+
+    .section-title-box
+        .section-title
+            font-size: 1.55rem
+
+    header
+        position: relative
+        padding: 1rem 0
+        .header
+            nav
+                position: absolute
+                width: 100%
+                height: 100vh
+                top: 0
+                left: 0
+                background: var(--color-black)
+                transform-origin: left
+                transform: scaleX(0)
+                transition: all 0.5s cubic-bezier(1, 0, 0.55, 1)
+                &.active
+                    transform: scaleX(1)
+                .custom-navbar
+                    align-items: flex-start
+                    flex-direction: column
+                    .contact-list
+                        display: block
+                        padding-top: 1.5rem
+                    li
+                        &.nav-item
+                            width: 100%
+                            font-size: 1.5rem
+                            padding: 0 1rem
+                            &.mobile-header
+                                display: flex
+                                align-items: center
+                                justify-content: space-between
+                            a
+                                padding: 0 .5rem
+
+    .preferences-section-2
+        .successful-projects
+            .project-item
+                padding: 0 1.5rem
+
+    .home-projects
+        .homeProjectsSwiper
+            .swiper-wrapper
+                margin: 0
+
+    .our-story
+        .section-content
+            padding: 0
+
+    .footer-left
+        margin-right: 0
+
+    .footer-right
+        margin-left: 0
+
+@media (max-width: 768px)
+    .breadcrumb-bg
+        .breadcrumb-title
+            font-size: 2.25rem
+
+    .detail-body .portfolio-info
+        grid-template-columns: repeat(1, 1fr)
+        li
+            border-right: none !important
+    .images-box
+        grid-template-columns: repeat(1, 1fr)
+
+.faq-accordion
+    .accordion-item
+        .accordion-header
+            .accordion-button
+                font-size: 1.15rem
+                padding: 1.25rem .57rem
+
+@media only screen and (min-width: 576px) and (max-width: 992px)
+    .col-custom-md-6
+        flex: 0 0 auto
+        width: 50%
+
+@media only screen and (min-width: 768px) and (max-width: 992px)
+    .detail-body .portfolio-info
+        grid-template-columns: repeat(2, 1fr)
+        li
+            &:nth-child(2n)
+                border-right: none
+@media only screen and (max-width: 481px)
+    header
+        .header
+            .btn-search
+                display: none
+// Animation
+@keyframes popupBtn
+    0%
+        transform: scale(1)
+        opacity: 0
+
+    50%
+        transform: scale(1.6)
+        opacity: 0.3
+
+    100%
+        transform: scale(2)
+        opacity: 0

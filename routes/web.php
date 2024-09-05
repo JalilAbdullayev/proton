@@ -24,6 +24,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(SetLocale::class)->group(function() {
+    Route::controller(FrontController::class)->group(function() {
+        Route::get('/', 'index')->name('home');
+    });
     Route::post('send', [MessageController::class, 'store'])->name('send');
 
     Route::prefix('admin')->name('admin.')->middleware('auth')->group(function() {
