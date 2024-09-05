@@ -25,7 +25,7 @@ iframe
     border-radius: .5rem
 
 a,
-i, h1,h2, h3, h4, h5, h6,p, ul, ol
+i, h1, h2, h3, h4, h5, h6, p, ul, ol
     color: inherit
     font-weight: inherit
     text-decoration: inherit
@@ -93,15 +93,19 @@ i, h1,h2, h3, h4, h5, h6,p, ul, ol
 // Buttons start
 .btn
     transition: .5s ease-in-out
+
     &.custom-rounded
         border-radius: 2rem
+
         .fa-whatsapp
             font-size: 1.5rem
+
     &:focus
         outline: none
         border: none
         box-shadow: none
         opacity: 1
+
     &.btn-nav
         display: none
 
@@ -115,10 +119,13 @@ i, h1,h2, h3, h4, h5, h6,p, ul, ol
         border-radius: 50%
         background: none
         opacity: 1
+
         .feather-x
             fill: var(--color-white)
+
     &.btn-search
         color: var(--color-white)
+
     &.btn-top
         position: fixed
         display: flex
@@ -133,12 +140,15 @@ i, h1,h2, h3, h4, h5, h6,p, ul, ol
         bottom: .5rem
         right: .5rem
         z-index: 3
+
         &.active
             transform: scale(1)
+
         .feather
             width: 1.5rem
             height: 1.5rem
             color: var(--color-white)
+
     &.btn-main
         color: var(--color-white)
         background: var(--color-main)
@@ -147,15 +157,19 @@ i, h1,h2, h3, h4, h5, h6,p, ul, ol
         padding: .8rem 1rem
         transition: .5s ease-in-out
         text-transform: capitalize
+
         &:hover
             color: var(--color-white)
             background-color: var(--color-main-2)
             box-shadow: 0 0 10px var(--color-main-dark)
+
         &.dark
             background-color: var(--color-main-dark)
+
             &:hover
                 background-color: var(--color-white)
                 color: var(--color-main-dark)
+
     &.btn-play
         display: flex
         align-items: center
@@ -165,8 +179,10 @@ i, h1,h2, h3, h4, h5, h6,p, ul, ol
         border-radius: 50%
         background: var(--color-main)
         padding-left: 1rem
+
         .feather
             color: var(--color-white)
+
         &:hover
             background: var(--color-main-2)
 
@@ -181,6 +197,7 @@ i, h1,h2, h3, h4, h5, h6,p, ul, ol
         // background: transparent
         &::placeholder
             transition: .5s
+
         &:focus
             &::placeholder
                 opacity: 0
@@ -189,6 +206,7 @@ i, h1,h2, h3, h4, h5, h6,p, ul, ol
 .section-img
     margin: 1.5rem 0 .8rem 0
     border-radius: .8rem
+
     img
         display: block
         border-radius: .8rem
@@ -212,6 +230,7 @@ i, h1,h2, h3, h4, h5, h6,p, ul, ol
     background: var(--color-main)
     border-radius: 50%
     flex-shrink: 0
+
     svg
         color: var(--color-white-75)
         width: 2rem
@@ -270,6 +289,7 @@ i, h1,h2, h3, h4, h5, h6,p, ul, ol
 .image-item
     position: relative
     border-radius: .8rem
+
     &::before
         position: absolute
         content: ""
@@ -277,16 +297,19 @@ i, h1,h2, h3, h4, h5, h6,p, ul, ol
         height: 100%
         background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%)
         border-radius: .8rem
+
     img
         width: 100%
         object-fit: cover
         border-radius: .8rem
+
     .btn-play
         position: absolute
         left: 50%
         top: 50%
         transform: translate(-50%, -50%)
         z-index: 2
+
         &::after, &::before
             position: absolute
             left: 0
@@ -306,8 +329,10 @@ i, h1,h2, h3, h4, h5, h6,p, ul, ol
     align-items: center
     justify-content: center
     gap: 1rem
+
     li
         color: var(--color-white)
+
         a
             width: 2.8rem
             height: 2.8rem
@@ -319,6 +344,7 @@ i, h1,h2, h3, h4, h5, h6,p, ul, ol
             border: 1px solid var(--color-white)
             border-radius: 50%
             transition: .5s ease-in-out
+
             &:hover
                 background: var(--color-main)
                 border-color: transparent
@@ -337,6 +363,7 @@ i, h1,h2, h3, h4, h5, h6,p, ul, ol
     align-items: center
     color: var(--color-white)
     gap: 1rem
+
     li
         a
             display: block
@@ -347,19 +374,23 @@ i, h1,h2, h3, h4, h5, h6,p, ul, ol
             border-radius: 50%
             border: 1px solid var(--color-white)
             transition: .3s
+
             &:hover
                 background: var(--color-main)
                 border-color: transparent
+
     &.footer
         li
             a
                 padding: .8rem .8rem
+
 .blog-tags
     display: flex
     align-items: center
     flex-wrap: wrap
     margin: .8rem 0
     gap: 1rem
+
     li
         a
             display: block
@@ -369,15 +400,18 @@ i, h1,h2, h3, h4, h5, h6,p, ul, ol
             border: 1px solid var(--color-main)
             border-radius: 1rem
             transition: .5s
+
             &:hover
                 color: var(--color-white)
                 background: var(--color-main)
+
 header
     position: absolute
     width: 100%
     z-index: 2
     transition: .3s
     transform-origin: top
+
     &.fixed-header
         position: fixed
         background: linear-gradient(to left, var(--color-main), var(--color-main-dark))
@@ -396,9 +430,11 @@ header
             align-items: center
             gap: 1rem
             padding: 1rem 0
+
             li.nav-item
                 &.mobile-header
                     display: none
+
                 a
                     display: block
                     padding: 1rem .5rem
@@ -406,6 +442,7 @@ header
 
             .contact-list
                 display: none
+
                 li
                     margin-bottom: .5rem
                     font-size: 1.3rem
@@ -444,19 +481,23 @@ header
     background: linear-gradient(90deg, var(--color-main-dark), var(--color-main-40) 100%)
     border-radius: .5rem
     z-index: 1
+
     .breadcrumb-title
         color: var(--color-white)
         font-size: 3rem
         font-weight: 500
         padding: .5rem 0
+
     .breadcrumb-box
         color: var(--color-white)
         display: flex
         justify-content: center
         align-items: center
+
         li
             font-size: 1rem
             font-weight: 500
+
             &:not(:first-child)
                 color: var(--color-white-75)
 
@@ -473,13 +514,16 @@ header
 .benefit-section
     border-bottom: 1px solid rgba(255, 255, 255, .45)
     padding: 3rem 0
+
     .service-card
         transform: translateY(0)
+
 .swiper-buttons
     display: flex
     align-items: center
     justify-content: flex-end
     gap: 1rem
+
     .swiper-button-next,
     .swiper-button-prev
         position: static
@@ -489,8 +533,10 @@ header
         border: 1px solid var(--color-main-dark)
         border-radius: 50%
         transition: .5s
+
         &::after
             font-size: 1.8rem
+
         &:hover
             background-color: var(--color-main-dark)
 
@@ -498,6 +544,7 @@ header
     color: var(--color-white)
     padding-top: 3rem
     position: static
+
     .service-body
         a
             visibility: hidden
@@ -509,36 +556,47 @@ header
 .home-projects
     position: relative
     padding: 2.5rem 0 6rem 0
+
     .homeProjectsSwiper
         position: static
         padding-top: 2rem
+
         .swiper-buttons
             margin: 3.5rem 0
             justify-content: center
+
         .swiper-wrapper
             margin: 0 -18.75rem
+
 .detail-body
     .portfolio-info
         display: grid
         align-items: center
         grid-template-columns: repeat(6, 1fr)
         border: 1px solid rgba(255, 255, 255, .25)
+
         li
             color: var(--color-white-75)
             padding: 2rem 1.875rem 2.125rem
+
             &:not(:last-child)
                 border-right: 1px solid rgba(255, 255, 255, .25)
+
         .inner-text
             color: var(--color-white)
             padding: .5rem 0 0 0
+
         &:first-child
             border-bottom-left-radius: .5rem
             border-top-left-radius: .5rem
+
         &:last-child
             border-bottom-right-radius: .5rem
             border-top-right-radius: .5rem
+
     .detail-img
         border-radius: .8rem
+
         img
             object-fit: cover
             width: 100%
@@ -554,9 +612,11 @@ header
         font-size: 1.125rem
         font-weight: 500
         margin-bottom: .8rem
+
         .icon
             width: 1.5rem
             height: 1.5rem
+
             .feather-check
                 width: 1.2rem
                 height: 1.2rem
@@ -565,8 +625,10 @@ header
 // Home preferences start
 .home-preferences
     padding: 5rem 0
+
     .section-title-box
         border-bottom: 0
+
     .section-img
         img
             margin-left: auto
@@ -580,11 +642,14 @@ header
         align-items: center
         justify-content: space-between
         margin-top: 2.5rem
+
         .project-item
             position: relative
             padding: 0 3.5rem
+
             &:first-child
                 padding-left: 0
+
                 &::after
                     content: ""
                     position: absolute
@@ -593,6 +658,7 @@ header
                     background: var(--color-white-75)
                     right: 0
                     top: 0
+
             .count
                 font-size: 3rem
                 font-weight: 550
@@ -605,13 +671,15 @@ header
         color: var(--color-white)
         margin-bottom: 1rem
         gap: 1rem
+
         &:first-child
             margin-top: 1rem
+
         .title
             font-size: 1.5rem
             font-weight: 600
             text-transform: capitalize
-    // Home preferences end
+// Home preferences end
 
 // Partnes start
 .partnersSwiper
@@ -619,7 +687,7 @@ header
 
 .partner-item
     width: 100%
-    height: 70px
+    height: 100px
     display: flex
     align-items: center
     justify-content: center
@@ -627,12 +695,15 @@ header
     border-radius: .9rem
     cursor: pointer
     transition: all .3s
+
     &:hover
         background: var(--color-main-dark)
         border-color: transparent
+
     a
         max-width: 100%
-        height: auto
+        height: 100%
+
         img
             max-width: 100%
             height: 100%
@@ -643,39 +714,48 @@ header
     border: 1px solid var(--color-main)
     border-radius: .5rem
     padding: 1rem
+
     label
         width: 100%
+
     .custom-form
         background: transparent
         color: var(--color-white)
         border-radius: .8rem
         border: 1px solid var(--color-main)
         resize: none
+
         &::placeholder
             color: var(--color-white)
+
         option
             background: var(--color-main)
 
 .home_contact
     .contact-info
         padding: 1.5rem 0
+
         .icon
             width: 5rem
             height: 4rem
             border-radius: .5rem
             margin-right: 2rem
+
             svg
                 width: 3rem
                 height: 3rem
                 color: var(--color-white)
+
     .info
         .inner-text
             padding: 0
+
     a
         color: var(--color-white)
         transition: all .5s
         font-size: 1.5rem
         font-weight: 600
+
         &:hover
             color: var(--color-main)
 
@@ -688,8 +768,10 @@ header
 // About page start
 .our-story
     padding: 3.5rem 0
+
     .section-content
         padding: 0 3rem
+
         .content-body
             margin-bottom: 1rem
 
@@ -700,6 +782,7 @@ header
     .swiper-buttons
         justify-content: flex-start
         padding: 1.5rem 0
+
         .swiper-button-next, .swiper-button-prev
             border: 1px solid var(--color-main)
 
@@ -708,6 +791,7 @@ header
 
 .faq-accordion
     border-radius: .8rem
+
     .accordion-item
         background-color: var(--color-main-dark)
         border: 2px solid transparent
@@ -716,8 +800,10 @@ header
         transition: .3s
         border-radius: .8rem
         overflow: hidden
+
         &:has(.show)
             border: 2px solid var(--color-main)
+
         .accordion-header
             .accordion-button
                 background-color: var(--color-main-dark)
@@ -726,21 +812,27 @@ header
                 font-size: 1.4rem
                 padding: 1.875rem 1.875rem 1.875rem
                 gap: 1rem
+
                 .icon
                     width: 2.25rem
                     height: 2.25rem
                     transition: .5s
+
                     .feather
                         width: 1.5rem
                         height: 1.5rem
+
                 &.collapsed
                     .icon
                         transform: rotate(-45deg)
+
                 &::after
                     content: ""
                     background: none
+
         .accordion-body
             padding: 0 1.875rem 1.56rem 4.75rem
+
             .inner-text
                 border-top: 1px solid rgba(255, 255, 255, .15)
 
@@ -749,28 +841,36 @@ header
     display: flex
     align-items: center
     gap: .8rem
+
     .feather
         color: var(--color-white-75)
 
 .blog-detail
     color: var(--color-white)
     border-bottom: 1px solid rgba(255, 255, 255, .15)
+
     .blog-img
         margin-bottom: 1.5rem
+
         img
             width: 100%
+
     .blog-info
         color: var(--color-white-75)
         gap: 1.5rem
+
         .auth-info
             gap: .8rem
+
             .auth-img
                 width: 2.3rem
                 height: 2.3rem
                 border-radius: 50%
+
                 img
                     width: 100%
                     object-fit: cover
+
             .auth-name
                 font-size: 1.1rem
                 font-weight: 500
@@ -780,18 +880,22 @@ header
         border: 3px solid var(--color-main)
         border-radius: .8rem
         margin: 2.5rem 0
+
         .inner-text
             padding: 1.5rem 0
             font-size: 1.25rem
             color: var(--color-white)
+
         .icon
             display: block
             width: auto
             height: auto
             background: transparent
+
             svg
                 width: auto
                 height: auto
+
         .auth
             position: relative
             display: flex
@@ -800,8 +904,10 @@ header
             font-weight: 500
             font-size: 1.15rem
             color: var(--color-gray)
+
             .auth-name
                 position: relative
+
                 &::before
                     content: ""
                     position: absolute
@@ -813,23 +919,30 @@ header
 
 .right-detail
     padding: 0 2.5rem
+
     .blog-title
         font-size: 1.5rem
         font-weight: 500
+
     .right-item
         padding: 2rem 0
         border-bottom: 1px solid rgba(255, 255, 255, .45)
+
         &:last-child
             border-bottom: 0
+
         .form-group
             position: relative
+
             .custom-form
                 color: var(--color-white)
                 border-radius: .5rem
                 border: 1px solid var(--color-main-dark)
                 background: transparent
+
                 &::placeholder
                     color: var(--color-white)
+
             .btn-search
                 position: absolute
                 top: .6rem
@@ -841,11 +954,13 @@ header
     font-weight: 600
     font-size: 1.5rem
     color: var(--color-white)
+
 .footer-left
     margin-right: 5.31rem
 
 .footer-right
     margin-left: 5.31rem
+
     .footer-mail
         font-size: 1.5rem
         color: var(--color-white)
@@ -854,6 +969,7 @@ header
         gap: .5rem
         padding-bottom: 1rem
         transition: .5s
+
         &:hover
             color: var(--color-main-dark)
 
@@ -861,16 +977,21 @@ header
     color: var(--color-white-75)
     font-size: 1.1rem
     font-weight: 500
+
     li
         margin-bottom: 1rem
+
 .subscribe-form
     .form-group
         position: relative
+
         .custom-form
             background: transparent
             color: var(--color-white)
+
             &::placeholder
                 color: var(--color-white)
+
         .btn-main
             position: absolute
             top: 5px
@@ -880,6 +1001,7 @@ header
 .copyright
     color: var(--color-white-75)
     font-size: 1.2rem
+
     a
         color: var(--color-white)
 
@@ -899,13 +1021,17 @@ header
     transition: all 500ms cubic-bezier(0.86, 0, 0.07, 1)
     transform-origin: top
     transform: scaleY(0)
+
     &.active
         transform: scaleY(1)
+
     .form-group
         position: relative
+
         .custom-form
             background: transparent
             color: var(--color-white)
+
             &::placeholder
                 color: var(--color-white)
 
@@ -926,6 +1052,7 @@ header
     header
         position: relative
         padding: 1rem 0
+
         .header
             nav
                 position: absolute
@@ -937,23 +1064,29 @@ header
                 transform-origin: left
                 transform: scaleX(0)
                 transition: all 0.5s cubic-bezier(1, 0, 0.55, 1)
+
                 &.active
                     transform: scaleX(1)
+
                 .custom-navbar
                     align-items: flex-start
                     flex-direction: column
+
                     .contact-list
                         display: block
                         padding-top: 1.5rem
+
                     li
                         &.nav-item
                             width: 100%
                             font-size: 1.5rem
                             padding: 0 1rem
+
                             &.mobile-header
                                 display: flex
                                 align-items: center
                                 justify-content: space-between
+
                             a
                                 padding: 0 .5rem
 
@@ -984,6 +1117,7 @@ header
 
     .detail-body .portfolio-info
         grid-template-columns: repeat(1, 1fr)
+
         li
             border-right: none !important
     .images-box
@@ -1004,9 +1138,11 @@ header
 @media only screen and (min-width: 768px) and (max-width: 992px)
     .detail-body .portfolio-info
         grid-template-columns: repeat(2, 1fr)
+
         li
             &:nth-child(2n)
                 border-right: none
+
 @media only screen and (max-width: 481px)
     header
         .header
