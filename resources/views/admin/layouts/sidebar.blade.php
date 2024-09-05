@@ -104,6 +104,26 @@
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i class="icon-people"></i>
                         <span class="hide-menu">
+                            Müştərilər
+                        </span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li>
+                            <a href="{{ route('admin.client.index') }}">
+                                Müştərilər
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.client.create') }}">
+                                Yeni Müştəri
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="icon-people"></i>
+                        <span class="hide-menu">
                             Komanda
                         </span>
                     </a>

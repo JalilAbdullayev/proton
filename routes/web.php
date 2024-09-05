@@ -5,7 +5,9 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BlogImageController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FrontController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PortfolioController;
@@ -96,6 +98,9 @@ Route::middleware(SetLocale::class)->group(function() {
             Route::get('/', 'index');
             Route::put('/', 'update');
         });
+
+        Route::resource('client', ClientController::class);
+        Route::post('client/status', [ClientController::class, 'status'])->name('client.status');
     });
 });
 

@@ -18,7 +18,7 @@ class UserController extends Controller {
      * Display a listing of the resource.
      */
     public function index(): ViewResponse {
-        $data = User::all();
+        $data = User::where('id', '!=', Auth::user()->id)->get();
         return View::make('admin.users.index', compact('data'));
     }
 
@@ -79,11 +79,7 @@ class UserController extends Controller {
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id) {
-        if(Auth::user()->id === $id) {
-            User::whereId($id)->delete();
-            return Redirect::route('login');
-        }
+    public function destroy(int $id): JsonResponse {
         User::whereId($id)->delete();
         return Response::json(['id' => $id]);
     }
