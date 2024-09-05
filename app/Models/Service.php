@@ -11,4 +11,8 @@ class Service extends Model {
     public function translate(): HasMany {
         return $this->hasMany(ServiceTranslate::class, 'service_id');
     }
+
+    public function translated(): HasMany {
+        return $this->translate()->where('lang', session('locale'));
+    }
 }

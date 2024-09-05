@@ -12,4 +12,8 @@ class Team extends Model {
     public function translate(): HasMany {
         return $this->hasMany(TeamTranslate::class, 'member_id', 'id');
     }
+
+    public function translated(): HasMany {
+        return $this->translate()->where('lang', session('locale'));
+    }
 }

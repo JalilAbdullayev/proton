@@ -17,7 +17,7 @@ use Illuminate\View\View as ViewResponse;
 class PortfolioImageController extends Controller {
     public function index($id): ViewResponse {
         $data = PortfolioImage::whereProjectId($id)->get();
-        $project = Portfolio::find($id)->translate->where('lang', session('locale'))->first();
+        $project = Portfolio::find($id)->translated->first();
         return View::make('admin.portfolio.images', compact('data', 'project'));
     }
 

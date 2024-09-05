@@ -133,7 +133,7 @@
                     @foreach($data as $item)
                         <tr id="{{ $item->id }}">
                             <td>
-                                {{ $item->translate->where('lang', session('locale'))->first()->title }}
+                                {{ $item->translated->first()->title }}
                             </td>
                             <td>
                                 <input type="checkbox" @checked($item->status) class="js-switch" data-size="small"

@@ -79,13 +79,6 @@
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                        <textarea class="form-control" name="keywords[]" id="keywords"
-                                  placeholder="Açar sözlər">{{ $titem->keywords }}</textarea>
-                            <label for="keywords" class="form-label text-white-50">
-                                Açar sözlər
-                            </label>
-                        </div>
-                        <div class="form-floating mb-3">
                         <textarea class="form-control" name="description[]" id="description"
                                   placeholder="Açıqlama">{{ $titem->description }}</textarea>
                             <label for="description" class="form-label text-white-50">
@@ -120,7 +113,7 @@
                 <select name="category_id" id="category_id" class="w-100 select">
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}" @selected($category->id === $blog->category_id)>
-                            {{ $category->translate->where('lang', session('locale'))->first()->title }}
+                            {{ $category->translated->first()->title }}
                         </option>
                     @endforeach
                 </select>
@@ -133,7 +126,7 @@
                     @foreach($tags as $tag)
                         <option
                             value="{{ $tag->id }}" @selected(in_array($tag->id, $blog->tags->pluck('id')->toArray(), true))>
-                            {{ $tag->translate->where('lang', session('locale'))->first()->title }}
+                            {{ $tag->translated->first()->title }}
                         </option>
                     @endforeach
                 </select>

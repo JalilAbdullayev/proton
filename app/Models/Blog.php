@@ -22,6 +22,10 @@ class Blog extends Model {
         return $this->hasMany(BlogTranslate::class, 'article_id', 'id');
     }
 
+    public function translated(): HasMany {
+        return $this->translate()->where('lang', session('locale'));
+    }
+
     public function image(): HasOne {
         return $this->hasOne(BlogImage::class, 'article_id', 'id')->whereFeatured(1);
     }

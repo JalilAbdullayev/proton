@@ -74,13 +74,6 @@
                         </label>
                     </div>
                     <div class="form-floating mb-3">
-                        <textarea class="form-control" name="keywords[]" id="keywords"
-                                  placeholder="Açar sözlər"></textarea>
-                        <label for="keywords" class="form-label text-white-50">
-                            Açar sözlər
-                        </label>
-                    </div>
-                    <div class="form-floating mb-3">
                         <textarea class="form-control" name="description[]" id="description"
                                   placeholder="Açıqlama"></textarea>
                         <label for="description" class="form-label text-white-50">
@@ -109,13 +102,6 @@
                                maxlength="255" required/>
                         <label for="title" class="form-label text-white-50">
                             Başlıq
-                        </label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <textarea class="form-control" name="keywords[]" id="keywords"
-                                  placeholder="Açar sözlər"></textarea>
-                        <label for="keywords" class="form-label text-white-50">
-                            Açar sözlər
                         </label>
                     </div>
                     <div class="form-floating mb-3">
@@ -150,13 +136,6 @@
                         </label>
                     </div>
                     <div class="form-floating mb-3">
-                        <textarea class="form-control" name="keywords[]" id="keywords"
-                                  placeholder="Açar sözlər"></textarea>
-                        <label for="keywords" class="form-label text-white-50">
-                            Açar sözlər
-                        </label>
-                    </div>
-                    <div class="form-floating mb-3">
                         <textarea class="form-control" name="description[]" id="description"
                                   placeholder="Açıqlama"></textarea>
                         <label for="description" class="form-label text-white-50">
@@ -187,7 +166,7 @@
                 <select name="category_id" id="category_id" class="w-100 select">
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">
-                            {{ $category->translate->where('lang', session('locale'))->first()->title }}
+                            {{ $category->translated->first()->title }}
                         </option>
                     @endforeach
                 </select>
@@ -199,7 +178,7 @@
                 <select name="tags[]" id="tags" class="w-100 select" multiple>
                     @foreach($tags as $tag)
                         <option value="{{ $tag->id }}">
-                            {{ $tag->translate->where('lang', session('locale'))->first()->title }}
+                            {{ $tag->translated->first()->title }}
                         </option>
                     @endforeach
                 </select>

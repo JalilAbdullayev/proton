@@ -60,10 +60,10 @@
             @foreach($data as $item)
                 <tr id="{{ $item->id }}">
                     <td>
-                        {{ $item->translate->where('lang', session('locale'))->first()->name }}
+                        {{ $item->translated->first()->name }}
                     </td>
                     <td>
-                        {{ $item->translate->where('lang', session('locale'))->first()->position }}
+                        {{ $item->translated->first()->position }}
                     </td>
                     <td>
                         <img src="{{ asset(Storage::url($item->image)) }}" alt="" class="w-25"/>

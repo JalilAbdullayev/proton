@@ -47,6 +47,9 @@
                     Başlıq
                 </th>
                 <th>
+                    Kateqoriya
+                </th>
+                <th>
                     Şəkil
                 </th>
                 <th>
@@ -61,7 +64,10 @@
             @foreach($data as $item)
                 <tr id="{{ $item->id }}">
                     <td>
-                        {{ $item->translate->where('lang', session('locale'))->first()->title }}
+                        {{ $item->translated->first()->title }}
+                    </td>
+                    <td>
+                        {{ $item->category->translated->first()->title }}
                     </td>
                     <td>
                         <a href="{{ route('admin.portfolio.images.index', $item->id) }}">

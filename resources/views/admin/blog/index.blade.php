@@ -64,10 +64,10 @@
             @foreach($data as $item)
                 <tr id="{{ $item->id }}">
                     <td>
-                        {{ $item->translate->first()->title }}
+                        {{ $item->translated->first()->title }}
                     </td>
                     <td>
-                        {{ $item->category->translate->first()->title }}
+                        {{ $item->category->translated->first()->title }}
                     </td>
                     <td>
                         <a href="{{ route('admin.blog.images.index', $item->id) }}">

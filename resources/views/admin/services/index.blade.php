@@ -57,7 +57,7 @@
             @foreach($data as $item)
                 <tr id="{{ $item->id }}">
                     <td>
-                        {{ $item->translate->where('lang', session('locale'))->first()->title }}
+                        {{ $item->translated->first()->title }}
                     </td>
                     <td>
                         <img src="{{ asset(Storage::url($item->image)) }}" alt="" class="w-25"/>

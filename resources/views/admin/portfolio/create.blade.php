@@ -250,7 +250,7 @@
                 <select name="category_id" id="category_id" class="w-100">
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">
-                            {{ $category->translate->where('lang', session('locale'))->first()->title }}
+                            {{ $category->translated->first()->title }}
                         </option>
                     @endforeach
                 </select>

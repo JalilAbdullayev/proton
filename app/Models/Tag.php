@@ -18,6 +18,10 @@ class Tag extends Model {
         return $this->hasMany(TagTranslate::class, 'tag_id', 'id');
     }
 
+    public function translated(): HasMany {
+        return $this->translate()->where('lang', session('locale'));
+    }
+
     public function articles(): BelongsToMany {
         return $this->belongsToMany(Blog::class, 'blog_tags', 'tag_id', 'article_id')->withTimestamps();
     }
