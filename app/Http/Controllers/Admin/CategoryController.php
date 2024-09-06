@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Tag;
-use App\Models\TagTranslate;
+use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\CategoryTranslate;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -13,84 +14,85 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use Illuminate\View\View as ViewResponse;
 
-class TagController extends Controller {
+class CategoryController extends Controller {
     /**
      * Display a listing of the resource.
      */
     public function index(): ViewResponse {
-        $data = Tag::all();
-        return View::make('admin.tags.index', compact('data'));
+        $data = Category::all();
+        return View::make('admin.categories.index', compact('data'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): ViewResponse {
-        return View::make('admin.tags.create');
+    public function create() {
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) {
-        $tag = Tag::create();
+    public function store(Request $request): RedirectResponse {
+        $category = Category::create();
 
         for($i = 0; $i < count($request->lang); $i++) {
-            TagTranslate::create([
-                'tag_id' => $tag->id,
+            CategoryTranslate::create([
+                'category_id' => $category->id,
                 'title' => $request->title[$i],
                 'slug' => Str::slug($request->title[$i]),
                 'lang' => $request->lang[$i],
             ]);
         }
-        return Redirect::back()->withSuccess('Teq uğurla yaradıldı');
+        return Redirect::back()->withSuccess('Kateqoriya uğurla yaradıldı.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Tag $tag) {
+    public function show(Category $category) {
         //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tag $tag): ViewResponse {
-        return View::make('admin.tags.edit', compact('tag'));
+    public function edit(Category $category): ViewResponse {
+        return View::make('admin.categories.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tag $tag): RedirectResponse {
+    public function update(Request $request, Category $category): RedirectResponse {
         for($i = 0; $i < count($request->lang); $i++) {
-            TagTranslate::whereTagId($tag->id)->whereLang($request->lang[$i])->update([
+            CategoryTranslate::whereCategoryId($category->id)->whereLang($request->lang[$i])->update([
                 'title' => $request->title[$i],
                 'slug' => Str::slug($request->title[$i]),
                 'lang' => $request->lang[$i],
             ]);
         }
-        return Redirect::route('admin.tag.index')->withSuccess('Teq uğurla yeniləndi');
+
+        return Redirect::route('admin.category.index')->withSuccess('Dəyişikliklər uğurla saxlanıldı.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tag $tag): JsonResponse {
-        $tag->delete();
-        return Response::json(['id' => $tag->id]);
+    public function destroy(Category $category): JsonResponse {
+        $category->delete();
+        return Response::json(['id' => $category->id]);
     }
 
     public function status(Request $request): JsonResponse {
         $id = $request->id;
-        $tag = Tag::findOrFail($id);
-        $status = $tag->status;
-        $tag->status = $status ? 0 : 1;
-        $tag->save();
+        $category = Category::findOrFail($id);
+        $status = $category->status;
+        $category->status = $status ? 0 : 1;
+        $category->save();
         return Response::json([
             'id' => $id,
-            'status' => $tag->status
+            'status' => $category->status
         ]);
     }
 }
