@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Contact;
+use App\Models\Service;
 use App\Models\Settings;
 use App\Models\Social;
 use Illuminate\Support\Facades\View;
@@ -20,9 +21,11 @@ class AppServiceProvider extends ServiceProvider {
      * Bootstrap any application services.
      */
     public function boot(): void {
-        $settings = Settings::firstOrFail();
-        $socials = Social::all();
+        $settings = Settings::first();
+        $socials = Social::whereStatus(1)->get();
         $contact = Contact::first();
+        $services = Service::all();
+        View::share('services', $services);
         View::share('contact', $contact);
         View::share('socials', $socials);
         View::share('settings', $settings);

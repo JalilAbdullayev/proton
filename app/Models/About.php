@@ -12,4 +12,8 @@ class About extends Model {
     public function translate(): HasMany {
         return $this->hasMany(AboutTranslate::class);
     }
+
+    public function translated(): HasMany {
+        return $this->translate()->where('lang', session('locale'));
+    }
 }

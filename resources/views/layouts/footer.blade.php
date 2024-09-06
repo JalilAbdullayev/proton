@@ -30,11 +30,13 @@
                     Service
                 </h5>
                 <ul class="footer-menu">
-                    <li>
-                        <a href="#">
-                            App development
-                        </a>
-                    </li>
+                    @foreach($services as $service)
+                        <li>
+                            <a href="#">
+                                {{ $service->translated->first()->title }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             <div class="col-12 col-custom-md-6 col-lg-2 mb-4 mb-lg-0">
@@ -43,8 +45,13 @@
                 </h5>
                 <ul class="footer-menu">
                     <li>
-                        <a href="#">
-                            App development
+                        <a href="/">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('about') }}">
+                            About
                         </a>
                     </li>
                 </ul>
@@ -75,9 +82,8 @@
             </div>
         </div>
         <div class="copyright text-center pt-5 pb-4">
-            Copyright © 2024 @if(date('Y') > 2024)
-                - {{ date('Y') }}
-            @endif <a href="/">
+            Copyright © 2019 - {{ date('Y') }}
+            <a href="/">
                 {{ $settings->translated->first()->title }}
             </a> All Rights Reserved
         </div>

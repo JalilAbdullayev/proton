@@ -1,26 +1,27 @@
+@php use Illuminate\Support\Facades\Storage; @endphp
 <header>
     <div class="container">
         <div class="header">
             <div class="logo">
-                <a href="./index.html">
-                    <img src="./assets/images/proton-logo.svg" alt="">
+                <a href="/">
+                    <img src="{{ asset(Storage::url($settings->logo)) }}" alt="">
                 </a>
             </div>
             <nav>
                 <ul class="custom-navbar">
                     <li class="nav-item mobile-header">
-                        <a href="./index.html" class="logo">
-                            <img src="./assets/images/proton-logo.svg" alt="">
+                        <a href="/" class="logo">
+                            <img src="{{ asset(Storage::url($settings->logo)) }}" alt="">
                         </a>
                         <button class="btn btn-close">
                             <i data-feather="x"></i>
                         </button>
                     </li>
                     <li class="nav-item">
-                        <a href="./index.html">Home</a>
+                        <a href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./about.html">About us</a>
+                        <a href="{{ route('about') }}">About us</a>
                     </li>
                     <li class="nav-item">
                         <a href="./portfolio.html">Portfolio</a>
@@ -34,37 +35,24 @@
                     <li>
                         <ul class="contact-list px-4">
                             <li>
-                                <a href="mailto:test@yourdomain.com">
-                                    test@yourdomain.com
+                                <a href="mailto:{{ $contact->email }}">
+                                    {{ $contact->email }}
                                 </a>
                             </li>
                             <li>
-                                <a href="tel:+994 55 555 55 55">
-                                    +994 55 555 55 55
+                                <a href="tel:{{ preg_replace('/\s+/', '', $contact->phone) }}">
+                                    {{ $contact->phone }}
                                 </a>
                             </li>
                             <li>
                                 <ul class="social-network">
-                                    <li>
-                                        <a href="#">
-                                            <i data-feather="facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i data-feather="instagram"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i data-feather="twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i data-feather="linkedin"></i>
-                                        </a>
-                                    </li>
+                                    @foreach($socials as $social)
+                                        <li>
+                                            <a href="{{ $social->url }}">
+                                                {!! $social->icon !!}
+                                            </a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </li>
                         </ul>
@@ -78,10 +66,12 @@
                 <button class="btn btn-nav text-white">
                     <i data-feather="grid"></i>
                 </button>
-                <a href="./contact.html"
+                <a href="{{ $socials->where('title', 'WhatsApp')->first()->url }}"
                    class="d-none d-lg-flex align-items-center gap-2 btn btn-main dark custom-rounded">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    <span>Contact now</span>
+                    {!! $socials->where('title', 'WhatsApp')->first()->icon !!}
+                    <span>
+                        Contact now
+                    </span>
                 </a>
             </div>
         </div>
