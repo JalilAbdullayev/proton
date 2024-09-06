@@ -6,6 +6,8 @@ use App\Models\About;
 use App\Models\Banner;
 use App\Models\Client;
 use App\Models\Portfolio;
+use App\Models\Service;
+use App\Models\ServiceTranslate;
 use App\Models\Team;
 use Illuminate\Support\Facades\View;
 use Illuminate\View\View as ViewResponse;
@@ -28,5 +30,11 @@ class FrontController extends Controller {
 
     public function contact(): ViewResponse {
         return View::make('contact');
+    }
+
+    public function service(string $slug): ViewResponse {
+        $service = ServiceTranslate::whereSlug($slug)->join('services', 'services.id', '=', 'services_translate.service_id')->firstOrFail();
+        $otherServices = Service::where('id', '!=', $service->service_id)->get();
+        return View::make('service', compact('service', 'otherServices'));
     }
 }

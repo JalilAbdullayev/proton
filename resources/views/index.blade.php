@@ -58,7 +58,7 @@
 
             <div class="swiper servicesSwiper">
                 <div class="swiper-wrapper">
-                    @foreach($services as $service)
+                    @foreach($services as $index => $service)
                         <div class="swiper-slide">
                             <div class="service-card">
                                 <div class="service-head py-4">
@@ -93,7 +93,7 @@
                                         </svg>
                                     </div>
                                     <div class="count">
-                                        01
+                                        0{{ $index + 1 }}
                                     </div>
                                 </div>
                                 <div class="service-body">
@@ -103,7 +103,7 @@
                                     <p class="inner-text">
                                         {{ $service->translated->first()->description }}
                                     </p>
-                                    <a href="./services.html">
+                                    <a href="{{ route('service', $service->translated->first()->slug) }}">
                                         <span>look more</span>
                                         <span>
                                         <i data-feather="arrow-up-right"></i>

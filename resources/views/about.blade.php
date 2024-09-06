@@ -121,7 +121,7 @@
                                     <p class="inner-text">
                                         {{ $service->translated->first()->description }}
                                     </p>
-                                    <a href="./services.html">
+                                    <a href="{{ route('service', $service->translated->first()->slug) }}">
                                         <span>look more</span>
                                         <span>
                                         <i data-feather="arrow-up-right"></i>
@@ -169,9 +169,7 @@
                                 <div class="swiper-slide">
                                     <div class="team-card main-card">
                                         <div class="team-img">
-                                            <a href="./projects.html">
-                                                <img src="{{ asset(Storage::url($member->image)) }}" alt="">
-                                            </a>
+                                            <img src="{{ asset(Storage::url($member->image)) }}" alt=""/>
                                         </div>
                                         <div class="team-body">
                                             <h3 class="title">
