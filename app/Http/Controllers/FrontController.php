@@ -37,4 +37,9 @@ class FrontController extends Controller {
         $otherServices = Service::where('id', '!=', $service->service_id)->get();
         return View::make('service', compact('service', 'otherServices'));
     }
+
+    public function portfolio(): ViewResponse {
+        $portfolio = Portfolio::paginate(6);
+        return View::make('portfolio', compact('portfolio'));
+    }
 }

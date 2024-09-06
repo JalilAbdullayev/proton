@@ -55,6 +55,11 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('portfolio') }}">
+                            Portfolio
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('contact') }}">
                             Contact
                         </a>
