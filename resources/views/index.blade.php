@@ -390,7 +390,7 @@
                             <p class="inner-text">
                                 Toll Free Call.
                             </p>
-                            <a href="tel:{{ preg_replace('/\s+/','', $contact->phone) }}">
+                            <a href="tel:{{ preg_replace('/\s+/', '', $contact->phone) }}">
                                 {{ $contact->phone }}
                             </a>
                         </div>

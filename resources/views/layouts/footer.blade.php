@@ -54,6 +54,11 @@
                             About
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('contact') }}">
+                            Contact
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="col-12 col-custom-md-6 col-lg-4 mb-4 mb-lg-0">

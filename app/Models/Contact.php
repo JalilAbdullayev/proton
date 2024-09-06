@@ -16,4 +16,8 @@ class Contact extends Model {
     public function translate(): HasMany {
         return $this->hasMany(ContactTranslate::class);
     }
+
+    public function translated(): HasMany {
+        return $this->translate()->where('lang', session('locale'));
+    }
 }

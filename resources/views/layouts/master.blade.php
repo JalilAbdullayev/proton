@@ -66,7 +66,6 @@
         Swal.fire({
             icon: icon,
             timer: 1500,
-            background: '#303641',
             timerProgressBar: true,
             title: message,
         })

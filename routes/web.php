@@ -27,6 +27,7 @@ Route::middleware(SetLocale::class)->group(function() {
     Route::controller(FrontController::class)->group(function() {
         Route::get('/', 'index')->name('home');
         Route::get('about', 'about')->name('about');
+        Route::get('contact', 'contact')->name('contact');
     });
     Route::post('send', [MessageController::class, 'store'])->name('send');
 

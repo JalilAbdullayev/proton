@@ -25,4 +25,8 @@ class FrontController extends Controller {
         $team = Team::all();
         return View::make('about', compact('about', 'clients', 'team'));
     }
+
+    public function contact(): ViewResponse {
+        return View::make('contact');
+    }
 }
