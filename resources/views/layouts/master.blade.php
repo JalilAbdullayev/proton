@@ -1,23 +1,20 @@
-@php use Illuminate\Support\Facades\Storage; @endphp
+@php use Illuminate\Support\Facades\App;use Illuminate\Support\Facades\Storage;use Illuminate\Support\Str; @endphp
     <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ Str::replace('-', '_', App::getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description"
           content="@yield('description', $settings->translated->first()->description)"/>
     <meta name="keywords" content="@yield('keywords', $settings->translated->first()->keywords)"/>
-    <meta name="author" content="{{ $settings->translated->first()->author}}"/>
+    <meta name="author" content="@yield('author', $settings->translated->first()->author)"/>
     <title>
         @yield('title', $settings->translated->first()->title)
     </title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset(Storage::url($settings->favicon))}}" type="image/x-icon"/>
     {{-- Fancybox --}}
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
     <!-- Fontawesom Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="

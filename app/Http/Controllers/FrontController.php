@@ -29,7 +29,8 @@ class FrontController extends Controller {
         $team = Team::all();
         $banner = Banner::first();
         $clients = Client::whereStatus(1)->get();
-        return View::make('index', compact('portfolio', 'team', 'banner', 'clients'));
+        $blog = Blog::take(3)->get();
+        return View::make('index', compact('portfolio', 'team', 'banner', 'clients', 'blog'));
     }
 
     public function about(): ViewResponse {
