@@ -133,7 +133,7 @@
         $('#myTable').DataTable({
             ordering: false
         });
-        $('.js-switch').each(function() {
+        $('.js-switch').each(function () {
             new Switchery(this, $(this).data());
         });
         deleteImage('{{ route('admin.portfolio.images.delete', ':id') }}')

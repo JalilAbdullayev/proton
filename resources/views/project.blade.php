@@ -116,10 +116,14 @@
                 </div>
                 <div class="images-box py-5">
                     <div class="image-item">
-                        <img src="./assets/images/bg/detail_2.png" alt="">
+                        <a href="{{ asset(Storage::url($mainImage)) }}" data-fancybox="gallery" data-caption="{{$project->title}}">
+                            <img src="{{ asset(Storage::url($mainImage)) }}" alt="{{ $project->title }}">
+                        </a>
                     </div>
                     <div class="image-item">
-                        <img src="./assets/images/bg/detail_3.png" alt="">
+                        <a href="{{ asset(Storage::url($mainImage)) }}" data-fancybox="gallery">
+                            <img src="{{ asset(Storage::url($mainImage)) }}" alt="">
+                        </a>
                         <a href="#" class="btn btn-play">
                             <i data-feather="play"></i>
                         </a>
