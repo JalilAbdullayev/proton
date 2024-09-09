@@ -137,7 +137,7 @@
             new Switchery(this, $(this).data());
         });
         deleteImage('{{ route('admin.blog.images.delete', ':id') }}')
-        statusAlert('{{ route('admin.blog.images.status') }}')
+        statusAlert('{{ route('admin.blog.images.status', ':id') }}')
         featured('{{ route('admin.blog.images.featured', ':id') }}')
         $('#saveImage').click(function() {
             $('#newImageForm').submit();

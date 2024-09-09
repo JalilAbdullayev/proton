@@ -1,4 +1,5 @@
 @extends('layouts.master')
+@section('title', 'Contact')
 @section('content')
     <!-- Breadcrumb start -->
     <section class="breadcrumb">

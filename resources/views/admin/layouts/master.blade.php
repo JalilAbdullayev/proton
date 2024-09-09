@@ -9,7 +9,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset(Storage::url($settings->favicon)) }}"/>
     <title>
-        @yield('title')
+        @yield('title', $settings->translated->first()->title)
     </title>
     <link rel="stylesheet" href="{{ asset('back/node_modules/morrisjs/morris.css') }}"/>
     <link rel="stylesheet" href="{{ asset('back/node_modules/toast-master/css/jquery.toast.css') }}"/>

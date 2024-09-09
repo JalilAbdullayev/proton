@@ -27,7 +27,7 @@
             </div>
             <div class="col-12 col-custom-md-6 col-lg-2 mb-4 mb-lg-0">
                 <h5 class="small-title mb-3">
-                    Service
+                    Services
                 </h5>
                 <ul class="footer-menu">
                     @foreach($services as $service)
@@ -41,7 +41,7 @@
             </div>
             <div class="col-12 col-custom-md-6 col-lg-2 mb-4 mb-lg-0">
                 <h5 class="small-title mb-3">
-                    Quick Links
+                    Navigation
                 </h5>
                 <ul class="footer-menu">
                     <li>
