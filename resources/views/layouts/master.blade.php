@@ -22,7 +22,7 @@
     <!-- Swiper -->
     <link rel="stylesheet" href="{{ asset('front/plugins/swiper/swiper-bundle.min.css')}}"/>
     <!-- Custom Css -->
-    <link rel="stylesheet" href="{{ asset('front/css/style.css')}}"/>
+    @vite(['public/front/css/style.sass'])
 </head>
 <body>
 <a href="#" class="btn btn-top">

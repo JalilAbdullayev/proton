@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use App\Models\Banner;
+use App\Models\Category;
 use App\Models\Client;
 use App\Models\Portfolio;
+use App\Models\PortfolioImage;
+use App\Models\PortfolioTranslate;
 use App\Models\Service;
 use App\Models\ServiceTranslate;
 use App\Models\Team;
@@ -33,7 +36,7 @@ class FrontController extends Controller {
     }
 
     public function service(string $slug): ViewResponse {
-        $service = ServiceTranslate::whereSlug($slug)->join('services', 'services.id', '=', 'services_translate.service_id')->firstOrFail();
+        $service = ServiceTranslate::whereSlug($slug)->join('services', 'services.id', '=', 'services_translate.service_id')->first();
         $otherServices = Service::where('id', '!=', $service->service_id)->get();
         return View::make('service', compact('service', 'otherServices'));
     }
@@ -41,5 +44,14 @@ class FrontController extends Controller {
     public function portfolio(): ViewResponse {
         $portfolio = Portfolio::paginate(6);
         return View::make('portfolio', compact('portfolio'));
+    }
+
+    public function project($slug): ViewResponse {
+        $project = PortfolioTranslate::whereSlug($slug)->join('portfolio', 'portfolio.id', '=', 'portfolio_translate.project_id')->first();
+        $category = Category::whereId($project->category_id)->first();
+        $status = PortfolioTranslate::whereProjectId($project->project_id)->pluck('status')->first();
+        $images = PortfolioImage::whereProjectId($project->project_id)->whereStatus(1)->get();
+        $mainImage = 'portfolio/' . PortfolioImage::whereProjectId($project->project_id)->whereFeatured(1)->first()->image;
+        return View::make('project', compact('project', 'category', 'status', 'mainImage', 'images'));
     }
 }

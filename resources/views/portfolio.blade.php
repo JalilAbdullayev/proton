@@ -35,12 +35,13 @@
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="project-card main-card">
                             <div class="project-img">
-                                <a href="./portfolio-detail.html">
+                                <a href="{{ route('project', $project->translated->first()->slug) }}">
                                     <img src="{{ asset(Storage::url('portfolio/'.$project->image->image)) }}" alt=""/>
                                 </a>
                             </div>
                             <div class="card-body">
-                                <a href="./portfolio-detail.html" class="project-title">
+                                <a href="{{ route('project', $project->translated->first()->slug) }}"
+                                   class="project-title">
                                     <h3>
                                         {{ $project->translated->first()->title }}
                                     </h3>
