@@ -118,3 +118,4 @@ window.addEventListener('keyup', (e) => {
         searchContainer.classList.remove("active");
     }
 })
+Fancybox.bind("[data-fancybox]");

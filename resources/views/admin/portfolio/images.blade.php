@@ -133,11 +133,11 @@
         $('#myTable').DataTable({
             ordering: false
         });
-        $('.js-switch').each(function() {
+        $('.js-switch').each(function () {
             new Switchery(this, $(this).data());
         });
         deleteImage('{{ route('admin.portfolio.images.delete', ':id') }}')
-        statusAlert('{{ route('admin.portfolio.images.status') }}')
+        statusAlert('{{ route('admin.portfolio.images.status', ':id') }}')
         featured('{{ route('admin.portfolio.images.featured', ':id') }}')
         $('#saveImage').click(function() {
             $('#newImageForm').submit();

@@ -13,6 +13,11 @@
     </title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset(Storage::url($settings->favicon))}}" type="image/x-icon"/>
+    {{-- Fancybox --}}
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+    />
     <!-- Fontawesom Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -55,12 +60,14 @@
 <!-- Footer start -->
 @include('layouts.footer')
 <!-- Footer end -->
+
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
 <script src='{{ asset('front/plugins/feather-icons/feather.min.js')}}'></script>
 <script src="{{ asset('front/plugins/swiper/swiper-bundle.min.js')}}"></script>
 <script src="{{ asset('front/plugins/bootstrap/popper.min.js')}}"></script>
 <script src="{{ asset('front/plugins/bootstrap/bootstrap.bundle.min.js')}}"></script>
-<script src="{{ asset('front/js/main.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{ asset('front/js/main.js')}}"></script>
 <script>
     function sweetAlert(icon, message) {
         Swal.fire({

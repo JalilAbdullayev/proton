@@ -691,6 +691,7 @@ i, h1, h2, h3, h4, h5, h6, p, ul, ol {
   height: 100%;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
   border-radius: 0.8rem;
+  pointer-events: none;
 }
 .image-item img {
   width: 100%;
@@ -963,7 +964,7 @@ header .header .custom-navbar .contact-list li {
 .detail-body .portfolio-info {
   display: grid;
   align-items: center;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   border: 1px solid rgba(255, 255, 255, 0.25);
 }
 .detail-body .portfolio-info li {
