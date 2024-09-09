@@ -36,11 +36,11 @@
 <!-- Search modal start -->
 <div class="search-modal-container">
     <div class="container">
-        <form action="">
+        <form action="{{ route('search') }}">
             <div class="row align-items-center">
                 <div class="col-10">
                     <div class="form-group">
-                        <input type="text" placeholder="Search here" class="form-control custom-form">
+                        <input type="search" name="search" placeholder="Search here" class="form-control custom-form"/>
                     </div>
                 </div>
                 <div class="col-2">

@@ -41,6 +41,7 @@ Route::middleware(SetLocale::class)->group(function() {
             Route::get('search', 'blogSearch')->name('search');
         });
         Route::get('article/{slug}', 'article')->name('article');
+        Route::get('search', 'search')->name('search');
     });
     Route::post('send', [MessageController::class, 'store'])->name('send');
 

@@ -109,4 +109,12 @@ class FrontController extends Controller {
         $portfolio = Portfolio::whereCategoryId($category->category_id)->whereStatus(1)->paginate(6);
         return View::make('portfolio', compact('category', 'portfolio'));
     }
+
+    public function search(Request $request): ViewResponse {
+        $search = $request->input('search');
+        $blog = Service::whereHas('translated', function($query) use ($search) {
+            $query->where('title', 'like', '%' . $search . '%');
+        })->paginate(6);
+        return View::make('blog', compact('blog', 'search'));
+    }
 }

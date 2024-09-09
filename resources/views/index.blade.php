@@ -134,7 +134,7 @@
                     </div>
                     <div class="col-12 col-lg-6">
                         <div class="d-flex mt-3">
-                            <a href="./projects.html" class="btn btn-main dark ms-auto">
+                            <a href="{{ route('portfolio.index') }}" class="btn btn-main dark ms-auto">
                                 more projects
                             </a>
                         </div>
@@ -148,12 +148,13 @@
                     <div class="swiper-slide">
                         <div class="project-card">
                             <div class="project-img">
-                                <a href="./portfolio-detail.html">
+                                <a href="{{ route('project', $project->translated->first()->slug) }}">
                                     <img src="{{ asset(Storage::url('portfolio/'.$project->image->image)) }}" alt="">
                                 </a>
                             </div>
                             <div class="card-body">
-                                <a href="./portfolio-detail.html" class="project-title">
+                                <a href="{{ route('project', $project->translated->first()->slug) }}"
+                                   class="project-title">
                                     <h3>
                                         {{ $project->translated->first()->title }}
                                     </h3>
@@ -183,7 +184,7 @@
                 <div class="col-12 col-lg-6">
                     <div class="section-title-box">
                         <h4 class="subtitle">
-                            why choos us
+                            why choose us
                         </h4>
                         <h2 class="section-title">
                             Elevate Your IT Experience with Our Expertise
@@ -225,7 +226,7 @@
                 </div>
                 <div class="col-12 col-lg-6">
                     <div class="section-img">
-                        <img src="./assets/images/preferences/preferences-01.png" alt="">
+                        <img src="{{ asset('front/images/preferences/preferences-01.png')}}" alt="">
                     </div>
                 </div>
             </div>
@@ -264,7 +265,7 @@
             <div class="row align-items-center">
                 <div class="col-12 col-lg-6 mb-5">
                     <div class="section-img">
-                        <img src="./assets/images/preferences/preferences-02.png" alt="">
+                        <img src="{{ asset('front/images/preferences/preferences-02.png')}}" alt="">
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 mb-5">

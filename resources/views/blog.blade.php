@@ -12,7 +12,7 @@
 							{{ $category->title }}
 						@elseif(Route::is('blog.tag'))
 							{{ $tag->title }}
-						@elseif(Route::is('blog.search'))
+						@elseif(Route::is('blog.search') || Route::is('search'))
 							{{ $search }}
 						@else
 							Blog
@@ -21,18 +21,22 @@
 						<li>
 							<a href="/">Home</a>
 						</li>
-						<li>
-							<i data-feather="chevron-left"></i>
-						</li>
-						<li>
-							@unless(Route::is('blog.index'))
+						@unless(Route::is('blog.index') || Route::is('search'))
+							<li>
+								<i data-feather="chevron-left"></i>
+							</li>
+							<li>
 								<a href="{{ route('blog.index') }}">
 									Blog
 								</a>
-							@else
-								Blog
-							@endif
-						</li>
+							</li>
+						@endunless
+						@unless(Route::is('search'))
+							<li>
+								<i data-feather="chevron-left"></i>
+							</li>
+							Blog
+						@endunless
 						@if(Route::is('blog.category'))
 							<li>
 								<i data-feather="chevron-left"></i>
@@ -51,7 +55,7 @@
 									{{ $tag->title }}
 								</a>
 							</li>
-						@elseif(Route::is('blog.search'))
+						@elseif(Route::is('blog.search') || Route::is('search'))
 							<li>
 								<i data-feather="chevron-left"></i>
 							</li>
@@ -76,26 +80,40 @@
 					<div class="col-12 col-md-6 col-lg-4">
 						<div class="blog-card">
 							<div class="blog-img">
-								<a href="{{ route('article', $article->translated->first()->slug) }}">
-									<img src="{{ asset(Storage::url('blog/'.$article->image->image)) }}" alt="">
-								</a>
+								@unless(Route::is('search'))
+									<a href="{{ route('article', $article->translated->first()->slug) }}">
+										<img src="{{ asset(Storage::url('blog/'.$article->image->image)) }}" alt="">
+									</a>
+								@else
+									<a href="{{ route('service', $article->translated->first()->slug) }}">
+										<img src="{{ asset(Storage::url($article->image)) }}" alt="">
+									</a>
+								@endunless
 							</div>
 							<div class="blog-body">
-								<div class="auth-head">
+								@unless(Route::is('search'))
+									<div class="auth-head">
                                 <span class="auth-name">
                                     By <a href="#!">
                                         {{ $article->author->name }}
                                     </a>
                                 </span>
-									<span class="time">
+										<span class="time">
                                         {{ (new Bookworm())->estimate($article->translated->first()->full_text) }} read
                                     </span>
-								</div>
+									</div>
+								@endunless
 								<div class="blog-content">
 									<h3 class="blog-title">
-										<a href="{{ route('article', $article->translated->first()->slug) }}">
-											{{ $article->translated->first()->title }}
-										</a>
+										@unless(Route::is('search'))
+											<a href="{{ route('article', $article->translated->first()->slug) }}">
+												{{ $article->translated->first()->title }}
+											</a>
+										@else
+											<a href="{{ route('service', $article->translated->first()->slug) }}">
+												{{ $article->translated->first()->title }}
+											</a>
+										@endunless
 									</h3>
 								</div>
 							</div>
