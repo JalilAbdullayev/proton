@@ -114,20 +114,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="images-box py-5">
-                    <div class="image-item">
-                        <a href="{{ asset(Storage::url($mainImage)) }}" data-fancybox="gallery" data-caption="{{$project->title}}">
-                            <img src="{{ asset(Storage::url($mainImage)) }}" alt="{{ $project->title }}">
-                        </a>
-                    </div>
-                    <div class="image-item">
-                        <a href="{{ asset(Storage::url($mainImage)) }}" data-fancybox="gallery">
-                            <img src="{{ asset(Storage::url($mainImage)) }}" alt="">
-                        </a>
-                        <a href="#" class="btn btn-play">
-                            <i data-feather="play"></i>
-                        </a>
-                    </div>
+                <div class="images-box py-5 d-flex justify-content-center align-items-center">
+                    @foreach($images as $image)
+                        <div class="image-item w-25">
+                            <a href="{{ asset(Storage::url('portfolio/'.$image->image)) }}" data-fancybox="gallery">
+                                <img src="{{ asset(Storage::url('portfolio/'.$image->image)) }}" alt=""/>
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </section>
