@@ -34,6 +34,25 @@ i, h1, h2, h3, h4, h5, h6, p, ul, ol
 
 @import "./partials/cards"
 @import "./partials/_custom_scroll"
+.lang-select
+    color: var(--color-white)
+    font-size: 1.25rem
+    background: transparent
+    border: 1px solid transparent
+    cursor: pointer
+    padding: .38rem 1rem
+
+    &:focus
+        box-shadow: none
+        outline: none
+        border: 1px solid transparent
+
+    option
+        background: var(--color-main)
+
+        &:hover
+            background: var(--color-main-dark)
+
 
 .form-control
     outline: none
@@ -425,6 +444,9 @@ header
         align-items: center
         justify-content: space-between
         color: var(--color-white)
+
+        .right-nav
+            gap: .5rem
 
         .custom-navbar
             display: flex
@@ -1055,6 +1077,9 @@ header
         padding: 1rem 0
 
         .header
+            .right-nav
+                gap: 0
+
             nav
                 position: absolute
                 width: 100%

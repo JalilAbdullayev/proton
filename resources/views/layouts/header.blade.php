@@ -59,10 +59,23 @@
                     </li>
                 </ul>
             </nav>
-            <div class="d-flex align-items-center gap-2">
+            <div class="d-flex align-items-center right-nav">
                 <button class="btn btn-search">
                     <i data-feather="search"></i>
                 </button>
+                <form>
+                    <select class="form-select lang-select">
+                        <option value="1">
+                            Az
+                        </option>
+                        <option value="2" selected>
+                            En
+                        </option>
+                        <option value="3">
+                            Ru
+                        </option>
+                    </select>
+                </form>
                 <button class="btn btn-nav text-white">
                     <i data-feather="grid"></i>
                 </button>

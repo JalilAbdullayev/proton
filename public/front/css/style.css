@@ -218,6 +218,12 @@ i, h1, h2, h3, h4, h5, h6, p, ul, ol {
   border-top: 1px dotted var(--color-main);
   padding: 1rem 0;
 }
+.home_blog_item img {
+  height: 14.375rem;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
 .home_blog_item .card-body {
   padding: 0.8rem 0;
 }
@@ -420,6 +426,26 @@ i, h1, h2, h3, h4, h5, h6, p, ul, ol {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-main-40);
+}
+
+.lang-select {
+  color: var(--color-white);
+  font-size: 1.25rem;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  padding: 0.38rem 1rem;
+}
+.lang-select:focus {
+  box-shadow: none;
+  outline: none;
+  border: 1px solid transparent;
+}
+.lang-select option {
+  background: var(--color-main);
+}
+.lang-select option:hover {
+  background: var(--color-main-dark);
 }
 
 .form-control {
@@ -817,6 +843,9 @@ header .header {
   align-items: center;
   justify-content: space-between;
   color: var(--color-white);
+}
+header .header .right-nav {
+  gap: 0.5rem;
 }
 header .header .custom-navbar {
   display: flex;
@@ -1440,6 +1469,9 @@ header .header .custom-navbar .contact-list li {
   header {
     position: relative;
     padding: 1rem 0;
+  }
+  header .header .right-nav {
+    gap: 0;
   }
   header .header nav {
     position: absolute;
