@@ -33,7 +33,7 @@
 					<div class="col-12 col-md-6 col-lg-4">
 						<div class="blog-card">
 							<div class="blog-img">
-								<a href="./blog-detail.html">
+								<a href="{{ route('article', $article->translated->first()->slug) }}">
 									<img src="{{ asset(Storage::url('blog/'.$article->image->image)) }}" alt="">
 								</a>
 							</div>
@@ -50,7 +50,7 @@
 								</div>
 								<div class="blog-content">
 									<h3 class="blog-title">
-										<a href="./blog-detail.html">
+										<a href="{{ route('article', $article->translated->first()->slug) }}">
 											{{ $article->translated->first()->title }}
 										</a>
 									</h3>

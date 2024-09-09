@@ -32,6 +32,7 @@ Route::middleware(SetLocale::class)->group(function() {
         Route::get('portfolio', 'portfolio')->name('portfolio');
         Route::get('project/{slug}', 'project')->name('project');
         Route::get('blog', 'blog')->name('blog');
+        Route::get('article/{slug}', 'article')->name('article');
     });
     Route::post('send', [MessageController::class, 'store'])->name('send');
 

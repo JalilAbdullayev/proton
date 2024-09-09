@@ -21,4 +21,8 @@ class Category extends Model {
     public function translated(): HasMany {
         return $this->translate()->where('lang', session('locale'));
     }
+
+    public function articles(): HasMany {
+        return $this->hasMany(Blog::class, 'category_id', 'id');
+    }
 }
