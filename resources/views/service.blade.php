@@ -1,6 +1,8 @@
 @php use Illuminate\Support\Facades\Storage; @endphp
 @extends('layouts.master')
 @section('title', $service->title)
+@section('description', $service->description)
+@section('keywords', $service->keywords)
 @section('content')
     <main>
         <!-- Breadcrumb start -->

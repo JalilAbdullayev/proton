@@ -78,7 +78,8 @@ class FrontController extends Controller {
         $categories = Category::whereHas('articles')->get();
         $otherTags = Tag::whereHas('articles')->get();
         $articles = Blog::whereStatus(1)->where('id', '!=', $article->article_id)->take(3)->get();
-        return View::make('article', compact('article', 'category', 'images', 'mainImage', 'author', 'tags', 'categories', 'otherTags', 'articles'));
+        $allTags = Tag::whereHas('articles')->get();
+        return View::make('article', compact('article', 'category', 'images', 'mainImage', 'author', 'tags', 'categories', 'otherTags', 'articles', 'allTags'));
     }
 
     public function blogCategory($slug): ViewResponse {

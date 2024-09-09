@@ -1,6 +1,10 @@
 @php use Illuminate\Support\Facades\Storage; @endphp
 @extends('layouts.master')
 @section('title', $article->title)
+@section('description', $article->description)
+@section('keywords')
+@foreach($allTags as $tag){{ $tag->translated->first()->title }}, @endforeach
+@endsection
 @section('content')
     <!-- Breadcrumb start -->
     <section class="breadcrumb">

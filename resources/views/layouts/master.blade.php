@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description"
-          content="{{ $settings->translated->first()->description}}"/>
-    <meta name="keywords" content="{{ $settings->translated->first()->keywords}}"/>
+          content="@yield('description', $settings->translated->first()->description)"/>
+    <meta name="keywords" content="@yield('keywords', $settings->translated->first()->keywords)"/>
     <meta name="author" content="{{ $settings->translated->first()->author}}"/>
     <title>
         @yield('title', $settings->translated->first()->title)
