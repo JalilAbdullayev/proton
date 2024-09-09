@@ -58,7 +58,6 @@ class BlogController extends Controller {
                 'title' => $request->title[$i],
                 'slug' => Str::slug($request->title[$i]),
                 'description' => $request->description[$i],
-                'keywords' => $request->keywords[$i],
                 'full_text' => $request->full_text[$i],
                 'date' => $request->date[$i],
             ]);
@@ -90,12 +89,14 @@ class BlogController extends Controller {
         $blog->update([
             'category_id' => $request->category_id,
         ]);
+        if($request->tags) {
+            $blog->tags()->sync($request->tags);
+        }
         for($i = 0; $i < count($request->lang); $i++) {
             BlogTranslate::whereArticleId($blog->id)->whereLang($request->lang[$i])->update([
                 'title' => $request->title[$i],
                 'slug' => Str::slug($request->title[$i]),
                 'description' => $request->description[$i],
-                'keywords' => $request->keywords[$i],
                 'full_text' => $request->full_text[$i],
                 'date' => $request->date[$i],
             ]);

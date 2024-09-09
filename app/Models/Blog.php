@@ -37,4 +37,8 @@ class Blog extends Model {
     public function tags(): BelongsToMany {
         return $this->belongsToMany(Tag::class, 'blog_tags', 'article_id', 'tag_id')->withTimestamps();
     }
+
+    public function author(): HasOne {
+        return $this->hasOne(User::class, 'id', 'author_id');
+    }
 }

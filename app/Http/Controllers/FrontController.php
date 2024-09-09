@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use App\Models\Banner;
+use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Client;
 use App\Models\Portfolio;
@@ -42,7 +43,7 @@ class FrontController extends Controller {
     }
 
     public function portfolio(): ViewResponse {
-        $portfolio = Portfolio::paginate(6);
+        $portfolio = Portfolio::whereStatus(1)->paginate(6);
         return View::make('portfolio', compact('portfolio'));
     }
 
@@ -53,5 +54,10 @@ class FrontController extends Controller {
         $images = PortfolioImage::whereProjectId($project->project_id)->whereStatus(1)->get();
         $mainImage = 'portfolio/' . PortfolioImage::whereProjectId($project->project_id)->whereFeatured(1)->first()->image;
         return View::make('project', compact('project', 'category', 'status', 'mainImage', 'images'));
+    }
+
+    public function blog(): ViewResponse {
+        $blog = Blog::whereStatus(1)->paginate(6);
+        return View::make('blog', compact('blog'));
     }
 }

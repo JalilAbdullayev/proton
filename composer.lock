@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1078dc514016925a406a813f3f278974",
+    "content-hash": "df676df3b573acf0cda1487e7642d886",
     "packages": [
         {
             "name": "brick/math",
@@ -3171,6 +3171,65 @@
                 }
             ],
             "time": "2024-04-27T21:32:50+00:00"
+        },
+        {
+            "name": "shtayeb/bookworm",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shtayeb/bookworm-for-laravel.git",
+                "reference": "c40ba3b348dc5ab05de98862d4c8a04455cf7737"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shtayeb/bookworm-for-laravel/zipball/c40ba3b348dc5ab05de98862d4c8a04455cf7737",
+                "reference": "c40ba3b348dc5ab05de98862d4c8a04455cf7737",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.15.1",
+                "orchestra/testbench": "dev-develop",
+                "phpunit/phpunit": "^10.0",
+                "squizlabs/php_codesniffer": "3.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "SHTayeb\\Bookworm\\BookwormServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SHTayeb\\Bookworm\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shahryar Tayeb",
+                    "email": "shahryar.dev@gmail.com"
+                }
+            ],
+            "description": "Bookworm estimates how much time is needed to read a certain piece of text.",
+            "keywords": [
+                "estimated",
+                "reading",
+                "text",
+                "time"
+            ],
+            "support": {
+                "issues": "https://github.com/shtayeb/bookworm-for-laravel/issues",
+                "source": "https://github.com/shtayeb/bookworm-for-laravel/tree/1.0.2"
+            },
+            "time": "2023-04-11T04:01:47+00:00"
         },
         {
             "name": "symfony/clock",
