@@ -24,7 +24,7 @@
                         <a href="{{ route('about') }}">About us</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('portfolio') }}">Portfolio</a>
+                        <a href="{{ route('portfolio.index') }}">Portfolio</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('blog.index') }}">Blog</a>

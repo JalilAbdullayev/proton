@@ -84,23 +84,29 @@ class FrontController extends Controller {
 
     public function blogCategory($slug): ViewResponse {
         $category = CategoryTranslate::whereSlug($slug)->first();
-        $categoryArticles = Blog::whereCategoryId($category->category_id)->whereStatus(1)->paginate(6);
-        return View::make('blog', compact('category', 'categoryArticles'));
+        $blog = Blog::whereCategoryId($category->category_id)->whereStatus(1)->paginate(6);
+        return View::make('blog', compact('category', 'blog'));
     }
 
     public function blogTag($slug): ViewResponse {
         $tag = TagTranslate::whereSlug($slug)->first();
-        $tagArticles = Blog::whereHas('tags', function($query) use ($tag) {
+        $blog = Blog::whereHas('tags', function($query) use ($tag) {
             $query->where('tag_id', $tag->tag_id);
         })->whereStatus(1)->paginate(6);
-        return View::make('blog', compact('tag', 'tagArticles'));
+        return View::make('blog', compact('tag', 'blog'));
     }
 
     public function blogSearch(Request $request): ViewResponse {
         $search = $request->input('search');
-        $searchArticles = Blog::whereHas('translated', function($query) use ($search) {
+        $blog = Blog::whereHas('translated', function($query) use ($search) {
             $query->where('title', 'like', '%' . $search . '%');
         })->paginate(6);
-        return View::make('blog', compact('searchArticles', 'search'));
+        return View::make('blog', compact('blog', 'search'));
+    }
+
+    public function portfolioCategory($slug): ViewResponse {
+        $category = CategoryTranslate::whereSlug($slug)->first();
+        $portfolio = Portfolio::whereCategoryId($category->category_id)->whereStatus(1)->paginate(6);
+        return View::make('portfolio', compact('category', 'portfolio'));
     }
 }

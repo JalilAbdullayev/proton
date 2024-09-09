@@ -55,7 +55,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('portfolio') }}">
+                        <a href="{{ route('portfolio.index') }}">
                             Portfolio
                         </a>
                     </li>

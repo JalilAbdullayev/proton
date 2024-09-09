@@ -1,17 +1,6 @@
 @php use Illuminate\Support\Facades\Route;use Illuminate\Support\Facades\Storage;use SHTayeb\Bookworm\Bookworm; @endphp
 @extends('layouts.master')
 @section('title', 'Blog')
-@php
-	if (Route::is('blog.category')) {
-    $articles = $categoryArticles;
-} elseif(Route::is('blog.tag')) {
-        $articles = $tagArticles;
-} elseif(Route::is('blog.search')) {
-		$articles = $searchArticles;
-}  else {
-    $articles = $blog;
-}
-@endphp
 @section('content')
 	<!-- Breadcrumb start -->
 	<section class="breadcrumb">
@@ -83,7 +72,7 @@
 	<section class="blog-section py-5">
 		<div class="container">
 			<div class="row">
-				@foreach($articles as $article)
+				@foreach($blog as $article)
 					<div class="col-12 col-md-6 col-lg-4">
 						<div class="blog-card">
 							<div class="blog-img">
@@ -114,7 +103,7 @@
 					</div>
 				@endforeach
 			</div>
-			{{ $articles->links() }}
+			{{ $blog->links() }}
 		</div>
 	</section>
 	<!-- Blog end -->

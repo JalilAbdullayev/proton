@@ -21,8 +21,16 @@
                                 <i data-feather="chevron-left"></i>
                             </li>
                             <li>
-                                <a href="{{ route('portfolio') }}">
+                                <a href="{{ route('portfolio.index') }}">
                                     Portfolio
+                                </a>
+                            </li>
+                            <li>
+                                <i data-feather="chevron-left"></i>
+                            </li>
+                            <li>
+                                <a href="{{ route('portfolio.category', $category->translated->first()->slug) }}">
+                                    {{ $category->translated->first()->title }}
                                 </a>
                             </li>
                             <li>
@@ -59,9 +67,9 @@
                             <h5 class="title">
                                 Categories:
                             </h5>
-                            <p class="inner-text">
+                            <a href="{{ route('portfolio.category', $category->translated->first()->slug) }}" class="inner-text">
                                 {{ $category->translated->first()->title }}
-                            </p>
+                            </a>
                         </li>
                         <li>
                             <h5 class="title">

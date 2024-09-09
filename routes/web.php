@@ -29,7 +29,10 @@ Route::middleware(SetLocale::class)->group(function() {
         Route::get('about', 'about')->name('about');
         Route::get('contact', 'contact')->name('contact');
         Route::get('service/{slug}', 'service')->name('service');
-        Route::get('portfolio', 'portfolio')->name('portfolio');
+        Route::prefix('portfolio')->name('portfolio.')->group(function() {
+            Route::get('/', 'portfolio')->name('index');
+            Route::get('category/{slug}', 'portfolioCategory')->name('category');
+        });
         Route::get('project/{slug}', 'project')->name('project');
         Route::prefix('blog')->name('blog.')->group(function() {
             Route::get('/', 'blog')->name('index');
