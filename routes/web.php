@@ -31,7 +31,12 @@ Route::middleware(SetLocale::class)->group(function() {
         Route::get('service/{slug}', 'service')->name('service');
         Route::get('portfolio', 'portfolio')->name('portfolio');
         Route::get('project/{slug}', 'project')->name('project');
-        Route::get('blog', 'blog')->name('blog');
+        Route::prefix('blog')->name('blog.')->group(function() {
+            Route::get('/', 'blog')->name('index');
+            Route::get('category/{slug}', 'blogCategory')->name('category');
+            Route::get('tag/{slug}', 'blogTag')->name('tag');
+            Route::get('search', 'blogSearch')->name('search');
+        });
         Route::get('article/{slug}', 'article')->name('article');
     });
     Route::post('send', [MessageController::class, 'store'])->name('send');

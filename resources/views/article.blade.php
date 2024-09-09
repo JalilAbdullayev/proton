@@ -18,8 +18,16 @@
                             <i data-feather="chevron-left"></i>
                         </li>
                         <li>
-                            <a href="{{ route('blog') }}">
+                            <a href="{{ route('blog.index') }}">
                                 Blog
+                            </a>
+                        </li>
+                        <li>
+                            <i data-feather="chevron-left"></i>
+                        </li>
+                        <li>
+                            <a href="{{ route('blog.category', $category->translated->first()->slug) }}">
+                                {{  $category->translated->first()->title }}
                             </a>
                         </li>
                         <li>
@@ -85,7 +93,7 @@
                         <ul class="blog-tags">
                             @foreach($tags as $tag)
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ route('blog.tag', $tag->translated->first()->slug) }}">
                                         {{ $tag->translated->first()->title }}
                                     </a>
                                 </li>
@@ -121,10 +129,11 @@
                             <h3 class="blog-title pb-3">
                                 Search here
                             </h3>
-                            <form action="">
+                            <form action="{{ route('blog.search') }}">
                                 <div class="form-group">
-                                    <input type="text" placeholder="Search here" class="form-control custom-form">
-                                    <button class="btn btn-search">
+                                    <input type="search" name="search" placeholder="Search here"
+                                           class="form-control custom-form"/>
+                                    <button class="btn btn-search" type="submit">
                                         <i data-feather="search"></i>
                                     </button>
                                 </div>
@@ -167,7 +176,7 @@
                             <ul class="category-list">
                                 @foreach($categories as $category)
                                     <li>
-                                        <a href="#">
+                                        <a href="{{ route('blog.category', $category->translated->first()->slug) }}">
                                         <span class="categpry-title">
                                             {{ $category->translated->first()->title }}
                                         </span>
@@ -182,7 +191,7 @@
                             <ul class="blog-tags mt-4">
                                 @foreach($otherTags as $tag)
                                     <li>
-                                        <a href="#">
+                                        <a href="{{ route('blog.tag', $tag->translated->first()->slug) }}">
                                             {{ $tag->translated->first()->title }}
                                         </a>
                                     </li>

@@ -8,6 +8,7 @@ use App\Models\Blog;
 use App\Models\BlogImage;
 use App\Models\BlogTranslate;
 use App\Models\Category;
+use App\Models\CategoryTranslate;
 use App\Models\Client;
 use App\Models\Portfolio;
 use App\Models\PortfolioImage;
@@ -15,8 +16,10 @@ use App\Models\PortfolioTranslate;
 use App\Models\Service;
 use App\Models\ServiceTranslate;
 use App\Models\Tag;
+use App\Models\TagTranslate;
 use App\Models\Team;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\View\View as ViewResponse;
 
@@ -65,7 +68,7 @@ class FrontController extends Controller {
         return View::make('blog', compact('blog'));
     }
 
-    public function article($slug) {
+    public function article($slug): ViewResponse {
         $article = BlogTranslate::whereSlug($slug)->join('blog', 'blog.id', '=', 'article_id')->first();
         $category = Category::whereId($article->category_id)->first();
         $images = BlogImage::whereArticleId($article->article_id)->whereStatus(1)->whereFeatured(0)->get();
@@ -76,5 +79,27 @@ class FrontController extends Controller {
         $otherTags = Tag::whereHas('articles')->get();
         $articles = Blog::whereStatus(1)->where('id', '!=', $article->article_id)->take(3)->get();
         return View::make('article', compact('article', 'category', 'images', 'mainImage', 'author', 'tags', 'categories', 'otherTags', 'articles'));
+    }
+
+    public function blogCategory($slug): ViewResponse {
+        $category = CategoryTranslate::whereSlug($slug)->first();
+        $categoryArticles = Blog::whereCategoryId($category->category_id)->whereStatus(1)->paginate(6);
+        return View::make('blog', compact('category', 'categoryArticles'));
+    }
+
+    public function blogTag($slug): ViewResponse {
+        $tag = TagTranslate::whereSlug($slug)->first();
+        $tagArticles = Blog::whereHas('tags', function($query) use ($tag) {
+            $query->where('tag_id', $tag->tag_id);
+        })->whereStatus(1)->paginate(6);
+        return View::make('blog', compact('tag', 'tagArticles'));
+    }
+
+    public function blogSearch(Request $request): ViewResponse {
+        $search = $request->input('search');
+        $searchArticles = Blog::whereHas('translated', function($query) use ($search) {
+            $query->where('title', 'like', '%' . $search . '%');
+        })->paginate(6);
+        return View::make('blog', compact('searchArticles', 'search'));
     }
 }
