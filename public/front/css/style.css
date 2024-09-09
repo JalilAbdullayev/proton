@@ -218,6 +218,12 @@ i, h1, h2, h3, h4, h5, h6, p, ul, ol {
   border-top: 1px dotted var(--color-main);
   padding: 1rem 0;
 }
+.home_blog_item img {
+  height: 14.375rem;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
 .home_blog_item .card-body {
   padding: 0.8rem 0;
 }
