@@ -32,19 +32,19 @@ $locale = RequestFacade::segment(1);
 if(in_array($locale, ['az', 'ru'])) {
     $locale = RequestFacade::segment(1);
 } else {
-    $locale = '';
+    $locale = 'en';
 }
 
-Route::post('/update-locale', function(Request $request) {
+Route::post('/update-locale', static function(Request $request) {
     $locale = $request->input('locale');
     Session::put('locale', $locale);
 
     return Response::json(['success' => true]);
 })->name('update-locale');
 
-Route::get('/{locale?}', function($locale = null) {
+Route::get('/{locale?}', static function($locale = 'en') {
     if($locale === 'en') {
-        return redirect()->route('home_en');
+        return Redirect::route('home_en');
     }
 
     if($locale) {
@@ -53,9 +53,10 @@ Route::get('/{locale?}', function($locale = null) {
 
     return Redirect::route('home_' . $locale);
 })->where('locale', '[a-zA-Z]{2}');
+
 Route::group(['prefix' => $locale, function($locale = null) {
     return $locale;
-}, 'where' => ['locale' => '[a-zA-Z]{2}']], function() {
+}, 'where' => ['locale' => '[a-zA-Z]{2}']], static function() {
     Route::middleware(SetLocale::class)->group(function() {
         Route::controller(FrontController::class)->group(function() {
             Route::get('home', 'index')->name('home_en');
