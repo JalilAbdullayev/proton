@@ -119,3 +119,37 @@ window.addEventListener('keyup', (e) => {
     }
 })
 Fancybox.bind("[data-fancybox]");
+
+document.addEventListener('scroll', function () {
+    const counters = document.querySelectorAll('.count');
+    const speed = 100000; // 5 saniye
+
+    counters.forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+
+            // Hedef ile mevcut sayı arasındaki farkı hesapla
+            const increment = target / (speed / 100);
+
+            if (count < target) {
+                // Sayıyı arttır
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(updateCount, 100);
+            } else {
+                counter.innerText = target;
+            }
+        };
+
+        // Sayfa kaydırıldığında ilgili element göründüğünde animasyonu başlat
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    updateCount();
+                }
+            });
+        });
+
+        observer.observe(counter);
+    });
+});

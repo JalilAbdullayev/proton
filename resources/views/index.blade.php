@@ -227,13 +227,23 @@
                     </p>
                     <div class="successful-projects ms-lg-3 mb-5">
                         <div class="project-item">
-                            <span class="count">600+</span>
+                            <div class="counter">
+                                <span class="count" data-target="600">0</span>
+                                <span style="color: #fff; font-size: 1.5rem">
+                                    <i class="fa fa-plus"></i>
+                                </span>
+                            </div>
                             <p class="inner-text">
                                 Successful Projects Lorem ipsum dolor amet.
                             </p>
                         </div>
                         <div class="project-item">
-                            <span class="count">600+</span>
+                            <div class="counter">
+                                <span class="count" data-target="600">0</span>
+                                <span style="color: #fff; font-size: 1.5rem">
+                                    <i class="fa fa-plus"></i>
+                                </span>
+                            </div>
                             <p class="inner-text">
                                 Successful Projects Lorem ipsum dolor amet.
                             </p>
