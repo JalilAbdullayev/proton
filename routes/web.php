@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BlogImageController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\FirstSectionController;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PortfolioController;
@@ -80,7 +81,7 @@ Route::group(['prefix' => $locale, function($locale = null) {
 
                 Route::get('category/{slug}', 'portfolioCategory')->name('category_en');
                 Route::get('kateqoriya/{slug}', 'portfolioCategory')->name('category_az');
-                Route::get('katerqoria/{slug}', 'portfolioCategory')->name('category_ru');
+                Route::get('kateqoria/{slug}', 'portfolioCategory')->name('category_ru');
             });
 
             Route::get('project/{slug}', 'project')->name('project_en');
@@ -112,82 +113,87 @@ Route::group(['prefix' => $locale, function($locale = null) {
         });
 
         Route::post('send', [MessageController::class, 'store'])->name('send');
+    });
 
-        Route::prefix('admin')->name('admin.')->middleware('auth')->group(function() {
-            Route::get('/', [MainController::class, 'index'])->name('index');
+    Route::prefix('admin')->name('admin.')->middleware('auth')->group(function() {
+        Route::get('/', [MainController::class, 'index'])->name('index');
 
-            Route::controller(SettingsController::class)->prefix('settings')->name('settings.')->group(function() {
-                Route::get('/', 'index');
-                Route::put('/', 'update');
-            });
+        Route::controller(SettingsController::class)->prefix('settings')->name('settings')->group(function() {
+            Route::get('/', 'index');
+            Route::put('/', 'update');
+        });
 
-            Route::controller(AboutController::class)->prefix('about')->name('about.')->group(function() {
-                Route::get('/', 'index');
-                Route::put('/', 'update');
-            });
+        Route::controller(AboutController::class)->prefix('about')->name('about')->group(function() {
+            Route::get('/', 'index');
+            Route::put('/', 'update');
+        });
 
-            Route::controller(ContactController::class)->prefix('contact')->name('contact.')->group(function() {
-                Route::get('/', 'index');
-                Route::put('/', 'update');
-            });
+        Route::controller(ContactController::class)->prefix('contact')->name('contact')->group(function() {
+            Route::get('/', 'index');
+            Route::put('/', 'update');
+        });
 
-            Route::resource('users', UserController::class);
+        Route::resource('users', UserController::class);
 
-            Route::controller(ProfileController::class)->prefix('profile')->name('profile.')->group(function() {
+        Route::controller(ProfileController::class)->prefix('profile')->name('profile.')->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::patch('/', 'update')->name('update');
+            Route::get('delete', 'delete')->name('delete');
+        });
+
+        Route::resource('team', TeamController::class);
+        Route::resource('services', ServiceController::class);
+
+        Route::resource('socials', SocialController::class);
+        Route::post('socials/status', [SocialController::class, 'status'])->name('socials.status');
+
+        Route::resource('category', CategoryController::class);
+        Route::post('category/status', [CategoryController::class, 'status'])->name('category.status');
+
+        Route::resource('portfolio', PortfolioController::class);
+        Route::prefix('portfolio')->name('portfolio.')->group(function() {
+            Route::post('status', [PortfolioController::class, 'status'])->name('status');
+            Route::controller(PortfolioImageController::class)->prefix('{id}/images')->name('images.')->group(function() {
                 Route::get('/', 'index')->name('index');
-                Route::patch('/', 'update')->name('update');
-                Route::get('delete', 'delete')->name('delete');
+                Route::post('/', 'store');
+                Route::post('status', 'status')->name('status');
+                Route::put('/', 'featured')->name('featured');
+                Route::delete('/', 'delete')->name('delete');
             });
+        });
 
-            Route::resource('team', TeamController::class);
-            Route::resource('services', ServiceController::class);
+        Route::resource('tag', TagController::class);
+        Route::post('tag/status', [TagController::class, 'status'])->name('tag.status');
 
-            Route::resource('socials', SocialController::class);
-            Route::post('socials/status', [SocialController::class, 'status'])->name('socials.status');
-
-            Route::resource('category', CategoryController::class);
-            Route::post('category/status', [CategoryController::class, 'status'])->name('category.status');
-
-            Route::resource('portfolio', PortfolioController::class);
-            Route::prefix('portfolio')->name('portfolio.')->group(function() {
-                Route::post('status', [PortfolioController::class, 'status'])->name('status');
-                Route::controller(PortfolioImageController::class)->prefix('{id}/images')->name('images.')->group(function() {
-                    Route::get('/', 'index')->name('index');
-                    Route::post('/', 'store');
-                    Route::post('status', 'status')->name('status');
-                    Route::put('/', 'featured')->name('featured');
-                    Route::delete('/', 'delete')->name('delete');
-                });
-            });
-
-            Route::resource('tag', TagController::class);
-            Route::post('tag/status', [TagController::class, 'status'])->name('tag.status');
-
-            Route::resource('blog', BlogController::class);
-            Route::prefix('blog')->name('blog.')->group(function() {
-                Route::post('status', [BlogController::class, 'status'])->name('status');
-                Route::controller(BlogImageController::class)->prefix('{id}/images')->name('images.')->group(function() {
-                    Route::get('/', 'index')->name('index');
-                    Route::post('/', 'store');
-                    Route::post('status', 'status')->name('status');
-                    Route::put('/', 'featured')->name('featured');
-                    Route::delete('/', 'delete')->name('delete');
-                });
-            });
-
-            Route::controller(MessageController::class)->prefix('message')->name('message.')->group(function() {
+        Route::resource('blog', BlogController::class);
+        Route::prefix('blog')->name('blog.')->group(function() {
+            Route::post('status', [BlogController::class, 'status'])->name('status');
+            Route::controller(BlogImageController::class)->prefix('{id}/images')->name('images.')->group(function() {
                 Route::get('/', 'index')->name('index');
-                Route::get('{id}', 'show')->name('show');
-                Route::delete('{id}', 'delete')->name('delete');
+                Route::post('/', 'store');
+                Route::post('status', 'status')->name('status');
+                Route::put('/', 'featured')->name('featured');
+                Route::delete('/', 'delete')->name('delete');
             });
+        });
 
-            Route::controller(BannerController::class)->prefix('banner')->name('banner.')->group(function() {
-                Route::get('/', 'index');
-                Route::put('/', 'update');
-            });
+        Route::controller(MessageController::class)->prefix('message')->name('message.')->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::get('{id}', 'show')->name('show');
+            Route::delete('{id}', 'delete')->name('delete');
+        });
 
-            Route::resource('client', ClientController::class);
-            Route::post('client/status', [ClientController::class, 'status'])->name('client.status');
+        Route::controller(BannerController::class)->prefix('banner')->name('banner')->group(function() {
+            Route::get('/', 'index');
+            Route::put('/', 'update');
+        });
+
+        Route::resource('client', ClientController::class);
+        Route::post('client/status', [ClientController::class, 'status'])->name('client.status');
+
+        Route::controller(FirstSectionController::class)->prefix('first-section')->name('first-section')->group(function() {
+            Route::get('/', 'index');
+            Route::put('/', 'update');
         });
     });
 });

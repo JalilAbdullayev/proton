@@ -81,6 +81,14 @@
                     </a>
                 </li>
                 <li>
+                    <a class="waves-effect waves-dark" href="{{ route('admin.first-section') }}" aria-expanded="false">
+                        <i class="icon-picture"></i>
+                        <span class="hide-menu">
+                            1-ci Section
+                        </span>
+                    </a>
+                </li>
+                <li>
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i class="mdi mdi-account-multiple"></i>
                         <span class="hide-menu">
