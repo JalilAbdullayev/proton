@@ -64,4 +64,20 @@ trait UploadImage {
             $imageModel::insert($imagesData);
         }
     }
+
+    public function singleImg($request, $model) {
+        if($request->file('image')) {
+            if($model->image && Storage::exists('public/' . $model->image)) {
+                Storage::delete('public/' . $model->image);
+            }
+
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $fileOriginalName = $file->getClientOriginalName();
+            $explode = explode('.', $fileOriginalName);
+            $fileOriginalName = Str::slug($explode[0], '-') . '_' . now()->format('d-m-Y-H-i-s') . '.' . $extension;
+            Storage::putFileAs('public/images/', $file, $fileOriginalName);
+            $model->update(['image' => 'images/' . $fileOriginalName]);
+        }
+    }
 }

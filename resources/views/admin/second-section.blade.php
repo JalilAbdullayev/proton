@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title', '1-ci Section')
+@section('title', '2-ci Section')
 @section('css')
     <link rel="stylesheet" href="{{ asset('back/node_modules/dropify/dist/css/dropify.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('back/ckeditor/samples/css/samples.css') }}"/>
@@ -56,23 +56,13 @@
                     <div class="tab-pane p-20 @if($index === 0) active @endif" id="{{ $tabout->lang }}"
                          role="tabpanel">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="title[]" id="title" placeholder="Başlıq"
+                            <input type="text" class="form-control" name="title[]" id="title" placeholder="Ad"
                                    maxlength="255" value="{{ $tabout->title }}" required/>
                             <label for="title" class="form-label text-white-50">
                                 Başlıq
                             </label>
                         </div>
                         @error('title')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="subtitle[]" id="subtitle"
-                                   placeholder="Alt Başlıq" maxlength="255" value="{{ $tabout->subtitle }}" required/>
-                            <label for="subtitle" class="form-label text-white-50">
-                                Alt Başlıq
-                            </label>
-                        </div>
-                        @error('subtitle')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="mb-3">

@@ -1,4 +1,4 @@
-@php use Illuminate\Support\Facades\Storage; @endphp
+@php use App\Models\Client;use App\Models\Portfolio;use Illuminate\Support\Facades\Storage; @endphp
 @extends('layouts.master')
 @section('content')
     <!-- Banner  start-->
@@ -156,9 +156,9 @@
                                 <h3 class="title">
                                     {{ $firstSection->translated->first()->subtitle }}
                                 </h3>
-                                <p class="inner-text">
+                                <div class="inner-text">
                                     {!! $firstSection->translated->first()->description !!}
-                                </p>
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -204,44 +204,39 @@
             <div class="row align-items-center">
                 <div class="col-12 col-lg-6 mb-5">
                     <div class="section-img">
-                        <img src="{{ asset('front/images/preferences/preferences-02.png')}}" alt="">
+                        <img src="{{ asset(Storage::url($secondSection->image))}}" alt="">
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 mb-5">
                     <div class="section-title-box border-0 ms-lg-3">
-                        <h4 class="subtitle">
-                            why choose us
-                        </h4>
                         <h2 class="section-title">
-                            Learn More About Our More Service & Solution
+                            {{ $secondSection->translated->first()->title }}
                         </h2>
                     </div>
-                    <p class="inner-text ms-lg-3">
-                        We provide professional services to clients in a particular area of expertise. We have a team of
-                        experts in various
-                        fields who can offer advice on a project particular.
-                    </p>
+                    <div class="inner-text ms-lg-3">
+                        {!! $secondSection->translated->first()->description !!}
+                    </div>
                     <div class="successful-projects ms-lg-3 mb-5">
                         <div class="project-item">
                             <div class="counter">
-                                <span class="count" data-target="600">0</span>
-                                <span style="color: #fff; font-size: 1.5rem">
+                                <span class="count" data-target="{{ Portfolio::whereStatus(1)->count() }}">0</span>
+                                <span class="text-white fs-4">
                                     <i class="fa fa-plus"></i>
                                 </span>
                             </div>
                             <p class="inner-text">
-                                Successful Projects Lorem ipsum dolor amet.
+                                {{  __('Projects')}}
                             </p>
                         </div>
                         <div class="project-item">
                             <div class="counter">
-                                <span class="count" data-target="600">0</span>
-                                <span style="color: #fff; font-size: 1.5rem">
+                                <span class="count" data-target="{{ Client::count() }}">0</span>
+                                <span class="text-white fs-4">
                                     <i class="fa fa-plus"></i>
                                 </span>
                             </div>
                             <p class="inner-text">
-                                Successful Projects Lorem ipsum dolor amet.
+                                {{ __('Clients') }}
                             </p>
                         </div>
                     </div>
@@ -350,19 +345,11 @@
                             Call Us Now!
                         </h3>
                     </div>
-                    <p class="inner-text">
-                        The fastest way to convert visitors into leads and sales on your website is with Social Daily
-                        Marketing. That's why
-                        businesses use Daily.
-                    </p>
                     <div class="d-flex align-items-center contact-info">
                         <div class="icon">
                             <i data-feather="headphones"></i>
                         </div>
                         <div class="info">
-                            <p class="inner-text">
-                                Toll Free Call.
-                            </p>
                             <a href="tel:{{ preg_replace('/\s+/', '', $contact->phone) }}">
                                 {{ $contact->phone }}
                             </a>

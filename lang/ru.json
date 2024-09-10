@@ -33,5 +33,7 @@
     "Date": "Дата",
     "Duration": "Продолжительность",
     "Status": "Статус",
-    "Portfolio": "Портфель"
+    "Portfolio": "Портфель",
+    "Projects": "Проекты",
+    "Clients": "Клиенты"
 }

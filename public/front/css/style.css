@@ -1062,7 +1062,6 @@ header .header .custom-navbar .contact-list li {
 .preferences-section-2 .successful-projects {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-top: 2.5rem;
 }
 .preferences-section-2 .successful-projects .project-item {
@@ -1579,3 +1578,5 @@ header .header .custom-navbar .contact-list li {
     opacity: 0;
   }
 }
+
+/*# sourceMappingURL=style.css.map */

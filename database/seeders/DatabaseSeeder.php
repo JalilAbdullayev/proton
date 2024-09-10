@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder {
         $this->call([/*BannerSeeder::class,
             AboutSeeder::class,
             ContactSeeder::class,
-            SettingsSeeder::class*/
-            FirstSectionSeeder::class]);
+            SettingsSeeder::class
+            FirstSectionSeeder::class*/
+            SecondSectionSeeder::class]);
     }
 }

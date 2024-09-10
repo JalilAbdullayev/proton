@@ -82,9 +82,17 @@
                 </li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{ route('admin.first-section') }}" aria-expanded="false">
-                        <i class="icon-picture"></i>
+                        <i class="mdi mdi-collage"></i>
                         <span class="hide-menu">
                             1-ci Section
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="waves-effect waves-dark" href="{{ route('admin.second-section') }}" aria-expanded="false">
+                        <i class="mdi mdi-collage"></i>
+                        <span class="hide-menu">
+                            2-ci Section
                         </span>
                     </a>
                 </li>
