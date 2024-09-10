@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\BlogImageController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\Admin\ConsultantController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\FirstSectionController;
 use App\Http\Controllers\Admin\MainController;
@@ -114,6 +115,7 @@ Route::group(['prefix' => $locale, function($locale = null) {
         });
 
         Route::post('send', [MessageController::class, 'store'])->name('send');
+        Route::post('consult', [ConsultantController::class, 'store'])->name('consult');
 
         Route::prefix('admin')->name('admin.')->middleware('auth')->group(function() {
             Route::get('/', [MainController::class, 'index'])->name('index');
@@ -199,6 +201,11 @@ Route::group(['prefix' => $locale, function($locale = null) {
             Route::controller(SecondSectionController::class)->prefix('second-section')->name('second-section')->group(function() {
                 Route::get('/', 'index');
                 Route::put('/', 'update');
+            });
+
+            Route::controller(ConsultantController::class)->prefix('consultant')->name('consultant.')->group(function() {
+                Route::get('/', 'index')->name('index');
+                Route::delete('{id}', 'delete')->name('delete');
             });
         });
     });

@@ -14,13 +14,15 @@
                         <div class="inner-text">
                             {!! $banner->translated->first()->subtitle !!}
                         </div>
-                        <form>
+                        <form method="POST" action="{{ route('consult') }}">
+                            @csrf
                             <div class="search-form">
                                 <div class="form-group mb-0 mb-lg-3">
-                                    <input type="text" id="searchInput" placeholder="Your email address"
-                                           class="form-control custom-form">
+                                    <input type="text" id="searchInput" class="form-control custom-form" required
+                                           name="contact"
+                                           placeholder="{{ __('Enter your phone number or e-mail for quick consultation')}}"/>
                                 </div>
-                                <button class="btn btn-main dark">
+                                <button class="btn btn-main dark" type="submit">
                                     <i data-feather="send"></i>
                                 </button>
                             </div>

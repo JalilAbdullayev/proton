@@ -9,9 +9,7 @@ use App\Traits\UploadImage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Str;
 use Illuminate\View\View as ViewResponse;
 
 class FirstSectionController extends Controller {

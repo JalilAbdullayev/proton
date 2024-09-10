@@ -73,6 +73,15 @@
                     </a>
                 </li>
                 <li>
+                    <a class="waves-effect waves-dark" href="{{ route('admin.consultant.index') }}"
+                       aria-expanded="false">
+                        <i class="mdi mdi-message"></i>
+                        <span class="hide-menu">
+                            Müraciətlər
+                        </span>
+                    </a>
+                </li>
+                <li>
                     <a class="waves-effect waves-dark" href="{{ route('admin.banner') }}" aria-expanded="false">
                         <i class="icon-picture"></i>
                         <span class="hide-menu">
