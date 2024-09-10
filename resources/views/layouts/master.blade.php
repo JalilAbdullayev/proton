@@ -33,7 +33,7 @@
 <!-- Search modal start -->
 <div class="search-modal-container">
     <div class="container">
-        <form action="{{ route('search') }}">
+        <form action="{{ route('search_'.session('locale')) }}">
             <div class="row align-items-center">
                 <div class="col-10">
                     <div class="form-group">
@@ -66,6 +66,23 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{ asset('front/js/main.js')}}"></script>
 <script>
+    function updateLocale() {
+        const locale = document.getElementById('locale').value;
+        const csrfToken = "{{ csrf_token() }}";
+
+        fetch('{{ route('update-locale') }}?locale=' + locale, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken
+            }
+        }).then(response => response.json()).then(data => {
+            if(data.success) {
+                window.location.href = '{{ url('/') }}/' + locale + '/';
+            }
+        });
+    }
+
     function sweetAlert(icon, message) {
         Swal.fire({
             icon: icon,

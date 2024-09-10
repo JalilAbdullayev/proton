@@ -5,14 +5,13 @@
             <div class="col-12 col-custom-md-6 col-lg-4 mb-4 mb-lg-0">
                 <div class="footer-left">
                     <div class="logo">
-                        <a href="/">
+                        <a href="{{ route('home_' . session('locale')) }}">
                             <img src="{{ asset(Storage::url($settings->logo)) }}" alt=""/>
                         </a>
                     </div>
 
                     <p class="inner-text py-4">
-                        Our team do comprises professional with experience. That's why businesses use Dail The
-                        fastest way.
+                        {{ $settings->translated->first()->description }}
                     </p>
                     <ul class="social-network footer">
                         @foreach($socials as $social)
@@ -27,12 +26,12 @@
             </div>
             <div class="col-12 col-custom-md-6 col-lg-2 mb-4 mb-lg-0">
                 <h5 class="small-title mb-3">
-                    Services
+                    {{ __('Services')}}
                 </h5>
                 <ul class="footer-menu">
                     @foreach($services as $service)
                         <li>
-                            <a href="#">
+                            <a href="{{ route('service_' . session('locale'), $service->translated->first()->slug) }}">
                                 {{ $service->translated->first()->title }}
                             </a>
                         </li>
@@ -41,32 +40,32 @@
             </div>
             <div class="col-12 col-custom-md-6 col-lg-2 mb-4 mb-lg-0">
                 <h5 class="small-title mb-3">
-                    Navigation
+                    {{ __('Navigation')}}
                 </h5>
                 <ul class="footer-menu">
                     <li>
-                        <a href="/">
-                            Home
+                        <a href="{{ route('home_' . session('locale')) }}">
+                            {{ __('Home')}}
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('about') }}">
-                            About
+                        <a href="{{ route('about_' . session('locale')) }}">
+                            {{ __('About us')}}
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('portfolio.index') }}">
-                            Portfolio
+                            {{ __('Portfolio')}}
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('blog.index') }}">
-                            Blog
+                            {{ __('Blog')}}
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('contact') }}">
-                            Contact
+                        <a href="{{ route('contact_' . session('locale')) }}">
+                            {{ __('Contact us')}}
                         </a>
                     </li>
                 </ul>
@@ -97,10 +96,9 @@
             </div>
         </div>
         <div class="copyright text-center pt-5 pb-4">
-            Copyright © 2019 - {{ date('Y') }}
-            <a href="/">
+            © <a href="{{ route('home_' . session('locale')) }}">
                 {{ $settings->translated->first()->title }}
-            </a> All Rights Reserved
+            </a> 2019 - {{ date('Y') }} {{ __('All Rights Reserved.')}}
         </div>
     </div>
 </footer>

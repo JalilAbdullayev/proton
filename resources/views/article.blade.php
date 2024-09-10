@@ -3,8 +3,11 @@
 @section('title', $article->title)
 @section('description', $article->description)
 @section('keywords')
-@foreach($allTags as $tag){{ $tag->translated->first()->title }}, @endforeach
+    @foreach($allTags as $tag)
+        {{ $tag->translated->first()->title }},
+    @endforeach
 @endsection
+@section('author', $author)
 @section('content')
     <!-- Breadcrumb start -->
     <section class="breadcrumb">
@@ -16,21 +19,21 @@
                     </h3>
                     <ul class="breadcrumb-box">
                         <li>
-                            <a href="/">Home</a>
+                            <a href="{{ route('home_' . session('locale')) }}">Home</a>
                         </li>
                         <li>
                             <i data-feather="chevron-left"></i>
                         </li>
                         <li>
                             <a href="{{ route('blog.index') }}">
-                                Blog
+                                {{ __('Blog')}}
                             </a>
                         </li>
                         <li>
                             <i data-feather="chevron-left"></i>
                         </li>
                         <li>
-                            <a href="{{ route('blog.category', $category->translated->first()->slug) }}">
+                            <a href="{{ route('blog.category_'. session('locale'), $category->translated->first()->slug) }}">
                                 {{  $category->translated->first()->title }}
                             </a>
                         </li>
@@ -63,17 +66,21 @@
                                 <div class="items-center blog-info py-3">
                                     <div class="items-center auth-info">
                                         <h3 class="auth-name">
-                                            By <a href="#">
+                                            @if(session('locale') === 'en')
+                                                By
+                                            @endif <a href="#">
                                                 {{ $author }}
                                             </a>
                                         </h3>
                                     </div>
-                                    <div class="items-center blog-date">
-                                        <i data-feather="calendar"></i>
-                                        <span>
+                                    @if($article->date)
+                                        <div class="items-center blog-date">
+                                            <i data-feather="calendar"></i>
+                                            <span>
                                             {{ $article->date }}
                                         </span>
-                                    </div>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -97,7 +104,7 @@
                         <ul class="blog-tags">
                             @foreach($tags as $tag)
                                 <li>
-                                    <a href="{{ route('blog.tag', $tag->translated->first()->slug) }}">
+                                    <a href="{{ route('blog.tag_' . session('locale'), $tag->translated->first()->slug) }}">
                                         {{ $tag->translated->first()->title }}
                                     </a>
                                 </li>
@@ -131,11 +138,11 @@
                     <div class="right-detail">
                         <div class="right-item">
                             <h3 class="blog-title pb-3">
-                                Search here
+                                {{ __('Search')}}
                             </h3>
-                            <form action="{{ route('blog.search') }}">
+                            <form action="{{ route('blog.search_' . session('locale')) }}">
                                 <div class="form-group">
-                                    <input type="search" name="search" placeholder="Search here"
+                                    <input type="search" name="search" placeholder="{{ __('Search')}}"
                                            class="form-control custom-form"/>
                                     <button class="btn btn-search" type="submit">
                                         <i data-feather="search"></i>
@@ -145,7 +152,7 @@
                         </div>
                         <div class="right-item">
                             <h3 class="blog-title">
-                                Popular Post
+                                {{ __('Most Recent Articles')}}
                             </h3>
                             <ul class="popular-blog-list">
                                 @foreach($articles as $article)
@@ -157,16 +164,18 @@
                                             </div>
                                             <div class="item-body">
                                                 <h4 class="item-title">
-                                                    <a href="{{ route('article', $article->translated->first()->slug) }}">
+                                                    <a href="{{ route('article_' . session('locale'), $article->translated->first()->slug) }}">
                                                         {{ $article->translated->first()->title }}
                                                     </a>
                                                 </h4>
-                                                <div class="items-center blog-date">
-                                                    <i data-feather="calendar"></i>
-                                                    <span>
+                                                @if($article->translated->first()->date)
+                                                    <div class="items-center blog-date">
+                                                        <i data-feather="calendar"></i>
+                                                        <span>
                                                         {{ $article->translated->first()->date }}
                                                     </span>
-                                                </div>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </li>
@@ -175,12 +184,12 @@
                         </div>
                         <div class="right-item">
                             <h3 class="blog-title">
-                                Categories
+                                {{ __('Categories')}}
                             </h3>
                             <ul class="category-list">
                                 @foreach($categories as $category)
                                     <li>
-                                        <a href="{{ route('blog.category', $category->translated->first()->slug) }}">
+                                        <a href="{{ route('blog.category_' . session('locale'), $category->translated->first()->slug) }}">
                                         <span class="categpry-title">
                                             {{ $category->translated->first()->title }}
                                         </span>
@@ -191,11 +200,12 @@
                             </ul>
                         </div>
                         <div class="right-item">
-                            <h3 class="blog-title">Popular Tags</h3>
+                            <h3 class="blog-title">{{ __('Tags')}}</h3>
                             <ul class="blog-tags mt-4">
                                 @foreach($otherTags as $tag)
                                     <li>
-                                        <a href="{{ route('blog.tag', $tag->translated->first()->slug) }}">
+                                        <a href="{{ route('blog.tag_' . session('locale'), $tag->translated->first()
+                                        ->slug) }}">
                                             {{ $tag->translated->first()->title }}
                                         </a>
                                     </li>

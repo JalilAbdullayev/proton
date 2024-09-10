@@ -15,7 +15,7 @@
                         </h3>
                         <ul class="breadcrumb-box">
                             <li>
-                                <a href="/">Home</a>
+                                <a href="{{ route('home_' . session('locale')) }}">Home</a>
                             </li>
                             <li>
                                 <i data-feather="chevron-left"></i>
@@ -77,7 +77,7 @@
                                     <p class="inner-text">
                                         {{ $service->translated->first()->description }}
                                     </p>
-                                    <a href="{{ route('service', $service->translated->first()->slug) }}">
+                                    <a href="{{ route('service_' . session('locale'), $service->translated->first()->slug) }}">
                                         <span>look more</span>
                                         <span>
                                         <i data-feather="arrow-up-right"></i>

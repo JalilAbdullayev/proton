@@ -6,16 +6,16 @@
         <div class="container-fluid">
             <div class="breadcrumb-bg">
                 <div class="h-100 row flex-column justify-content-center align-content-center text-center">
-                    <h3 class="breadcrumb-title">Contact</h3>
+                    <h3 class="breadcrumb-title">{{ __('Contact us')}}</h3>
                     <ul class="breadcrumb-box">
                         <li>
-                            <a href="/">Home</a>
+                            <a href="{{ route('home_' . session('locale')) }}">{{ __('Home')}}</a>
                         </li>
                         <li>
                             <i data-feather="chevron-left"></i>
                         </li>
                         <li>
-                            contact
+                            {{ __('Contact us')}}
                         </li>
                     </ul>
                 </div>
@@ -33,7 +33,7 @@
                         <div class="icon mx-auto mb-3">
                             <i data-feather="phone-call"></i>
                         </div>
-                        <h3 class="blog-title">Call us on</h3>
+                        <h3 class="blog-title">{{ __('Phone')}}</h3>
                         <ul class="phone-list">
                             <li>
                                 <a href="tel:{{ preg_replace('/\s+/', '', $contact->phone) }}">
@@ -48,7 +48,7 @@
                         <div class="icon mx-auto mb-3">
                             <i data-feather="mail"></i>
                         </div>
-                        <h3 class="blog-title">Email us</h3>
+                        <h3 class="blog-title">{{ __('Email')}}</h3>
                         <ul class="phone-list">
                             <li>
                                 <a href="mailto:{{ $contact->email }}">
@@ -63,7 +63,7 @@
                         <div class="icon mx-auto mb-3">
                             <i data-feather="map-pin"></i>
                         </div>
-                        <h3 class="blog-title">our location</h3>
+                        <h3 class="blog-title">{{ __('Location')}}</h3>
                         <ul class="phone-list">
                             <li>
                                 {{ $contact->translated->first()->address }}
@@ -110,47 +110,47 @@
                                 <div class="col-12 col-lg-6">
                                     <div class="form-group mb-3">
                                         <label for="name">
-                                            <input type="text" id="name" name="name" placeholder="Name"
+                                            <input type="text" id="name" name="name" placeholder="{{ __('Name')}}"
+                                                   required
                                                    class="form-control custom-form"/>
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="form-group mb-3">
-                                        <label for="name">
-                                            <input type="email" id="name" placeholder="Email" name="email"
+                                        <label for="email">
+                                            <input type="email" id="email" name="email" placeholder="{{ __('E-mail')}}"
                                                    class="form-control custom-form"/>
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="form-group mb-3">
-                                        <label for="name">
-                                            <input type="tel" id="name" placeholder="Phone" name="phone"
-                                                   class="form-control custom-form"/>
+                                        <label for="phone">
+                                            <input type="tel" id="phone" name="phone" placeholder="{{ __('Phone')}}"
+                                                   required class="form-control custom-form"/>
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="form-group mb-3">
-                                        <label for="service">
-                                            <select id="service" name="subject" class="form-control custom-form">
-                                                <option value="all">Select Service</option>
-                                                <option value="art&desgin">Art and design</option>
-                                            </select>
+                                        <label for="subject">
+                                            <input type="text" id="subject" name="subject"
+                                                   placeholder="{{ __('Subject')}}" required
+                                                   class="form-control custom-form"/>
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group mb-3">
                                         <label for="message">
-                                            <textarea name="message" id="message" placeholder="Write a message"
-                                                      class="form-control custom-form" rows="5"></textarea>
+                                            <textarea name="message" id="message" placeholder="{{ __('Message')}}"
+                                                      class="form-control custom-form" rows="5" required></textarea>
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-5">
-                                    <button class="btn btn-main">send now</button>
+                                    <button class="btn btn-main">{{ __('send now')}}</button>
                                 </div>
                             </div>
                         </div>

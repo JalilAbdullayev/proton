@@ -80,8 +80,8 @@
     <!-- End Page wrapper  -->
     <!-- footer -->
     <footer class="footer">
-        © {{ date('Y') == 2024 ? 2024 : '2024 -' . date('Y') }}
-        <a target="_blank" href="">
+        © {{ '2019 -' . date('Y') }}
+        <a target="_blank" href="{{ route('home_' . session('locale')) }}">
             {{ $settings->translated->first()->title }}
         </a>
     </footer>

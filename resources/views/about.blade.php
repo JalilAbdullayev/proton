@@ -7,10 +7,10 @@
         <div class="container-fluid">
             <div class="breadcrumb-bg">
                 <div class="h-100 row flex-column justify-content-center align-content-center text-center">
-                    <h3 class="breadcrumb-title">About us</h3>
+                    <h3 class="breadcrumb-title">{{ __("About us")}}</h3>
                     <ul class="breadcrumb-box">
                         <li>
-                            <a href="/">Home</a>
+                            <a href="{{ route('home_' . session('locale')) }}">{{ __('Home')}}</a>
                         </li>
                         <li>
                             <i data-feather="chevron-left"></i>
@@ -50,9 +50,6 @@
                                 {!! $about->translated->first()->description !!}
                             </div>
                         </div>
-                        <a href="#" class="btn btn-main dark">
-                            know more
-                        </a>
                     </div>
                 </div>
             </div>
@@ -66,9 +63,6 @@
             <div class="section-title-box text-center border-0">
                 <div class="row align-items-center">
                     <div class="col-12 col-lg-7 mb-5 mx-auto mb-lg-0">
-                        <h4 class="subtitle">
-                            day-to-day operations
-                        </h4>
                         <h2 class="section-title">
                             Unveiling Our Core Values for Lasting Impact.
                         </h2>
@@ -92,8 +86,8 @@
                                     <p class="inner-text">
                                         {{ $service->translated->first()->description }}
                                     </p>
-                                    <a href="{{ route('service', $service->translated->first()->slug) }}">
-                                        <span>look more</span>
+                                    <a href="{{ route('service_' . session('locale'), $service->translated->first()->slug) }}">
+                                        <span>{{ __("look more")}}</span>
                                         <span>
                                         <i data-feather="arrow-up-right"></i>
                                     </span>
@@ -104,8 +98,6 @@
                     @endforeach
                 </div>
             </div>
-            <a href="#" class="btn btn-main dark ">join braine today</a>
-            <!-- </div> -->
         </div>
     </section>
     <!-- Services end -->
@@ -117,7 +109,7 @@
                 <div class="col-12 col-lg-4">
                     <div class="section-title-box border-0">
                         <h4 class="subtitle">
-                            day-to-day operations
+                            {{ __("our team")}}
                         </h4>
                         <h2 class="section-title">
                             We’re Building our Amazing Team Of People
@@ -166,7 +158,7 @@
         <div class="container">
             <div class="section-title-box border-0 text-center">
                 <h4 class="subtitle mx-auto">
-                    MEET OUR TRUSTED CLIENTS
+                    {{ __('MEET OUR CLIENTS')}}
                 </h4>
             </div>
             <div class="swiper partnersSwiper">
