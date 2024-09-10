@@ -146,22 +146,18 @@
             <div class="row align-items-center">
                 <div class="col-12 col-lg-6">
                     <div class="section-title-box">
-                        <h4 class="subtitle">
-                            why choose us
-                        </h4>
                         <h2 class="section-title">
-                            Elevate Your IT Experience with Our Expertise
+                            {{ $firstSection->translated->first()->title }}
                         </h2>
                     </div>
                     <ul class="preferences-list">
                         <li>
                             <div class="content">
                                 <h3 class="title">
-                                    Software business
+                                    {{ $firstSection->translated->first()->subtitle }}
                                 </h3>
                                 <p class="inner-text">
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi adipiscing
-                                    elit ololpe.
+                                    {!! $firstSection->translated->first()->description !!}
                                 </p>
                             </div>
                         </li>
@@ -169,7 +165,7 @@
                 </div>
                 <div class="col-12 col-lg-6">
                     <div class="section-img">
-                        <img src="{{ asset('front/images/preferences/preferences-01.png')}}" alt="">
+                        <img src="{{ asset(Storage::url($firstSection->image))}}" alt="">
                     </div>
                 </div>
             </div>
