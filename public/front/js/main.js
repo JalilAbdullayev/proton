@@ -121,7 +121,7 @@ window.addEventListener('keyup', (e) => {
 Fancybox.bind("[data-fancybox]");
 
 document.addEventListener('scroll', function () {
-    const counters = document.querySelectorAll('.count');
+    const counters = document.querySelectorAll('.successful-projects .count');
     const speed = 100000; // 5 saniye
 
     counters.forEach(counter => {

@@ -25,6 +25,6 @@ class BannerController extends Controller {
                 'subtitle' => $request->subtitle[$i]
             ]);
         }
-        return Redirect::route('admin.banner.index')->withSuccess('Banner uğurla yeniləndi.');
+        return Redirect::route('admin.banner')->withSuccess('Banner uğurla yeniləndi.');
     }
 }

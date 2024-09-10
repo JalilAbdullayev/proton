@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 * {
-  font-family: "Outfit", sans-serif;
+  font-family: "Nunito", sans-serif;
   margin: 0;
   padding: 0;
   text-decoration: none;
@@ -658,7 +658,7 @@ i, h1, h2, h3, h4, h5, h6, p, ul, ol {
 }
 
 .banner-title {
-  font-size: 5.37rem;
+  font-size: 3.87rem;
   color: var(--color-white);
   font-weight: 700;
   text-align: center;

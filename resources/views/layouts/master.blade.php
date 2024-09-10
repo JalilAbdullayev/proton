@@ -28,7 +28,7 @@
 		<!-- Swiper -->
 		<link rel="stylesheet" href="{{ asset('front/plugins/swiper/swiper-bundle.min.css') }}" />
 		<!-- Custom Css -->
-		@vite(['public/front/css/style.sass'])
+        <link rel="stylesheet" href="{{ asset('front/css/style.css') }}"/>
 	</head>
 
 	<body>
