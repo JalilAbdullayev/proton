@@ -17,7 +17,7 @@
                         <form method="POST" action="{{ route('consult') }}">
                             @csrf
                             <div class="search-form">
-                                <div class="form-group mb-0 mb-lg-3">
+                                <div class="form-group">
                                     <input type="text" id="searchInput" class="form-control custom-form" required
                                            name="contact"
                                            placeholder="{{ __('Enter your phone number or e-mail for quick consultation')}}"/>

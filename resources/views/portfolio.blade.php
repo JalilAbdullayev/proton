@@ -47,7 +47,7 @@
         <div class="container">
             <div class="row">
                 @foreach($portfolio as $project)
-                    <div class="col-12 col-md-6 col-lg-3">
+                    <div class="col-12 col-md-6 col-lg-4">
                         <div class="project-card main-card">
                             <div class="project-img">
                                 <a href="{{ route('project_' . session('locale'), $project->translated->first()->slug) }}">

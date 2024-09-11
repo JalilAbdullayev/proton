@@ -122,18 +122,16 @@ Fancybox.bind("[data-fancybox]");
 
 document.addEventListener('scroll', function () {
     const counters = document.querySelectorAll('.successful-projects .count');
-    const speed = 100000; // 5 saniye
+    const speed = 100000;
 
     counters.forEach(counter => {
         const updateCount = () => {
             const target = +counter.getAttribute('data-target');
             const count = +counter.innerText;
 
-            // Hedef ile mevcut sayı arasındaki farkı hesapla
             const increment = target / (speed / 100);
 
             if (count < target) {
-                // Sayıyı arttır
                 counter.innerText = Math.ceil(count + increment);
                 setTimeout(updateCount, 100);
             } else {
@@ -141,7 +139,6 @@ document.addEventListener('scroll', function () {
             }
         };
 
-        // Sayfa kaydırıldığında ilgili element göründüğünde animasyonu başlat
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -153,3 +150,9 @@ document.addEventListener('scroll', function () {
         observer.observe(counter);
     });
 });
+
+const langBtn = document.querySelector('.active-lang');
+const langItem = document.querySelector('.lang-items');
+langBtn.addEventListener('click', () => {
+    langItem.classList.toggle('active');
+})

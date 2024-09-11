@@ -63,24 +63,28 @@
                 <button class="btn btn-search">
                     <i data-feather="search"></i>
                 </button>
-                <form action="{{ route('update-locale') }}" method="POST">
-                    <select class="form-select lang-select" name="locale" id="locale" onchange="updateLocale()">
-                        <option value="az" @selected(session('locale') === 'az')>
-                            AZ
-                        </option>
-                        <option value="en" @selected(session('locale') === 'en')>
-                            EN
-                        </option>
-                        <option value="ru" @selected(session('locale') === 'ru')>
-                            RU
-                        </option>
-                    </select>
-                </form>
+                <ul class="lang-select" id="locale">
+                    <li class="active-lang">{{session('locale')}}</li>
+                    <li class="lang-items">
+                        <ul class="lang-box">
+                            <li>
+                                <button value="az" class="btn btn-lang">Az</button>
+                            </li>
+                            <li>
+                                <button value="en" class="btn btn-lang">En</button>
+                            </li>
+                            <li>
+                                <button value="ru" class="btn btn-lang">Ru</button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
                 <button class="btn btn-nav text-white">
                     <i data-feather="grid"></i>
                 </button>
                 <a href="{{ $socials->where('title', 'WhatsApp')->first()->url }}"
-                   class="d-none d-lg-flex align-items-center gap-2 btn btn-main dark custom-rounded">
+                   class="d-none d-lg-flex align-items-center gap-2 btn btn-main dark custom-rounded"
+                   target="_blank">
                     {!! $socials->where('title', 'WhatsApp')->first()->icon !!}
                     <span>
                         {{ __('Contact now')}}
