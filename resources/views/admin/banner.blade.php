@@ -62,11 +62,10 @@
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <textarea name="subtitle[]" id="subtitle" placeholder="Alt başlıq" maxlength="255"
-                                      class="form-control @if($index === 0) text1 @elseif($index === 1) text2 @else text3 @endif"
-                                      required>{!! $tbanner->subtitle !!}</textarea>
+                            <input type="text" class="form-control" name="subtitle[]" id="subtitle"
+                                   placeholder="Alt Başlıq" maxlength="255" value="{{ $tbanner->subtitle }}" required/>
                             <label for="subtitle" class="form-label text-white-50">
-                                Alt başlıq
+                                Alt Başlıq
                             </label>
                         </div>
                         <input type="hidden" name="lang[]" value="{{ $tbanner->lang }}"/>

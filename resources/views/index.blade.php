@@ -12,7 +12,7 @@
                             {{ $banner->translated->first()->title }}
                         </h1>
                         <div class="inner-text">
-                            {!! $banner->translated->first()->subtitle !!}
+                            {{ $banner->translated->first()->subtitle }}
                         </div>
                         <form method="POST" action="{{ route('consult') }}">
                             @csrf
@@ -40,8 +40,11 @@
             <div class="section-title-box">
                 <div class="row align-items-center">
                     <div class="col-12 col-lg-7 mb-5 mb-lg-0">
+                        <h4 class="subtitle">
+                            {{ $home->translated->first()->services_subtitle }}
+                        </h4>
                         <h2 class="section-title">
-                            {{ __("Empowering excellence")}}
+                            {{ $home->translated->first()->services_title }}
                         </h2>
                     </div>
                     <div class="col-12 col-lg-5">
@@ -95,10 +98,10 @@
                 <div class="row align-items-center justify-content-between">
                     <div class="col-12 col-lg-6">
                         <h4 class="subtitle">
-                            {{ __("our projects")}}
+                            {{ $home->translated->first()->portfolio_subtitle }}
                         </h4>
                         <h2 class="section-title">
-                            {{ __("Unlock Your Potential with Our Projects")}}
+                            {{ $home->translated->first()->portfolio_title }}
                         </h2>
                     </div>
                     <div class="col-12 col-lg-6">
@@ -118,7 +121,7 @@
                         <div class="project-card">
                             <div class="project-img">
                                 <a href="{{ route('project_' . session('locale'), $project->translated->first()->slug) }}">
-                                    <img src="{{ asset(Storage::url('portfolio/'.$project->image->image)) }}" alt="">
+                                    <img src="{{ asset(Storage::url('portfolio/'.$project->image->image)) }}" alt=""/>
                                 </a>
                             </div>
                             <div class="card-body">
@@ -180,7 +183,7 @@
         <div class="container">
             <div class="section-title-box border-0 text-center">
                 <h4 class="subtitle mx-auto">
-                    {{ __('MEET OUR CLIENTS')}}
+                    {{ $home->translated->first()->clients_title }}
                 </h4>
             </div>
             <div class="swiper partnersSwiper">
@@ -255,10 +258,10 @@
                 <div class="row align-items-center">
                     <div class="col-12 col-lg-6 mb-3">
                         <h4 class="subtitle">
-                            {{ __('our team')}}
+                            {{ $home->translated->first()->team_subtitle }}
                         </h4>
                         <h2 class="section-title">
-                            {{ __('Dedicated Experts Crafting Your IT Solutions')}}
+                            {{ $home->translated->first()->team_title }}
                         </h2>
                     </div>
                 </div>
@@ -293,10 +296,10 @@
                 <div class="row justify-content-center text-center">
                     <div class="col-12 col-lg-6">
                         <h4 class="subtitle">
-                            {{ __("our blog")}}
+                            {{ $home->translated->first()->blog_subtitle }}
                         </h4>
                         <h2 class="section-title">
-                            {{ __("Tech Insights & Innovations: Explore Our Blog")}}
+                            {{ $home->translated->first()->blog_title }}
                         </h2>
                     </div>
                 </div>
@@ -343,15 +346,20 @@
                 <div class="col-12 col-lg-5">
                     <div class="section-title-box border-0">
                         <h3 class="section-title">
-                            Get Stared with Us.
-                            Call Us Now!
+                            {{ $contact->translated->first()->title }}
                         </h3>
+                    </div>
+                    <div class="inner-text">
+                        {!! $contact->translated->first()->description !!}
                     </div>
                     <div class="d-flex align-items-center contact-info">
                         <div class="icon">
                             <i data-feather="headphones"></i>
                         </div>
                         <div class="info">
+                            <div class="inner-text">
+                                {{ $contact->translated->first()->call_text }}
+                            </div>
                             <a href="tel:{{ preg_replace('/\s+/', '', $contact->phone) }}">
                                 {{ $contact->phone }}
                             </a>

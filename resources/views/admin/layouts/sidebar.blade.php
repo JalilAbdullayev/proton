@@ -57,53 +57,59 @@
                     </a>
                 </li>
                 <li>
-                    <a class="waves-effect waves-dark" href="{{ route('admin.contact') }}" aria-expanded="false">
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="mdi mdi-file-multiple"></i>
+                        <span class="hide-menu">
+                            Səhifələr
+                        </span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li>
+                            <a href="{{ route('admin.titles') }}">
+                                Başlıqlar
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.banner') }}">
+                                Banner
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.first-section') }}">
+                                1-ci Section
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.second-section') }}">
+                                2-ci Section
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i class="mdi mdi-phone"></i>
                         <span class="hide-menu">
                             Əlaqə
                         </span>
                     </a>
-                </li>
-                <li>
-                    <a class="waves-effect waves-dark" href="{{ route('admin.message.index') }}" aria-expanded="false">
-                        <i class="mdi mdi-message"></i>
-                        <span class="hide-menu">
-                            Mesajlar
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a class="waves-effect waves-dark" href="{{ route('admin.consultant.index') }}"
-                       aria-expanded="false">
-                        <i class="mdi mdi-message"></i>
-                        <span class="hide-menu">
-                            Müraciətlər
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a class="waves-effect waves-dark" href="{{ route('admin.banner') }}" aria-expanded="false">
-                        <i class="icon-picture"></i>
-                        <span class="hide-menu">
-                            Banner
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a class="waves-effect waves-dark" href="{{ route('admin.first-section') }}" aria-expanded="false">
-                        <i class="mdi mdi-collage"></i>
-                        <span class="hide-menu">
-                            1-ci Section
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a class="waves-effect waves-dark" href="{{ route('admin.second-section') }}" aria-expanded="false">
-                        <i class="mdi mdi-collage"></i>
-                        <span class="hide-menu">
-                            2-ci Section
-                        </span>
-                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li>
+                            <a href="{{ route('admin.contact') }}">
+                                Əlaqə məlumatları
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.message.index') }}">
+                                Mesajlar
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.consultant.index') }}">
+                                Müraciətlər
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
@@ -214,14 +220,6 @@
                     </a>
                 </li>
                 <li>
-                    <a class="waves-effect waves-dark" href="{{ route('admin.tag.index') }}" aria-expanded="false">
-                        <i class="mdi mdi-tag-multiple"></i>
-                        <span class="hide-menu">
-                            Teqlər
-                        </span>
-                    </a>
-                </li>
-                <li>
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i class="ti-gallery"></i>
                         <span class="hide-menu">
@@ -257,6 +255,11 @@
                         <li>
                             <a href="{{ route('admin.blog.create') }}">
                                 Yeni Məqalə
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.tag.index') }}">
+                                Teqlər
                             </a>
                         </li>
                     </ul>

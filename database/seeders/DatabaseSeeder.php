@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\User;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder {
@@ -22,7 +21,8 @@ class DatabaseSeeder extends Seeder {
             AboutSeeder::class,
             ContactSeeder::class,
             SettingsSeeder::class
-            FirstSectionSeeder::class*/
-            SecondSectionSeeder::class]);
+            FirstSectionSeeder::class
+            SecondSectionSeeder::class*/
+            HomeSeeder::class]);
     }
 }

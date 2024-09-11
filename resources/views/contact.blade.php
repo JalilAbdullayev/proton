@@ -82,15 +82,15 @@
                     <div class="section-content">
                         <div class="section-title-box pb-0 border-0">
                             <h4 class="subtitle">
-                                Contact us
+                                {{ $contact->translated->first()->subtitle }}
                             </h4>
                             <h2 class="section-title">
-                                Connect with Us for Assistance
+                                {{ $contact->translated->first()->title }}
                             </h2>
                         </div>
-                        <p class="inner-text">
-                            Lorem ipsum dolor sit amet consecadipiscing elit Ut et massa Aliquam in hendrerit urna.
-                        </p>
+                        <div class="inner-text">
+                            {!! $contact->translated->first()->description !!}
+                        </div>
                         <ul class="social-network pt-3">
                             @foreach($socials as $social)
                                 <li>

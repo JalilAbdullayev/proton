@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\CategoryTranslate;
 use App\Models\Client;
 use App\Models\FirstSection;
+use App\Models\Title;
 use App\Models\SecondSection;
 use App\Models\Portfolio;
 use App\Models\PortfolioImage;
@@ -34,14 +35,16 @@ class FrontController extends Controller {
         $blog = Blog::take(3)->get();
         $firstSection = FirstSection::first();
         $secondSection = SecondSection::first();
-        return View::make('index', compact('portfolio', 'team', 'banner', 'clients', 'blog', 'firstSection', 'secondSection'));
+        $home = Title::first();
+        return View::make('index', compact('portfolio', 'team', 'banner', 'clients', 'blog', 'firstSection', 'secondSection', 'home'));
     }
 
     public function about(): ViewResponse {
         $about = About::first();
         $clients = Client::whereStatus(1)->get();
         $team = Team::all();
-        return View::make('about', compact('about', 'clients', 'team'));
+        $home = Title::first();
+        return View::make('about', compact('about', 'clients', 'team', 'home'));
     }
 
     public function contact(): ViewResponse {

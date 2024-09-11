@@ -1,12 +1,14 @@
 @extends('admin.layouts.master')
 @section('title', 'Əlaqə')
 @section('css')
-	<style>
+    <link rel="stylesheet" href="{{ asset('back/ckeditor/samples/css/samples.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('back/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css') }}"/>
+    <style>
         textarea {
             display: block;
             height: 10rem;
         }
-	</style>
+    </style>
 @endsection
 @section('content')
     <!-- Bread crumb -->
@@ -65,11 +67,35 @@
                                 Ünvan
                             </label>
                         </div>
-                        @error('address')
-                        <div class="alert alert-danger">
-                            {{ $message }}
+                        <div class="mb-3">
+                            <label for="title" class="form-label text-white-50">
+                                Başlıq
+                            </label>
+                            <input type="text" maxlength="255" name="title[]" id="title" placeholder="Başlıq"
+                                   class="form-control" value="{{ $tcontact->title }}"/>
                         </div>
-                        @enderror
+                        <div class="mb-3">
+                            <label for="subtitle" class="form-label text-white-50">
+                                Alt Başlıq
+                            </label>
+                            <input type="text" maxlength="255" name="subtitle[]" id="subtitle" placeholder="Alt Başlıq"
+                                   class="form-control" value="{{ $tcontact->subtitle }}"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label text-white-50">
+                                Ətraflı
+                            </label>
+                            <textarea name="description[]" id="description" maxlength="255" placeholder="ətraflı"
+                                      class="form-control @if($index === 0) text1 @elseif($index === 1) text2 @else text3 @endif"
+                            >{!! $tcontact->description !!}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="call_text" class="form-label text-white-50">
+                                Zəng mətn
+                            </label>
+                            <input type="text" name="call_text[]" id="call_text" maxlength="255" placeholder="ətraflı"
+                                   class="form-control" value="{{ $tcontact->call_text }}"/>
+                        </div>
                         <input type="hidden" name="lang[]" value="{{ $tcontact->lang }}"/>
                     </div>
                 @endforeach
@@ -113,4 +139,20 @@
             </button>
         </div>
     </form>
+@endsection
+@section('js')
+    <script src="{{ asset('back/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('back/ckeditor/samples/js/sample.js') }}"></script>
+    <script>
+        function createCKEditor(id) {
+            CKEDITOR.replaceAll(id, {
+                extraAllowedContent: 'div',
+                height: 150,
+            });
+        }
+
+        const text1 = createCKEditor('text1');
+        const text2 = createCKEditor('text2');
+        const text3 = createCKEditor('text3');
+    </script>
 @endsection

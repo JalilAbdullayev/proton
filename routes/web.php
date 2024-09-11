@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ConsultantController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\FirstSectionController;
+use App\Http\Controllers\Admin\TitleController;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PortfolioController;
@@ -206,6 +207,11 @@ Route::group(['prefix' => $locale, function($locale = null) {
             Route::controller(ConsultantController::class)->prefix('consultant')->name('consultant.')->group(function() {
                 Route::get('/', 'index')->name('index');
                 Route::delete('{id}', 'delete')->name('delete');
+            });
+
+            Route::controller(TitleController::class)->prefix('titles')->name('titles')->group(function() {
+                Route::get('/', 'index');
+                Route::put('/', 'update');
             });
         });
     });

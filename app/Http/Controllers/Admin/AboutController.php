@@ -27,6 +27,7 @@ class AboutController extends Controller {
         for($i = 0; $i < count($request->lang); $i++) {
             AboutTranslate::whereAboutId($about->id)->whereLang($request->lang[$i])->update([
                 'title' => $request->title[$i],
+                'subtitle' => $request->subtitle[$i],
                 'description' => $request->description[$i]
             ]);
         }

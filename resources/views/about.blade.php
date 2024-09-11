@@ -39,7 +39,7 @@
                     <div class="section-content">
                         <div class="section-title-box border-0">
                             <h4 class="subtitle">
-                                {{ __("Our story")}}
+                                {{ $about->translated->first()->subtitle }}
                             </h4>
                             <h2 class="section-title">
                                 {{ $about->translated->first()->title }}
@@ -63,8 +63,11 @@
             <div class="section-title-box text-center border-0">
                 <div class="row align-items-center">
                     <div class="col-12 col-lg-7 mb-5 mx-auto mb-lg-0">
+                        <h4 class="subtitle">
+                            {{ $home->translated->first()->services_subtitle }}
+                        </h4>
                         <h2 class="section-title">
-                            Unveiling Our Core Values for Lasting Impact.
+                            {{ $home->translated->first()->services_title }}
                         </h2>
                     </div>
                 </div>
@@ -109,14 +112,14 @@
                 <div class="col-12 col-lg-4">
                     <div class="section-title-box border-0">
                         <h4 class="subtitle">
-                            {{ __("our team")}}
+                            {{ $home->translated->first()->team_subtitle }}
                         </h4>
                         <h2 class="section-title">
-                            We’re Building our Amazing Team Of People
+                            {{ $home->translated->first()->team_title }}
                         </h2>
-                        <p class="inner-text">
-                            Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa .
-                        </p>
+                        <div class="inner-text">
+                            {!! $home->translated->first()->team_description !!}
+                        </div>
                     </div>
                     <div class="swiper-buttons">
                         <button class="btn swiper-button-prev">
@@ -158,7 +161,7 @@
         <div class="container">
             <div class="section-title-box border-0 text-center">
                 <h4 class="subtitle mx-auto">
-                    {{ __('MEET OUR CLIENTS')}}
+                    {{ $home->translated->first()->clients_title }}
                 </h4>
             </div>
             <div class="swiper partnersSwiper">

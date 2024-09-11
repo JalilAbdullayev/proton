@@ -26,7 +26,11 @@ class ContactController extends Controller {
         ]);
         for($i = 0; $i < count($request->lang); $i++) {
             ContactTranslate::whereContactId($contact->id)->whereLang($request->lang[$i])->update([
-                'address' => $request->address[$i]
+                'address' => $request->address[$i],
+                'title' => $request->title[$i],
+                'subtitle' => $request->subtitle[$i],
+                'description' => $request->description[$i],
+                'call_text' => $request->call_text[$i]
             ]);
         }
         return Redirect::back()->withSuccess('Əlaqə məlumatları saxlanıldı.');

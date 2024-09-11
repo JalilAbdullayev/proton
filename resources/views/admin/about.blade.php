@@ -56,15 +56,19 @@
                     <div class="tab-pane p-20 @if($index === 0) active @endif" id="{{ $tabout->lang }}"
                          role="tabpanel">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="title[]" id="title" placeholder="Ad"
+                            <input type="text" class="form-control" name="title[]" id="title" placeholder="Başlıq"
                                    maxlength="255" value="{{ $tabout->title }}" required/>
                             <label for="title" class="form-label text-white-50">
                                 Başlıq
                             </label>
                         </div>
-                        @error('title')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="subtitle[]" id="subtitle"
+                                   placeholder="Alt Başlıq" maxlength="255" value="{{ $tabout->subtitle }}"/>
+                            <label for="subtitle" class="form-label text-white-50">
+                                Alt Başlıq
+                            </label>
+                        </div>
                         <div class="mb-3">
                             <label for="text" class="form-label text-white-50">
                                 Mətn
@@ -73,9 +77,6 @@
                                 class="form-control @if($index === 0) text1 @elseif($index === 1) text2 @else text3 @endif"
                                 name="description[]" placeholder="Mətn">{!! $tabout->description !!}</textarea>
                         </div>
-                        @error('text')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
                         <input type="hidden" name="lang[]" value="{{ $tabout->lang }}"/>
                     </div>
                 @endforeach
