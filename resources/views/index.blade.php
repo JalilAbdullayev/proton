@@ -49,10 +49,8 @@
                     </div>
                     <div class="col-12 col-lg-5">
                         <div class="swiper-buttons">
-                            <button class="btn swiper-button-prev">
-                            </button>
-                            <button class="btn swiper-button-next">
-                            </button>
+                            <button class="btn swiper-button-prev"></button>
+                            <button class="btn swiper-button-next"></button>
                         </div>
                     </div>
                 </div>
@@ -64,6 +62,11 @@
                         <div class="swiper-slide">
                             <div class="service-card">
                                 <div class="service-head py-4">
+                                    @if($service->icon)
+                                        <div class="icon">
+                                            {!! $service->icon !!}
+                                        </div>
+                                    @endif
                                     <div class="count">
                                         0{{ $index + 1 }}
                                     </div>

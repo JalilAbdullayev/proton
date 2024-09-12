@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Service extends Model {
-    protected $fillable = ['image'];
+    protected $fillable = ['image', 'icon'];
 
     public function translate(): HasMany {
         return $this->hasMany(ServiceTranslate::class, 'service_id');

@@ -18,6 +18,23 @@ use Illuminate\View\View as ViewResponse;
 class ServiceController extends Controller {
     use UploadImage;
 
+    public array $icons = [
+        ['title' => 'Check', 'icon' => '<i class="fa-solid fa-check"></i>'],
+        ['title' => 'Heart', 'icon' => '<i class="fa-solid fa-heart"></i>'],
+        ['title' => 'Heart White', 'icon' => '<i class="fa-regular fa-heart"></i>'],
+        ['title' => 'Info', 'icon' => '<i class="fa-solid fa-circle-info"></i>'],
+        ['title' => 'Bolt', 'icon' => '<i class="fa-solid fa-bolt"></i>'],
+        ['title' => 'Gear', 'icon' => '<i class="fa-solid fa-gear"></i>'],
+        ['title' => 'Gears', 'icon' => '<i class="fa-solid fa-gears"></i>'],
+        ['title' => 'Circle Up', 'icon' => '<i class="fa-solid fa-circle-up"></i>'],
+        ['title' => 'Circle Up White', 'icon' => '<i class="fa-regular fa-circle-up"></i>'],
+        ['title' => 'Clock', 'icon' => '<i class="fa-solid fa-clock"></i>'],
+        ['title' => 'Clock White', 'icon' => '<i class="fa-regular fa-clock"></i>'],
+        ['title' => 'Code', 'icon' => '<i class="fa-solid fa-code"></i>'],
+        ['title' => 'Laptop Code', 'icon' => '<i class="fa-solid fa-laptop-code"></i>'],
+        ['title' => 'Shield', 'icon' => '<i class="fa-solid fa-shield"></i>'],
+    ];
+
     /**
      * Display a listing of the resource.
      */
@@ -30,7 +47,7 @@ class ServiceController extends Controller {
      * Show the form for creating a new resource.
      */
     public function create(): ViewResponse {
-        return View::make('admin.services.create');
+        return View::make('admin.services.create', ['icons' => $this->icons]);
     }
 
     /**
@@ -47,6 +64,7 @@ class ServiceController extends Controller {
         $fileOriginalName = $this->langStoreImg($request, 'services');
         $service = Service::create([
             'image' => $fileOriginalName ? 'images/services/' . $fileOriginalName : null,
+            'icon' => $request->icon,
         ]);
 
         for($i = 0; $i < count($request->lang); $i++) {
@@ -75,15 +93,17 @@ class ServiceController extends Controller {
      */
     public function edit(Service $service): ViewResponse {
         $item = $service;
-        return View::make('admin.services.edit', compact('item'));
+        return View::make('admin.services.edit', compact('item'), ['icons' => $this->icons]);
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Service $service): RedirectResponse {
-
         $this->langUpdateImg($request, $service, 'services');
+        $service->update([
+            'icon' => $request->icon,
+        ]);
 
         for($i = 0; $i < count($request->lang); $i++) {
             ServiceTranslate::whereServiceId($service->id)->whereLang($request->lang[$i])->update([

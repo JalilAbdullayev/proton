@@ -78,6 +78,11 @@
                         <div class="col-12 col-md-6 col-lg-4">
                             <div class="service-card">
                                 <div class="service-head py-4">
+                                    @if($service->icon)
+                                        <div class="icon">
+                                            {!! $service->icon !!}
+                                        </div>
+                                    @endif
                                     <div class="count">
                                         0{{ $index + 1 }}
                                     </div>

@@ -74,27 +74,19 @@
     const langBtns = document.querySelectorAll('.btn-lang');
     langBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            console.log(e.target.value)
-            const csrfToken = "{{ csrf_token() }}";
-
             fetch('{{ route('update-locale') }}?locale=' + e.target.value, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': csrfToken
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 }
             }).then(response => response.json()).then(data => {
-                if (data.success) {
+                if(data.success) {
                     window.location.href = '{{ url('/') }}/' + e.target.value + '/';
                 }
             });
         })
     })
-
-    // function updateLocale() {
-    //     const locale = document.getElementById('locale').value;
-    //
-    // }
 
     function sweetAlert(icon, message) {
         Swal.fire({
@@ -102,6 +94,8 @@
             timer: 1500,
             timerProgressBar: true,
             title: message,
+            color: "#FFF",
+            background: "linear-gradient(to left, var(--color-main), var(--color-main-dark))"
         })
     }
 

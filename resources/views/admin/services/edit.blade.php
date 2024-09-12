@@ -117,6 +117,22 @@
                 @endforeach
             </div>
             <div class="mb-3">
+                <label for="icon" class="form-label text-white-50">
+                    İkon
+                </label>
+                <input type="text" class="form-control" name="icon" id="icon" placeholder="İkon" maxlength="255"
+                       value="{{ $item->icon }}"/>
+                <a href="https://fontawesome.com/search?o=r&m=free" target="_blank" class="my-3 d-inline-block">
+                    İkonları buradan seçə bilərsiniz
+                </a>
+                <div id="icon-preview" class="my-3 text-white"></div>
+            </div>
+            @error('icon')
+            <div class="alert alert-danger">
+                {{ $message }}
+            </div>
+            @enderror
+            <div class="mb-3">
                 <label for="image" class="form-label text-white-50">
                     Şəkil
                 </label>
@@ -152,5 +168,14 @@
         const text1 = createCKEditor('text1');
         const text2 = createCKEditor('text2');
         const text3 = createCKEditor('text3');
+
+        $(document).ready(function() {
+            var iconText = $('#icon').val();
+            $('#icon-preview').html(iconText).addClass('fs-1');
+            $('#icon').keyup(function() {
+                iconText = $(this).val();
+                $('#icon-preview').html(iconText).addClass('fs-1');
+            });
+        });
     </script>
 @endsection
