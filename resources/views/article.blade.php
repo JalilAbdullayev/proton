@@ -19,7 +19,7 @@
                     </h3>
                     <ul class="breadcrumb-box">
                         <li>
-                            <a href="{{ route('home_' . session('locale')) }}">{{ __('Home')}}</a>
+                            <a href="{{ route('home') }}">{{ __('Home')}}</a>
                         </li>
                         <li>
                             <i data-feather="chevron-left"></i>

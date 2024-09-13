@@ -19,7 +19,7 @@
                         @endif</h3>
                     <ul class="breadcrumb-box">
                         <li>
-                            <a href="{{ route('home_' . session('locale')) }}">{{ __('Home')}}</a>
+                            <a href="{{ route('home') }}">{{ __('Home')}}</a>
                         </li>
                         @unless(Route::is('blog.index') || Route::is('search'))
                             <li>

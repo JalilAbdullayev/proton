@@ -10,7 +10,7 @@
                     <h3 class="breadcrumb-title">{{ __('Portfolio')}}</h3>
                     <ul class="breadcrumb-box">
                         <li>
-                            <a href="{{ route('home_' . session('locale')) }}">
+                            <a href="{{ route('home') }}">
                                 {{ __('Home')}}
                             </a>
                         </li>

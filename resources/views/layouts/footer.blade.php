@@ -5,7 +5,7 @@
             <div class="col-12 col-custom-md-6 col-lg-4 mb-4 mb-lg-0">
                 <div class="footer-left">
                     <div class="logo">
-                        <a href="{{ route('home_' . session('locale')) }}">
+                        <a href="{{ route('home') }}">
                             <img src="{{ asset(Storage::url($settings->logo)) }}" alt=""/>
                         </a>
                     </div>
@@ -44,7 +44,7 @@
                 </h5>
                 <ul class="footer-menu">
                     <li>
-                        <a href="{{ route('home_' . session('locale')) }}">
+                        <a href="{{ route('home') }}">
                             {{ __('Home')}}
                         </a>
                     </li>
@@ -96,7 +96,7 @@
             </div>
         </div>
         <div class="copyright text-center pt-5 pb-4">
-            © <a href="{{ route('home_' . session('locale')) }}">
+            © <a href="{{ route('home') }}">
                 {{ $settings->translated->first()->title }}
             </a> 2019 - {{ date('Y') }} {{ __('All Rights Reserved.')}}
         </div>

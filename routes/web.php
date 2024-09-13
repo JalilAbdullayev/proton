@@ -40,9 +40,7 @@ Route::group(['prefix' => $locale, function($locale = null) {
     return $locale;
 }, 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => SetLocale::class], function() {
     Route::controller(FrontController::class)->group(function() {
-        Route::get('/', 'index')->name('home_en');
-        Route::get('ana-sehife', 'index')->name('home_az');
-        Route::get('glavnaya', 'index')->name('home_ru');
+        Route::get('/', 'index')->name('home');
 
         Route::get('about', 'about')->name('about_en');
         Route::get('haqqimizda', 'about')->name('about_az');

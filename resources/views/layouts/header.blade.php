@@ -3,14 +3,14 @@
     <div class="container">
         <div class="header">
             <div class="logo">
-                <a href="{{ route('home_' . session('locale')) }}">
+                <a href="{{ route('home') }}">
                     <img src="{{ asset(Storage::url($settings->logo)) }}" alt="">
                 </a>
             </div>
             <nav>
                 <ul class="custom-navbar">
                     <li class="nav-item mobile-header">
-                        <a href="{{ route('home_' . session('locale')) }}" class="logo">
+                        <a href="{{ route('home') }}" class="logo">
                             <img src="{{ asset(Storage::url($settings->logo)) }}" alt="">
                         </a>
                         <button class="btn btn-close">
@@ -18,7 +18,7 @@
                         </button>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('home_' . session('locale')) }}">{{ __('Home')}}</a>
+                        <a href="{{ route('home') }}">{{ __('Home')}}</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('about_' .session('locale')) }}">{{ __('About us')}}</a>

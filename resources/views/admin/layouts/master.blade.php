@@ -81,7 +81,7 @@
     <!-- footer -->
     <footer class="footer">
         © {{ '2019 -' . date('Y') }}
-        <a target="_blank" href="{{ route('home_' . session('locale')) }}">
+        <a target="_blank" href="{{ route('home') }}">
             {{ $settings->translated->first()->title }}
         </a>
     </footer>
