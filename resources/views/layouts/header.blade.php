@@ -67,21 +67,27 @@
                     <li class="active-lang text-uppercase">{{session('locale')}}</li>
                     <li class="lang-items">
                         <ul class="lang-box">
-                            <li>
-                                <a href="{{ url($lang['az']) }}" class="btn btn-lang">
-                                    AZ
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url($lang['en']) }}" class="btn btn-lang">
-                                    EN
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ url($lang['ru']) }}" class="btn btn-lang">
-                                    RU
-                                </a>
-                            </li>
+                            @unless(session('locale') === 'az')
+                                <li>
+                                    <a href="{{ url($lang['az']) }}" class="btn btn-lang">
+                                        AZ
+                                    </a>
+                                </li>
+                            @endunless
+                            @unless(session('locale') === 'en')
+                                <li>
+                                    <a href="{{ url($lang['en']) }}" class="btn btn-lang">
+                                        EN
+                                    </a>
+                                </li>
+                            @endunless
+                            @unless(session('locale') === 'ru')
+                                <li>
+                                    <a href="{{ url($lang['ru']) }}" class="btn btn-lang">
+                                        RU
+                                    </a>
+                                </li>
+                            @endunless
                         </ul>
                     </li>
                 </ul>

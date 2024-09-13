@@ -25,13 +25,13 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\FrontController;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request as RequestFacade;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
-$locale = RequestFacade::segment(1);
+$locale = Request::segment(1);
 
 if(in_array($locale, ['en', 'ru'])) {
-    $locale = RequestFacade::segment(1);
+    $locale = Request::segment(1);
 } else {
     $locale = '';
 }
