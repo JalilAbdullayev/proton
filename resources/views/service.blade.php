@@ -15,7 +15,7 @@
                         </h3>
                         <ul class="breadcrumb-box">
                             <li>
-                                <a href="{{ route('home_' . session('locale')) }}">Home</a>
+                                <a href="{{ route('home_' . session('locale')) }}">{{ __('Home')}}</a>
                             </li>
                             <li>
                                 <i data-feather="chevron-left"></i>
@@ -55,10 +55,10 @@
             <div class="container">
                 <div class="section-title-box border-0 text-center">
                     <h4 class="subtitle">
-                        Service benefit
+                        {{ $home->translated->first()->services_subtitle }}
                     </h4>
                     <h2 class="section-title py-3">
-                        Benefit of our Services
+                        {{ $home->translated->first()->services_title }}
                     </h2>
                 </div>
                 <div class="row">

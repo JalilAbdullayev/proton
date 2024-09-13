@@ -71,23 +71,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{ asset('front/js/main.js') }}"></script>
 <script>
-    const langBtns = document.querySelectorAll('.btn-lang');
-    langBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            fetch('{{ route('update-locale') }}?locale=' + e.target.value, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                }
-            }).then(response => response.json()).then(data => {
-                if(data.success) {
-                    window.location.href = '{{ url('/') }}/' + e.target.value + '/';
-                }
-            });
-        })
-    })
-
     function sweetAlert(icon, message) {
         Swal.fire({
             icon: icon,

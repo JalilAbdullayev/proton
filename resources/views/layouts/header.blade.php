@@ -64,17 +64,23 @@
                     <i data-feather="search"></i>
                 </button>
                 <ul class="lang-select" id="locale">
-                    <li class="active-lang">{{session('locale')}}</li>
+                    <li class="active-lang text-uppercase">{{session('locale')}}</li>
                     <li class="lang-items">
                         <ul class="lang-box">
                             <li>
-                                <button value="az" class="btn btn-lang">Az</button>
+                                <a href="{{ url($lang['az']) }}" class="btn btn-lang">
+                                    AZ
+                                </a>
                             </li>
                             <li>
-                                <button value="en" class="btn btn-lang">En</button>
+                                <a href="{{ url($lang['en']) }}" class="btn btn-lang">
+                                    EN
+                                </a>
                             </li>
                             <li>
-                                <button value="ru" class="btn btn-lang">Ru</button>
+                                <a href="{{ url($lang['ru']) }}" class="btn btn-lang">
+                                    RU
+                                </a>
                             </li>
                         </ul>
                     </li>

@@ -28,6 +28,7 @@ use Illuminate\View\View as ViewResponse;
 
 class FrontController extends Controller {
     public function index(): ViewResponse {
+        $lang = ['az' => '', 'ru' => '/ru', 'en' => '/en'];
         $portfolio = Portfolio::whereStatus(1)->get();
         $team = Team::all();
         $banner = Banner::first();
@@ -36,30 +37,38 @@ class FrontController extends Controller {
         $firstSection = FirstSection::first();
         $secondSection = SecondSection::first();
         $home = Title::first();
-        return View::make('index', compact('portfolio', 'team', 'banner', 'clients', 'blog', 'firstSection', 'secondSection', 'home'));
+        return View::make('index', compact('portfolio', 'team', 'banner', 'clients', 'blog', 'firstSection', 'secondSection', 'home', 'lang'));
     }
 
     public function about(): ViewResponse {
+        $lang = ['az' => '/haqqimizda', 'ru' => '/ru/o-nas', 'en' => '/en/about'];
         $about = About::first();
         $clients = Client::whereStatus(1)->get();
         $team = Team::all();
         $home = Title::first();
-        return View::make('about', compact('about', 'clients', 'team', 'home'));
+        return View::make('about', compact('about', 'clients', 'team', 'home', 'lang'));
     }
 
     public function contact(): ViewResponse {
-        return View::make('contact');
+        $lang = ['az' => '/elaqe', 'ru' => '/ru/svyaz', 'en' => '/en/contact'];
+        return View::make('contact', compact('lang'));
     }
 
     public function service(string $slug): ViewResponse {
+        $home = Title::first();
         $service = ServiceTranslate::whereSlug($slug)->join('services', 'services.id', '=', 'services_translate.service_id')->first();
         $otherServices = Service::where('id', '!=', $service->service_id)->get();
-        return View::make('service', compact('service', 'otherServices'));
+        $slugs = ServiceTranslate::whereServiceId($service->service_id)->get();
+        $lang = ['az' => '/xidmet/' . $slugs->where('lang', 'az')->first()->slug,
+            'ru' => '/ru/usluga/' . $slugs->where('lang', 'ru')->first()->slug,
+            'en' => '/en/service/' . $slugs->where('lang', 'en')->first()->slug];
+        return View::make('service', compact('service', 'otherServices', 'lang', 'home'));
     }
 
     public function portfolio(): ViewResponse {
+        $lang = ['az' => '/portfolio', 'ru' => '/ru/portfolio', 'en' => '/en/portfolio'];
         $portfolio = Portfolio::whereStatus(1)->paginate(6);
-        return View::make('portfolio', compact('portfolio'));
+        return View::make('portfolio', compact('portfolio', 'lang'));
     }
 
     public function project($slug): ViewResponse {
@@ -68,12 +77,17 @@ class FrontController extends Controller {
         $status = PortfolioTranslate::whereProjectId($project->project_id)->pluck('status')->first();
         $images = PortfolioImage::whereProjectId($project->project_id)->whereStatus(1)->whereFeatured(0)->get();
         $mainImage = 'portfolio/' . PortfolioImage::whereProjectId($project->project_id)->whereFeatured(1)->first()->image;
-        return View::make('project', compact('project', 'category', 'status', 'mainImage', 'images'));
+        $slugs = PortfolioTranslate::whereProjectId($project->project_id)->get();
+        $lang = ['az' => '/layihe/' . $slugs->where('lang', 'az')->first()->slug,
+            'ru' => '/ru/proyekt/' . $slugs->where('lang', 'ru')->first()->slug,
+            'en' => '/en/project/' . $slugs->where('lang', 'en')->first()->slug];
+        return View::make('project', compact('project', 'category', 'status', 'mainImage', 'images', 'lang'));
     }
 
     public function blog(): ViewResponse {
+        $lang = ['az' => '/blog', 'ru' => '/ru/blog', 'en' => '/en/blog'];
         $blog = Blog::whereStatus(1)->paginate(6);
-        return View::make('blog', compact('blog'));
+        return View::make('blog', compact('blog', 'lang'));
     }
 
     public function article($slug): ViewResponse {
@@ -87,13 +101,21 @@ class FrontController extends Controller {
         $otherTags = Tag::whereHas('articles')->get();
         $articles = Blog::whereStatus(1)->where('id', '!=', $article->article_id)->take(3)->get();
         $allTags = Tag::whereHas('articles')->get();
-        return View::make('article', compact('article', 'category', 'images', 'mainImage', 'author', 'tags', 'categories', 'otherTags', 'articles', 'allTags'));
+        $slugs = BlogTranslate::whereArticleId($article->article_id)->get();
+        $lang = ['az' => '/meqale/' . $slugs->where('lang', 'az')->first()->slug,
+            'ru' => '/ru/statya/' . $slugs->where('lang', 'ru')->first()->slug,
+            'en' => '/en/article/' . $slugs->where('lang', 'en')->first()->slug];
+        return View::make('article', compact('article', 'category', 'images', 'mainImage', 'author', 'tags', 'categories', 'otherTags', 'articles', 'allTags', 'lang'));
     }
 
     public function blogCategory($slug): ViewResponse {
         $category = CategoryTranslate::whereSlug($slug)->first();
         $blog = Blog::whereCategoryId($category->category_id)->whereStatus(1)->paginate(6);
-        return View::make('blog', compact('category', 'blog'));
+        $slugs = CategoryTranslate::whereCategoryId($category->category_id)->get();
+        $lang = ['az' => '/blog/kateqoriya/' . $slugs->where('lang', 'az')->first()->slug,
+            'ru' => '/ru/blog/kateqoria/' . $slugs->where('lang', 'ru')->first()->slug,
+            'en' => '/en/blog/category/' . $slugs->where('lang', 'en')->first()->slug];
+        return View::make('blog', compact('category', 'blog', 'lang'));
     }
 
     public function blogTag($slug): ViewResponse {
@@ -101,28 +123,38 @@ class FrontController extends Controller {
         $blog = Blog::whereHas('tags', function($query) use ($tag) {
             $query->where('tag_id', $tag->tag_id);
         })->whereStatus(1)->paginate(6);
-        return View::make('blog', compact('tag', 'blog'));
+        $slugs = TagTranslate::whereTagId($tag->tag_id)->get();
+        $lang = ['az' => '/blog/etiket/' . $slugs->where('lang', 'az')->first()->slug,
+            'ru' => '/ru/blog/teq/' . $slugs->where('lang', 'ru')->first()->slug,
+            'en' => '/en/blog/tag/' . $slugs->where('lang', 'en')->first()->slug];
+        return View::make('blog', compact('tag', 'blog', 'lang'));
     }
 
     public function blogSearch(Request $request): ViewResponse {
         $search = $request->input('search');
+        $lang = ['az' => '/blog/axtar/?search=' . $search, 'ru' => '/ru/blog/poisk/?search=' . $search, 'en' => '/en/blog/search/?search=' . $search];
         $blog = Blog::whereHas('translated', function($query) use ($search) {
             $query->where('title', 'like', '%' . $search . '%');
         })->paginate(6);
-        return View::make('blog', compact('blog', 'search'));
+        return View::make('blog', compact('blog', 'search', 'lang'));
     }
 
     public function portfolioCategory($slug): ViewResponse {
         $category = CategoryTranslate::whereSlug($slug)->first();
         $portfolio = Portfolio::whereCategoryId($category->category_id)->whereStatus(1)->paginate(6);
-        return View::make('portfolio', compact('category', 'portfolio'));
+        $slugs = CategoryTranslate::whereCategoryId($category->category_id)->get();
+        $lang = ['az' => '/portfolio/kateqoriya/' . $slugs->where('lang', 'az')->first()->slug,
+            'ru' => '/ru/portfolio/kateqoria/' . $slugs->where('lang', 'ru')->first()->slug,
+            'en' => '/en/portfolio/category/' . $slugs->where('lang', 'en')->first()->slug];
+        return View::make('portfolio', compact('category', 'portfolio', 'lang'));
     }
 
     public function search(Request $request): ViewResponse {
         $search = $request->input('search');
+        $lang = ['az' => '/axtar/?search=' . $search, 'ru' => '/ru/poisk/?search=' . $search, 'en' => '/en/search/?search=' . $search];
         $blog = Service::whereHas('translated', function($query) use ($search) {
             $query->where('title', 'like', '%' . $search . '%');
         })->paginate(6);
-        return View::make('blog', compact('blog', 'search'));
+        return View::make('blog', compact('blog', 'search', 'lang'));
     }
 }

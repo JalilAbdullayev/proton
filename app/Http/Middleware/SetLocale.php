@@ -15,12 +15,12 @@ class SetLocale {
      * @param Closure(Request): (Response) $next
      */
     public function handle(Request $request, Closure $next): Response {
-        if(in_array($request->segment(1), ['az', 'ru'], true)) {
+        if(in_array($request->segment(1), ['en', 'ru'], true)) {
             App::setLocale($request->segment(1));
             Session::put('locale', $request->segment(1));
         } else {
-            App::setLocale('en');
-            Session::put('locale', 'en');
+            App::setLocale('az');
+            Session::put('locale', 'az');
         }
         return $next($request);
     }

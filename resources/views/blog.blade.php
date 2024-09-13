@@ -80,18 +80,18 @@
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="blog-card">
                             <div class="blog-img">
-                                @unless(Route::is('search'))
+                                @unless(Route::is('search_' . session('locale')))
                                     <a href="{{ route('article_' . session('locale'), $article->translated->first()->slug) }}">
                                         <img src="{{ asset(Storage::url('blog/'.$article->image->image)) }}" alt="">
                                     </a>
                                 @else
-                                    <a href="{{ route('service', $article->translated->first()->slug) }}">
+                                    <a href="{{ route('service_' . session('locale'), $article->translated->first()->slug) }}">
                                         <img src="{{ asset(Storage::url($article->image)) }}" alt="">
                                     </a>
                                 @endunless
                             </div>
                             <div class="blog-body">
-                                @unless(Route::is('search'))
+                                @unless(Route::is('search_' . session('locale')))
                                     <div class="auth-head">
                                 <span class="auth-name">
                                     @if(session('locale') === 'en')
@@ -116,12 +116,12 @@
                                 @endunless
                                 <div class="blog-content">
                                     <h3 class="blog-title">
-                                        @unless(Route::is('search'))
+                                        @unless(Route::is('search_' . session('locale')))
                                             <a href="{{ route('article_' . session('locale'), $article->translated->first()->slug) }}">
                                                 {{ $article->translated->first()->title }}
                                             </a>
                                         @else
-                                            <a href="{{ route('service', $article->translated->first()->slug) }}">
+                                            <a href="{{ route('service_' . session('locale'), $article->translated->first()->slug) }}">
                                                 {{ $article->translated->first()->title }}
                                             </a>
                                         @endunless
