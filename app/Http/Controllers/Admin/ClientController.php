@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Client;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
@@ -19,7 +21,7 @@ class ClientController extends Controller {
      * Display a listing of the resource.
      */
     public function index(): ViewResponse {
-        $data = Client::all();
+        $data = Client::orderBy('order')->get();
         return View::make('admin.clients.index', compact('data'));
     }
 
@@ -35,8 +37,15 @@ class ClientController extends Controller {
      */
     public function store(Request $request): RedirectResponse {
         $client = new Client;
+        $order = Client::latest('order')->first()->order;
+        if($order > 0) {
+            $last = $order + 1;
+        } else {
+            $last = 1;
+        }
         $client->name = $request->name;
         $client->url = $request->url;
+        $client->order = $last;
         if($request->file('image')) {
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
@@ -101,5 +110,21 @@ class ClientController extends Controller {
             'id' => $client->id,
             'status' => $client->status
         ]);
+    }
+
+    public function sort(Request $request) {
+        $order_data = $request['data'];
+        try {
+            DB::beginTransaction();
+            foreach($order_data as $data) {
+                Client::whereId($data['id'])->update(['order' => $data['order']]);
+            }
+
+            DB::commit();
+            return Response::json('sort_success');
+        } catch(Exception $e) {
+            DB::rollBack();
+            return Response::json($e->getMessage(), 500);
+        }
     }
 }

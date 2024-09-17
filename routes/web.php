@@ -120,10 +120,14 @@ Route::group(['prefix' => $locale, function($locale = null) {
         });
 
         Route::resource('team', TeamController::class);
+        Route::post('team/sort', [TeamController::class, 'sort'])->name('team.sort');
+
         Route::resource('services', ServiceController::class);
+        Route::post('services/sort', [ServiceController::class, 'sort'])->name('services.sort');
 
         Route::resource('socials', SocialController::class);
         Route::post('socials/status', [SocialController::class, 'status'])->name('socials.status');
+        Route::post('socials/sort', [SocialController::class, 'sort'])->name('socials.sort');
 
         Route::resource('category', CategoryController::class);
         Route::post('category/status', [CategoryController::class, 'status'])->name('category.status');
@@ -131,12 +135,15 @@ Route::group(['prefix' => $locale, function($locale = null) {
         Route::resource('portfolio', PortfolioController::class);
         Route::prefix('portfolio')->name('portfolio.')->group(function() {
             Route::post('status', [PortfolioController::class, 'status'])->name('status');
+            Route::post('sort', [PortfolioController::class, 'sort'])->name('sort');
+
             Route::controller(PortfolioImageController::class)->prefix('{id}/images')->name('images.')->group(function() {
                 Route::get('/', 'index')->name('index');
                 Route::post('/', 'store');
                 Route::post('status', 'status')->name('status');
                 Route::put('/', 'featured')->name('featured');
                 Route::delete('/', 'delete')->name('delete');
+                Route::post('sort', 'sort')->name('sort');
             });
         });
 
@@ -146,12 +153,15 @@ Route::group(['prefix' => $locale, function($locale = null) {
         Route::resource('blog', BlogController::class);
         Route::prefix('blog')->name('blog.')->group(function() {
             Route::post('status', [BlogController::class, 'status'])->name('status');
+            Route::post('sort', [BlogController::class, 'sort'])->name('sort');
+
             Route::controller(BlogImageController::class)->prefix('{id}/images')->name('images.')->group(function() {
                 Route::get('/', 'index')->name('index');
                 Route::post('/', 'store');
                 Route::post('status', 'status')->name('status');
                 Route::put('/', 'featured')->name('featured');
                 Route::delete('/', 'delete')->name('delete');
+                Route::post('sort', 'sort')->name('sort');
             });
         });
 
@@ -168,6 +178,7 @@ Route::group(['prefix' => $locale, function($locale = null) {
 
         Route::resource('client', ClientController::class);
         Route::post('client/status', [ClientController::class, 'status'])->name('client.status');
+        Route::post('client/sort', [ClientController::class, 'sort'])->name('client.sort');
 
         Route::controller(FirstSectionController::class)->prefix('first-section')->name('first-section')->group(function() {
             Route::get('/', 'index');

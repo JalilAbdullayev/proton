@@ -12,6 +12,7 @@ class PortfolioImage extends Model {
         'project_id',
         'image',
         'status',
-        'featured'
+        'featured',
+        'order'
     ];
 }

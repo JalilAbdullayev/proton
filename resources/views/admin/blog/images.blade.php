@@ -18,7 +18,7 @@
             </h4>
         </div>
         <div class="col-md-7 align-self-center text-end">
-            <div class="d-flex justify-content-end align-items-center">
+            <div class="d-flex justify-content-end align-items-center" style="min-width: max-content">
                 <ol class="breadcrumb justify-content-end">
                     <li class="breadcrumb-item">
                         <a href="{{ route('admin.index') }}">
@@ -67,9 +67,9 @@
                 </th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="sortable-tbody" data-route="{{ route('admin.blog.images.sort', $article->id) }}">
             @foreach($data as $item)
-                <tr id="{{ $item->id }}">
+                <tr id="{{ $item->id }}" data-id="{{ $item->id }}" data-order="{{ $item->order }}">
                     <td>
                         <img src="{{ asset(Storage::url('blog/'.$item->image)) }}" alt="" class="w-25"/>
                     </td>

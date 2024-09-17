@@ -12,6 +12,7 @@ class Social extends Model {
         'title',
         'url',
         'icon',
-        'status'
+        'status',
+        'order'
     ];
 }

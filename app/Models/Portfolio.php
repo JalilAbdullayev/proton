@@ -11,7 +11,7 @@ class Portfolio extends Model {
     use SoftDeletes;
 
     protected $table = 'portfolio';
-    protected $fillable = ['status', 'category_id'];
+    protected $fillable = ['status', 'category_id', 'order'];
 
     public function translate(): HasMany {
         return $this->hasMany(PortfolioTranslate::class, 'project_id', 'id');

@@ -9,10 +9,12 @@ use App\Models\BlogTranslate;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Traits\UploadImage;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
@@ -26,7 +28,7 @@ class BlogController extends Controller {
      * Display a listing of the resource.
      */
     public function index(): ViewResponse {
-        $data = Blog::all();
+        $data = Blog::orderBy('order')->get();
         return View::make('admin.blog.index', compact('data'));
     }
 
@@ -43,9 +45,16 @@ class BlogController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(Request $request): RedirectResponse {
+        $order = Blog::latest('order')->first()->order;
+        if($order > 0) {
+            $last = $order + 1;
+        } else {
+            $last = 1;
+        }
         $blog = Blog::create([
             'category_id' => $request->category_id,
-            'author_id' => Auth::user()->id
+            'author_id' => Auth::user()->id,
+            'order' => $last
         ]);
         if($request->tags) {
             $blog->tags()->sync($request->tags);
@@ -122,5 +131,21 @@ class BlogController extends Controller {
             'id' => $id,
             'status' => $blog->status
         ]);
+    }
+
+    public function sort(Request $request) {
+        $order_data = $request['data'];
+        try {
+            DB::beginTransaction();
+            foreach($order_data as $data) {
+                Blog::whereId($data['id'])->update(['order' => $data['order']]);
+            }
+
+            DB::commit();
+            return Response::json('sort_success');
+        } catch(Exception $e) {
+            DB::rollBack();
+            return Response::json($e->getMessage(), 500);
+        }
     }
 }

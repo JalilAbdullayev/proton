@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Team extends Model {
     protected $table = 'team';
-    protected $fillable = ['image'];
+    protected $fillable = ['image', 'order'];
 
     public function translate(): HasMany {
         return $this->hasMany(TeamTranslate::class, 'member_id', 'id');

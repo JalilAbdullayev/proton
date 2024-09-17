@@ -56,9 +56,9 @@
                 </th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="sortable-tbody" data-route="{{ route('admin.team.sort') }}">
             @foreach($data as $item)
-                <tr id="{{ $item->id }}">
+                <tr id="{{ $item->id }}" data-id="{{ $item->id }}" data-order="{{ $item->order }}">
                     <td>
                         {{ $item->translated->first()->name }}
                     </td>

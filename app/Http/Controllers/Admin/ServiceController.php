@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Service;
 use App\Models\ServiceTranslate;
 use App\Traits\UploadImage;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
@@ -17,11 +19,12 @@ use Illuminate\View\View as ViewResponse;
 
 class ServiceController extends Controller {
     use UploadImage;
+
     /**
      * Display a listing of the resource.
      */
     public function index(): ViewResponse {
-        $data = Service::all();
+        $data = Service::orderBy('order')->get();
         return View::make('admin.services.index', compact('data'));
     }
 
@@ -44,9 +47,16 @@ class ServiceController extends Controller {
             'image.image' => 'Zəhmət olmasa, şəkil daxil edin.',
         ]);
         $fileOriginalName = $this->langStoreImg($request, 'services');
+        $order = Service::latest('order')->first()->order;
+        if($order > 0) {
+            $last = $order + 1;
+        } else {
+            $last = 1;
+        }
         $service = Service::create([
             'image' => $fileOriginalName ? 'images/services/' . $fileOriginalName : null,
             'icon' => $request->icon,
+            'order' => $last,
         ]);
 
         for($i = 0; $i < count($request->lang); $i++) {
@@ -106,5 +116,21 @@ class ServiceController extends Controller {
     public function destroy(Service $service): JsonResponse {
         $service->delete();
         return Response::json(['id' => $service->id]);
+    }
+
+    public function sort(Request $request) {
+        $order_data = $request['data'];
+        try {
+            DB::beginTransaction();
+            foreach($order_data as $data) {
+                Service::whereId($data['id'])->update(['order' => $data['order']]);
+            }
+
+            DB::commit();
+            return Response::json('sort_success');
+        } catch(Exception $e) {
+            DB::rollBack();
+            return Response::json($e->getMessage(), 500);
+        }
     }
 }

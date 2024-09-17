@@ -67,9 +67,9 @@
                 </th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="sortable-tbody" data-route="{{ route('admin.portfolio.images.sort', $project->id) }}">
             @foreach($data as $item)
-                <tr id="{{ $item->id }}">
+                <tr id="{{ $item->id }}" data-id="{{ $item->id }}" data-order="{{ $item->order }}">
                     <td>
                         <img src="{{ asset(Storage::url('portfolio/'.$item->image)) }}" alt="" class="w-25"/>
                     </td>

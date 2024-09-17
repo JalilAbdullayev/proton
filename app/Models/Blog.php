@@ -16,6 +16,7 @@ class Blog extends Model {
         'category_id',
         'author_id',
         'status',
+        'order'
     ];
 
     public function translate(): HasMany {

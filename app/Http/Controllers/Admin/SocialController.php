@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SocialRequest;
 use App\Models\Social;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
@@ -29,7 +32,7 @@ class SocialController extends Controller {
      * Display a listing of the resource.
      */
     public function index(): ViewResponse {
-        $data = Social::all();
+        $data = Social::orderBy('order')->get();
         return View::make('admin.social.index', compact('data'));
     }
 
@@ -46,10 +49,17 @@ class SocialController extends Controller {
      * Store a newly created resource in storage.
      */
     public function store(SocialRequest $request): RedirectResponse {
+        $order = Social::latest('order')->first()->order;
+        if($order > 0) {
+            $last = $order + 1;
+        } else {
+            $last = 1;
+        }
         Social::create([
             'title' => $request->title,
             'url' => $request->url,
-            'icon' => $request->icon
+            'icon' => $request->icon,
+            'order' => $last
         ]);
         return Redirect::route('admin.socials.index')->withSuccess('Məlumat uğurla əlavə edildi');
     }
@@ -100,5 +110,21 @@ class SocialController extends Controller {
             'id' => $id,
             'status' => $social->status
         ]);
+    }
+
+    public function sort(Request $request) {
+        $order_data = $request['data'];
+        try {
+            DB::beginTransaction();
+            foreach($order_data as $data) {
+                Social::whereId($data['id'])->update(['order' => $data['order']]);
+            }
+
+            DB::commit();
+            return Response::json('sort_success');
+        } catch(Exception $e) {
+            DB::rollBack();
+            return Response::json($e->getMessage(), 500);
+        }
     }
 }

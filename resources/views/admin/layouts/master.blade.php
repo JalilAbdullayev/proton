@@ -108,6 +108,8 @@
 <!-- Chart JS -->
 <script src="{{ asset("back/js/dashboard1.js") }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js"></script>
 <script>
     $.ajaxSetup({
         headers: {
@@ -223,6 +225,65 @@
     @elseif(session('error'))
     errorAlert('{{ session('error') }}')
     @endif
+
+    $(document).ready(function() {
+        $('#sortable-tbody').sortable({
+            group: {
+                pull: true,
+                put: true
+            },
+            animation: 200,
+            ghostClass: 'ghost',
+            items: '#sortable-tbody tr',
+            handle: '#sortable-tbody tr',
+            multiDrag: true,
+            avoidImplicitDeselect: true,
+            onEnd: function(evt) {
+                let allRows = $('#sortable-tbody tr');
+                let activeOrderData = [];
+                let orderData = [];
+
+                let dataIndexArray = [];
+
+                $(allRows).each(function(index, element) {
+                    dataIndexArray.push($(element).data('order'));
+                });
+                dataIndexArray = dataIndexArray.sort((a, b) => a - b);
+                allRows.each(function(index, element) {
+                    let newIndex = dataIndexArray[index];
+                    $(element).attr('data-order', newIndex);
+                });
+                $(allRows).each(function(index, element) {
+                    let id = $(element).data('id');
+                    let order = dataIndexArray[index];
+                    let obj = {
+                        id: id,
+                        order: order,
+                    }
+                    orderData.push(obj);
+                });
+                saveOrderFunction($('#sortable-tbody').data('route'), orderData)
+            },
+        });
+
+
+        function saveOrderFunction(route, orderData) {
+            $.ajax({
+                url: route,
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    data: orderData
+                }),
+                success: function() {
+                    successAlert('Sıra uğurla dəyidirildi.')
+                },
+                error: function() {
+                    errorAlert('Sıra dəyişdirilərkən xəta baş verdi.')
+                }
+            });
+        }
+    })
 </script>
 @yield('js')
 </body>
