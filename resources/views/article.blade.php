@@ -1,4 +1,4 @@
-@php use Illuminate\Support\Facades\Storage; @endphp
+@php use Illuminate\Support\Facades\Storage;use Illuminate\Support\Facades\URL; @endphp
 @extends('layouts.master')
 @section('title', $article->title)
 @section('description', $article->description)
@@ -8,6 +8,8 @@
     @endforeach
 @endsection
 @section('author', $author)
+@section('image', asset(Storage::url($mainImage)))
+@section('type', 'article')
 @section('content')
     <!-- Breadcrumb start -->
     <section class="breadcrumb">
@@ -100,7 +102,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="items-center justify-content-between blog-tag-box">
+                    <div class="items-center justify-content-between blog-tag-box mt-3">
                         <ul class="blog-tags">
                             @foreach($tags as $tag)
                                 <li>
@@ -112,23 +114,19 @@
                         </ul>
                         <ul class="social-network">
                             <li>
-                                <a href="">
-                                    <i data-feather="facebook"></i>
-                                </a>
+                                <div class="fb-share-button" data-layout="button_count" data-size=""
+                                     data-href="{{ URL::current() }}">
+                                    <a target="_blank" class="fb-xfbml-parse-ignore"
+                                       href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">
+                                    </a>
+                                </div>
                             </li>
                             <li>
-                                <a href="">
-                                    <i data-feather="twitter"></i>
-                                </a>
+                                <script type="IN/Share" data-url="{{ URL::current() }}"></script>
                             </li>
                             <li>
-                                <a href="">
-                                    <i data-feather="linkedin"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <i data-feather="youtube"></i>
+                                <a href="https://wa.me/?text={{ URL::current() }}">
+                                    <i class="fa-brands fa-whatsapp"></i>
                                 </a>
                             </li>
                         </ul>

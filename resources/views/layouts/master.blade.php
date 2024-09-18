@@ -1,7 +1,7 @@
 @php
     use Illuminate\Support\Facades\App;
     use Illuminate\Support\Facades\Storage;
-    use Illuminate\Support\Str;
+    use Illuminate\Support\Facades\URL;use Illuminate\Support\Str;
 @endphp
     <!DOCTYPE html>
 <html lang="{{ Str::replace('-', '_', App::getLocale()) }}">
@@ -12,6 +12,18 @@
     <meta name="description" content="@yield('description', $settings->translated->first()->description)"/>
     <meta name="keywords" content="@yield('keywords', $settings->translated->first()->keywords)"/>
     <meta name="author" content="@yield('author', $settings->translated->first()->author)"/>
+    {{-- Facebook --}}
+    <meta property="og:url" content="{{ URL::current() }}"/>
+    <meta property="og:type" content="@yield('type', 'website')"/>
+    <meta property="og:title" content="@yield('title', $settings->translated->first()->title)"/>
+    <meta property="og:description" content="@yield('description', $settings->translated->first()->description)"/>
+    <meta property="og:image" content="@yield('image', asset(Storage::url($settings->logo)))"/>
+    {{-- X (Twitter) --}}
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:site" content="{{ URL::current() }}"/>
+    <meta name="twitter:title" content="@yield('title', $settings->translated->first()->title)"/>
+    <meta name="twitter:description" content="@yield('description', $settings->translated->first()->description)"/>
+    <meta name="twitter:image" content="@yield('image', asset(Storage::url($settings->logo)))"/>
     <title>
         @yield('title', $settings->translated->first()->title)
     </title>
@@ -62,13 +74,16 @@
 <!-- Footer start -->
 @include('layouts.footer')
 <!-- Footer end -->
-
+<div id="fb-root"></div>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
 <script src='{{ asset('front/plugins/feather-icons/feather.min.js') }}'></script>
 <script src="{{ asset('front/plugins/swiper/swiper-bundle.min.js') }}"></script>
 <script src="{{ asset('front/plugins/bootstrap/popper.min.js') }}"></script>
 <script src="{{ asset('front/plugins/bootstrap/bootstrap.bundle.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/az_AZ/sdk.js#xfbml=1&version=v20.0"
+        nonce="e0jjKT8f"></script>
+<script src="https://platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
 <script src="{{ asset('front/js/main.js') }}"></script>
 <script>
     function sweetAlert(icon, message) {
@@ -81,6 +96,17 @@
             background: "linear-gradient(to left, var(--color-main), var(--color-main-dark))"
         })
     }
+
+    (function(d, s, id) {
+        let js, fjs = d.getElementsByTagName(s)[0];
+        if(d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 
     @if (session('success'))
     sweetAlert('success', '{{ session('success') }}');
