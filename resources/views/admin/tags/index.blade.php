@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{ asset('back/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css') }}"/>
     <link rel="stylesheet"
           href="{{ asset('back/node_modules/datatables.net-bs4/css/responsive.dataTables.min.css') }}"/>
-    <link href="{{ asset('back/node_modules/switchery/dist/switchery.min.css')}}" rel="stylesheet"/>
+
 @endsection
 @section('content')
     <!-- ============================================================== -->
@@ -158,13 +158,9 @@
 @section('js')
     <script src="{{asset("back/node_modules/datatables.net/js/jquery.dataTables.min.js")}}"></script>
     <script src="{{asset("back/node_modules/datatables.net-bs4/js/dataTables.responsive.min.js")}}"></script>
-    <script src="{{ asset('back/node_modules/switchery/dist/switchery.min.js')}}"></script>
     <script>
         $('#myTable').DataTable({
             ordering: false
-        });
-        $('.js-switch').each(function() {
-            new Switchery(this, $(this).data());
         });
         deletePrompt('teqi', '{{ route('admin.tag.destroy', ':id') }}', 'Teq')
         statusAlert('{{ route('admin.tag.status') }}')
