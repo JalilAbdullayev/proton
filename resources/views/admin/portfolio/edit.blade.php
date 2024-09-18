@@ -93,34 +93,6 @@
                             </label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="date[]" id="date" placeholder="Tarix"
-                                   maxlength="255" value="{{ $titem->date }}"/>
-                            <label for="date" class="form-label text-white-50">
-                                Tarix
-                            </label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="duration[]" id="duration" placeholder="Müddət"
-                                   maxlength="255" value="{{ $titem->duration }}"/>
-                            <label for="duration" class="form-label text-white-50">
-                                Müddət
-                            </label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="status[]" id="status" placeholder="Status"
-                                   maxlength="255" value="{{ $titem->status }}"/>
-                            <label for="status" class="form-label text-white-50">
-                                Status
-                            </label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="location[]" id="location" placeholder="Məkan"
-                                   maxlength="255" value="{{ $titem->location }}"/>
-                            <label for="location" class="form-label text-white-50">
-                                Məkan
-                            </label>
-                        </div>
-                        <div class="form-floating mb-3">
                         <textarea name="full_text[]" id="full_text" placeholder="Mətn"
                                   class="form-control @if($index === 0) text1 @elseif($index === 1) text2 @else text3 @endif">{!! $titem->full_text !!}</textarea>
                             <label for="full_text" class="form-label text-white-50">

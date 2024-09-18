@@ -74,14 +74,13 @@ class FrontController extends Controller {
     public function project($slug): ViewResponse {
         $project = PortfolioTranslate::whereSlug($slug)->join('portfolio', 'portfolio.id', '=', 'project_id')->first();
         $category = Category::whereId($project->category_id)->first();
-        $status = PortfolioTranslate::whereProjectId($project->project_id)->pluck('status')->first();
         $images = PortfolioImage::whereProjectId($project->project_id)->whereStatus(1)->whereFeatured(0)->orderBy('order')->get();
         $mainImage = 'portfolio/' . PortfolioImage::whereProjectId($project->project_id)->whereFeatured(1)->first()->image;
         $slugs = PortfolioTranslate::whereProjectId($project->project_id)->get();
         $lang = ['az' => '/layihe/' . $slugs->where('lang', 'az')->first()->slug,
             'ru' => '/ru/proyekt/' . $slugs->where('lang', 'ru')->first()->slug,
             'en' => '/en/project/' . $slugs->where('lang', 'en')->first()->slug];
-        return View::make('project', compact('project', 'category', 'status', 'mainImage', 'images', 'lang'));
+        return View::make('project', compact('project', 'category', 'mainImage', 'images', 'lang'));
     }
 
     public function blog(): ViewResponse {

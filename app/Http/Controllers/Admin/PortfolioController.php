@@ -60,11 +60,7 @@ class PortfolioController extends Controller {
                 'slug' => Str::slug($request->title[$i]),
                 'description' => $request->description[$i],
                 'keywords' => $request->keywords[$i],
-                'full_text' => $request->full_text[$i],
-                'status' => $request->status[$i],
-                'duration' => $request->duration[$i],
-                'date' => $request->date[$i],
-                'location' => $request->location[$i],
+                'full_text' => $request->full_text[$i]
             ]);
         }
         $this->multipleImg($request, $portfolio, PortfolioImage::class, 'portfolio', 'project_id');
@@ -100,11 +96,7 @@ class PortfolioController extends Controller {
                 'slug' => Str::slug($request->title[$i]),
                 'description' => $request->description[$i],
                 'keywords' => $request->keywords[$i],
-                'full_text' => $request->full_text[$i],
-                'status' => $request->status[$i],
-                'duration' => $request->duration[$i],
-                'date' => $request->date[$i],
-                'location' => $request->location[$i],
+                'full_text' => $request->full_text[$i]
             ]);
         }
 

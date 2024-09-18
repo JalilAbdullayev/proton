@@ -17,10 +17,6 @@ return new class extends Migration {
             $table->string('slug');
             $table->text('keywords')->nullable();
             $table->text('description')->nullable();
-            $table->string('status')->nullable();
-            $table->string('location')->nullable();
-            $table->string('duration')->nullable();
-            $table->string('date')->nullable();
             $table->text('full_text')->nullable();
             $table->softDeletes();
             $table->timestamps();

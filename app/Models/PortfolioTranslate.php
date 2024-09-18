@@ -17,10 +17,6 @@ class PortfolioTranslate extends Model {
         'description',
         'keywords',
         'full_text',
-        'status',
-        'location',
-        'category_id',
-        'duration',
-        'date'
+        'category_id'
     ];
 }

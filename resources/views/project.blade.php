@@ -62,49 +62,6 @@
 					</div>
 				</div>
 				<div class="detail-body">
-					<ul class="portfolio-info">
-						<li>
-							<h5 class="title">
-                                {{ __('Category')}}:
-							</h5>
-							<a href="{{ route('portfolio.category_' . session('locale'), $category->translated->first()->slug) }}"
-							   class="inner-text">
-								{{ $category->translated->first()->title }}
-							</a>
-						</li>
-						<li>
-							<h5 class="title">
-                                {{ __('Location')}}:
-							</h5>
-							<p class="inner-text">
-								{{ $project->location }}
-							</p>
-						</li>
-						<li>
-							<h5 class="title">
-                                {{ __('Date')}}:
-							</h5>
-							<p class="inner-text">
-								{{ $project->date }}
-							</p>
-						</li>
-						<li>
-							<h5 class="title">
-                                {{ __('Status')}}:
-							</h5>
-							<p class="inner-text">
-								{{ $status }}
-							</p>
-						</li>
-						<li>
-							<h5 class="title">
-                                {{ __('Duration')}}:
-							</h5>
-							<p class="inner-text">
-								{{ $project->duration }}
-							</p>
-						</li>
-					</ul>
 					<div class="detail-img my-5">
 						<img src="{{ asset(Storage::url($mainImage)) }}" alt="">
 					</div>
