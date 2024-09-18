@@ -23,9 +23,9 @@ class AppServiceProvider extends ServiceProvider {
      */
     public function boot(): void {
         $settings = Settings::first();
-        $socials = Social::whereStatus(1)->get();
+        $socials = Social::whereStatus(1)->orderBy('order')->get();
         $contact = Contact::first();
-        $services = Service::all();
+        $services = Service::orderBy('order')->get();
         View::share('services', $services);
         View::share('contact', $contact);
         View::share('socials', $socials);

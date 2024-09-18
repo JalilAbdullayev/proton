@@ -72,9 +72,9 @@
             </div>
             <div class="col-12 col-custom-md-6 col-lg-4 mb-4 mb-lg-0">
                 <div class="footer-right">
-                    <h5 class="small-title">Newsletter</h5>
+                    <h5 class="small-title">{{ __('Quick Consultation') }}</h5>
                     <p class="inner-text">
-                        Our team do comprises professional with experience.
+                        {{ __('Enter your phone number or e-mail for quick consultation')}}
                     </p>
                     <a href="mailto:{{ $contact->email }}" class="footer-mail">
                         <i data-feather="mail"></i>
@@ -82,11 +82,12 @@
                             {{ $contact->email }}
                         </span>
                     </a>
-                    <form action="">
+                    <form method="POST" action="{{ route('consult') }}">
                         <div class="subscribe-form">
                             <div class="form-group">
-                                <input type="email" placeholder="Email address" class="form-control custom-form ">
-                                <button class="btn btn-main">
+                                <input type="text" placeholder="{{ __('Email or Phone number')}}"
+                                       class="form-control custom-form"/>
+                                <button class="btn btn-main" type="submit">
                                     <i data-feather="send"></i>
                                 </button>
                             </div>

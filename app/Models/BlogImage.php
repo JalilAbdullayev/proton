@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class BlogImage extends Model {
     use SoftDeletes;
 
-    protected $fillable = ['article_id', 'image', 'status', 'featured'];
+    protected $fillable = ['article_id', 'image', 'status', 'featured', 'order'];
 }

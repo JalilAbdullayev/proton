@@ -29,11 +29,11 @@ use Illuminate\View\View as ViewResponse;
 class FrontController extends Controller {
     public function index(): ViewResponse {
         $lang = ['az' => '', 'ru' => '/ru', 'en' => '/en'];
-        $portfolio = Portfolio::whereStatus(1)->get();
-        $team = Team::orderBy('order')->get();
+        $portfolio = Portfolio::whereStatus(1)->orderBy('order')->get();
+        $team = Team::orderBy('order')->orderBy('order')->get();
         $banner = Banner::first();
-        $clients = Client::whereStatus(1)->get();
-        $blog = Blog::take(3)->get();
+        $clients = Client::whereStatus(1)->orderBy('order')->get();
+        $blog = Blog::orderBy('order')->take(3)->get();
         $firstSection = FirstSection::first();
         $secondSection = SecondSection::first();
         $home = Title::first();
@@ -67,7 +67,7 @@ class FrontController extends Controller {
 
     public function portfolio(): ViewResponse {
         $lang = ['az' => '/portfolio', 'ru' => '/ru/portfolio', 'en' => '/en/portfolio'];
-        $portfolio = Portfolio::whereStatus(1)->orderBy('order')->paginate(6);
+        $portfolio = Portfolio::whereStatus(1)->orderBy('order')->paginate(9);
         return View::make('portfolio', compact('portfolio', 'lang'));
     }
 
@@ -86,7 +86,7 @@ class FrontController extends Controller {
 
     public function blog(): ViewResponse {
         $lang = ['az' => '/blog', 'ru' => '/ru/blog', 'en' => '/en/blog'];
-        $blog = Blog::whereStatus(1)->orderBy('order')->paginate(6);
+        $blog = Blog::whereStatus(1)->orderBy('order')->paginate(9);
         return View::make('blog', compact('blog', 'lang'));
     }
 
@@ -110,7 +110,7 @@ class FrontController extends Controller {
 
     public function blogCategory($slug): ViewResponse {
         $category = CategoryTranslate::whereSlug($slug)->first();
-        $blog = Blog::whereCategoryId($category->category_id)->whereStatus(1)->orderBy('order')->paginate(6);
+        $blog = Blog::whereCategoryId($category->category_id)->whereStatus(1)->orderBy('order')->paginate(9);
         $slugs = CategoryTranslate::whereCategoryId($category->category_id)->get();
         $lang = ['az' => '/blog/kateqoriya/' . $slugs->where('lang', 'az')->first()->slug,
             'ru' => '/ru/blog/kateqoria/' . $slugs->where('lang', 'ru')->first()->slug,
@@ -122,7 +122,7 @@ class FrontController extends Controller {
         $tag = TagTranslate::whereSlug($slug)->first();
         $blog = Blog::whereHas('tags', function($query) use ($tag) {
             $query->where('tag_id', $tag->tag_id);
-        })->whereStatus(1)->orderBy('order')->paginate(6);
+        })->whereStatus(1)->orderBy('order')->paginate(9);
         $slugs = TagTranslate::whereTagId($tag->tag_id)->get();
         $lang = ['az' => '/blog/etiket/' . $slugs->where('lang', 'az')->first()->slug,
             'ru' => '/ru/blog/teq/' . $slugs->where('lang', 'ru')->first()->slug,
@@ -135,13 +135,13 @@ class FrontController extends Controller {
         $lang = ['az' => '/blog/axtar/?search=' . $search, 'ru' => '/ru/blog/poisk/?search=' . $search, 'en' => '/en/blog/search/?search=' . $search];
         $blog = Blog::whereHas('translated', function($query) use ($search) {
             $query->where('title', 'like', '%' . $search . '%');
-        })->orderBy('order')->paginate(6);
+        })->orderBy('order')->paginate(9);
         return View::make('blog', compact('blog', 'search', 'lang'));
     }
 
     public function portfolioCategory($slug): ViewResponse {
         $category = CategoryTranslate::whereSlug($slug)->first();
-        $portfolio = Portfolio::whereCategoryId($category->category_id)->whereStatus(1)->orderBy('order')->paginate(6);
+        $portfolio = Portfolio::whereCategoryId($category->category_id)->whereStatus(1)->orderBy('order')->paginate(9);
         $slugs = CategoryTranslate::whereCategoryId($category->category_id)->get();
         $lang = ['az' => '/portfolio/kateqoriya/' . $slugs->where('lang', 'az')->first()->slug,
             'ru' => '/ru/portfolio/kateqoria/' . $slugs->where('lang', 'ru')->first()->slug,
@@ -154,7 +154,7 @@ class FrontController extends Controller {
         $lang = ['az' => '/axtar/?search=' . $search, 'ru' => '/ru/poisk/?search=' . $search, 'en' => '/en/search/?search=' . $search];
         $blog = Service::whereHas('translated', function($query) use ($search) {
             $query->where('title', 'like', '%' . $search . '%');
-        })->orderBy('order')->paginate(6);
+        })->orderBy('order')->paginate(9);
         return View::make('blog', compact('blog', 'search', 'lang'));
     }
 }

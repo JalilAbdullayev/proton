@@ -11,6 +11,10 @@ let servicesSwiper = new Swiper(".servicesSwiper", {
     slidesPerView: 1,
     spaceBetween: 10,
     loop: true,
+    autoplay: {
+        delay: 2500,
+        pauseOnMouseEnter: true
+    },
     navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
@@ -31,6 +35,10 @@ let homeProjectsSwiper = new Swiper(".homeProjectsSwiper", {
     slidesPerView: 1,
     spaceBetween: 30,
     loop: true,
+    autoplay: {
+        delay: 2500,
+        pauseOnMouseEnter: true
+    },
     breakpoints: {
         640: {
             slidesPerView: 2,
@@ -53,6 +61,7 @@ let partnersSwiper = new Swiper(".partnersSwiper", {
     loop: true,
     autoplay: {
         delay: 2500,
+        pauseOnMouseEnter: true
     },
     breakpoints: {
         768: {
@@ -68,6 +77,10 @@ let teamsSwiper = new Swiper(".teamsSwiper", {
     slidesPerView: 1,
     spaceBetween: 30,
     loop: true,
+    autoplay: {
+        delay: 2500,
+        pauseOnMouseEnter: true
+    },
     breakpoints: {
         640: {
             slidesPerView: 2,
@@ -89,13 +102,13 @@ btnClose.addEventListener('click', () => {
 })
 
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 30) {
+    if(window.scrollY > 30) {
         header.classList.add("fixed-header");
     } else {
         header.classList.remove("fixed-header");
     }
 
-    if (window.scrollY > 300) {
+    if(window.scrollY > 300) {
         scrollBtn.classList.add("active");
     } else {
         scrollBtn.classList.remove("active");
@@ -108,19 +121,19 @@ btnSearch.addEventListener('click', () => {
 })
 
 searchContainer.addEventListener('click', (e) => {
-    if (e.target === searchContainer) {
+    if(e.target === searchContainer) {
         searchContainer.classList.remove("active");
     }
 })
 
 window.addEventListener('keyup', (e) => {
-    if (e.key == "Escape") {
+    if(e.key == "Escape") {
         searchContainer.classList.remove("active");
     }
 })
 Fancybox.bind("[data-fancybox]");
 
-document.addEventListener('scroll', function () {
+document.addEventListener('scroll', function() {
     const counters = document.querySelectorAll('.successful-projects .count');
     const speed = 100000;
 
@@ -131,7 +144,7 @@ document.addEventListener('scroll', function () {
 
             const increment = target / (speed / 100);
 
-            if (count < target) {
+            if(count < target) {
                 counter.innerText = Math.ceil(count + increment);
                 setTimeout(updateCount, 100);
             } else {
@@ -141,7 +154,7 @@ document.addEventListener('scroll', function () {
 
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
+                if(entry.isIntersecting) {
                     updateCount();
                 }
             });
