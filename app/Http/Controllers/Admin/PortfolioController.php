@@ -12,6 +12,7 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
@@ -64,7 +65,7 @@ class PortfolioController extends Controller {
             ]);
         }
         $this->multipleImg($request, $portfolio, PortfolioImage::class, 'portfolio', 'project_id');
-
+        Artisan::call('sitemap:generate');
         return Redirect::route('admin.portfolio.index')->withSuccess('Proyekt uğurla əlavə edildi.');
     }
 
@@ -99,7 +100,7 @@ class PortfolioController extends Controller {
                 'full_text' => $request->full_text[$i]
             ]);
         }
-
+        Artisan::call('sitemap:generate');
         return Redirect::route('admin.portfolio.index')->withSuccess('Proyekt uğurla yeniləndi.');
     }
 
@@ -108,6 +109,7 @@ class PortfolioController extends Controller {
      */
     public function destroy(Portfolio $portfolio): JsonResponse {
         $portfolio->delete();
+        Artisan::call('sitemap:generate');
         return Response::json(['id' => $portfolio->id]);
     }
 

@@ -10,6 +10,7 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
@@ -70,6 +71,7 @@ class ServiceController extends Controller {
                 'lang' => $request->lang[$i],
             ]);
         }
+        Artisan::call('sitemap:generate');
         return Redirect::route('admin.services.index')->withSuccess('Xidmət uğurla əlavə edildi.');
     }
 
@@ -107,6 +109,7 @@ class ServiceController extends Controller {
                 'lang' => $request->lang[$i],
             ]);
         }
+        Artisan::call('sitemap:generate');
         return Redirect::route('admin.services.index')->withSuccess('Xidmət uğurla yeniləndi.');
     }
 
@@ -115,6 +118,7 @@ class ServiceController extends Controller {
      */
     public function destroy(Service $service): JsonResponse {
         $service->delete();
+        Artisan::call('sitemap:generate');
         return Response::json(['id' => $service->id]);
     }
 

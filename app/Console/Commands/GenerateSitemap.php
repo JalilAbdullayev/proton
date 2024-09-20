@@ -76,7 +76,7 @@ class GenerateSitemap extends Command {
         $this->addUrls($serviceRuUrls, 'ru/usluga/', $sitemap);
         $this->addUrls($serviceEnUrls, 'en/service/', $sitemap);
 
-        $this->addUrls($tagAzUrls, 'blgo/etiket/', $sitemap);
+        $this->addUrls($tagAzUrls, 'blog/etiket/', $sitemap);
         $this->addUrls($tagRuUrls, 'ru/blog/teq/', $sitemap);
         $this->addUrls($tagEnUrls, 'en/blog/tag/', $sitemap);
 

@@ -8,6 +8,7 @@ use App\Models\TagTranslate;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
@@ -44,6 +45,7 @@ class TagController extends Controller {
                 'lang' => $request->lang[$i],
             ]);
         }
+        Artisan::call('sitemap:generate');
         return Redirect::back()->withSuccess('Teq uğurla yaradıldı');
     }
 
@@ -72,6 +74,7 @@ class TagController extends Controller {
                 'lang' => $request->lang[$i],
             ]);
         }
+        Artisan::call('sitemap:generate');
         return Redirect::route('admin.tag.index')->withSuccess('Teq uğurla yeniləndi');
     }
 
@@ -80,6 +83,7 @@ class TagController extends Controller {
      */
     public function destroy(Tag $tag): JsonResponse {
         $tag->delete();
+        Artisan::call('sitemap:generate');
         return Response::json(['id' => $tag->id]);
     }
 

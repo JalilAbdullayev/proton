@@ -13,6 +13,7 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -72,6 +73,7 @@ class BlogController extends Controller {
             ]);
         }
         $this->multipleImg($request, $blog, BlogImage::class, 'blog', 'article_id');
+        Artisan::call('sitemap:generate');
         return Redirect::route('admin.blog.index')->withSuccess('Məqalə uğurla yaradıldı.');
     }
 
@@ -110,6 +112,7 @@ class BlogController extends Controller {
                 'date' => $request->date[$i],
             ]);
         }
+        Artisan::call('sitemap:generate');
         return Redirect::route('admin.blog.index')->withSuccess('Dəyişikliklər uğurla saxlanıldı.');
     }
 
@@ -118,6 +121,7 @@ class BlogController extends Controller {
      */
     public function destroy(Blog $blog): JsonResponse {
         $blog->delete();
+        Artisan::call('sitemap:generate');
         return Response::json(['id' => $blog->id]);
     }
 

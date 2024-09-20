@@ -8,6 +8,7 @@ use App\Models\CategoryTranslate;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\View;
@@ -44,6 +45,7 @@ class CategoryController extends Controller {
                 'lang' => $request->lang[$i],
             ]);
         }
+        Artisan::call('sitemap:generate');
         return Redirect::back()->withSuccess('Kateqoriya uğurla yaradıldı.');
     }
 
@@ -72,7 +74,7 @@ class CategoryController extends Controller {
                 'lang' => $request->lang[$i],
             ]);
         }
-
+        Artisan::call('sitemap:generate');
         return Redirect::route('admin.category.index')->withSuccess('Dəyişikliklər uğurla saxlanıldı.');
     }
 
@@ -81,6 +83,7 @@ class CategoryController extends Controller {
      */
     public function destroy(Category $category): JsonResponse {
         $category->delete();
+        Artisan::call('sitemap:generate');
         return Response::json(['id' => $category->id]);
     }
 
