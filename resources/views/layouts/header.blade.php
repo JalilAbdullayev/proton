@@ -32,6 +32,11 @@
                     <li class="nav-item">
                         <a href="{{ route('contact_'. session('locale')) }}">{{ __('Contact us')}}</a>
                     </li>
+                    @auth
+                        <li class="nav-item">
+                            <a href="{{ route('admin.index') }}">{{ __('Admin panel')}}</a>
+                        </li>
+                    @endauth
                     <li>
                         <ul class="contact-list px-4">
                             <li>
