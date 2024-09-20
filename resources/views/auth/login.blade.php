@@ -84,15 +84,6 @@
                             </button>
                         </div>
                     </div>
-                    <div class="form-group m-b-0">
-                        <div class="col-sm-12 text-center">
-                            Hesabınız yoxdur? <a href="{{ route('register') }}" class="text-info m-l-5">
-                                <strong>
-                                    Qeydiyyat
-                                </strong>
-                            </a>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>

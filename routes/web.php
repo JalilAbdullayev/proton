@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\FrontController;
 use App\Http\Middleware\SetLocale;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
@@ -96,22 +97,13 @@ Route::group(['prefix' => $locale, function($locale = null) {
     Route::prefix('admin')->name('admin.')->middleware('auth')->group(function() {
         Route::get('/', [MainController::class, 'index'])->name('index');
 
-        Route::controller(SettingsController::class)->prefix('settings')->name('settings')->group(function() {
-            Route::get('/', 'index');
-            Route::put('/', 'update');
-        });
-
-        Route::controller(AboutController::class)->prefix('about')->name('about')->group(function() {
-            Route::get('/', 'index');
-            Route::put('/', 'update');
-        });
-
-        Route::controller(ContactController::class)->prefix('contact')->name('contact')->group(function() {
-            Route::get('/', 'index');
-            Route::put('/', 'update');
-        });
-
-        Route::resource('users', UserController::class);
+        shortRoute(SettingsController::class, 'settings');
+        shortRoute(AboutController::class, 'about');
+        shortRoute(ContactController::class, 'contact');
+        shortRoute(BannerController::class, 'banner');
+        shortRoute(FirstSectionController::class, 'first-section');
+        shortRoute(SecondSectionController::class, 'second-section');
+        shortRoute(TitleController::class, 'titles');
 
         Route::controller(ProfileController::class)->prefix('profile')->name('profile.')->group(function() {
             Route::get('/', 'index')->name('index');
@@ -119,51 +111,32 @@ Route::group(['prefix' => $locale, function($locale = null) {
             Route::get('delete', 'delete')->name('delete');
         });
 
-        Route::resource('team', TeamController::class);
-        Route::post('team/sort', [TeamController::class, 'sort'])->name('team.sort');
+        Route::resources([
+            'users' => UserController::class,
+            'team' => TeamController::class,
+            'services' => ServiceController::class,
+            'socials' => SocialController::class,
+            'category' => CategoryController::class,
+            'portfolio' => PortfolioController::class,
+            'tag' => TagController::class,
+            'blog' => BlogController::class,
+            'client' => ClientController::class
+        ]);
 
-        Route::resource('services', ServiceController::class);
+        Route::post('team/sort', [TeamController::class, 'sort'])->name('team.sort');
         Route::post('services/sort', [ServiceController::class, 'sort'])->name('services.sort');
 
-        Route::resource('socials', SocialController::class);
         Route::post('socials/status', [SocialController::class, 'status'])->name('socials.status');
         Route::post('socials/sort', [SocialController::class, 'sort'])->name('socials.sort');
 
-        Route::resource('category', CategoryController::class);
         Route::post('category/status', [CategoryController::class, 'status'])->name('category.status');
-
-        Route::resource('portfolio', PortfolioController::class);
-        Route::prefix('portfolio')->name('portfolio.')->group(function() {
-            Route::post('status', [PortfolioController::class, 'status'])->name('status');
-            Route::post('sort', [PortfolioController::class, 'sort'])->name('sort');
-
-            Route::controller(PortfolioImageController::class)->prefix('{id}/images')->name('images.')->group(function() {
-                Route::get('/', 'index')->name('index');
-                Route::post('/', 'store');
-                Route::post('status', 'status')->name('status');
-                Route::put('/', 'featured')->name('featured');
-                Route::delete('/', 'delete')->name('delete');
-                Route::post('sort', 'sort')->name('sort');
-            });
-        });
-
-        Route::resource('tag', TagController::class);
         Route::post('tag/status', [TagController::class, 'status'])->name('tag.status');
 
-        Route::resource('blog', BlogController::class);
-        Route::prefix('blog')->name('blog.')->group(function() {
-            Route::post('status', [BlogController::class, 'status'])->name('status');
-            Route::post('sort', [BlogController::class, 'sort'])->name('sort');
+        longRoute('portfolio', PortfolioController::class, PortfolioImageController::class);
+        longRoute('blog', BlogController::class, BlogImageController::class);
 
-            Route::controller(BlogImageController::class)->prefix('{id}/images')->name('images.')->group(function() {
-                Route::get('/', 'index')->name('index');
-                Route::post('/', 'store');
-                Route::post('status', 'status')->name('status');
-                Route::put('/', 'featured')->name('featured');
-                Route::delete('/', 'delete')->name('delete');
-                Route::post('sort', 'sort')->name('sort');
-            });
-        });
+        Route::post('client/status', [ClientController::class, 'status'])->name('client.status');
+        Route::post('client/sort', [ClientController::class, 'sort'])->name('client.sort');
 
         Route::controller(MessageController::class)->prefix('message')->name('message.')->group(function() {
             Route::get('/', 'index')->name('index');
@@ -171,35 +144,38 @@ Route::group(['prefix' => $locale, function($locale = null) {
             Route::delete('{id}', 'delete')->name('delete');
         });
 
-        Route::controller(BannerController::class)->prefix('banner')->name('banner')->group(function() {
-            Route::get('/', 'index');
-            Route::put('/', 'update');
-        });
-
-        Route::resource('client', ClientController::class);
-        Route::post('client/status', [ClientController::class, 'status'])->name('client.status');
-        Route::post('client/sort', [ClientController::class, 'sort'])->name('client.sort');
-
-        Route::controller(FirstSectionController::class)->prefix('first-section')->name('first-section')->group(function() {
-            Route::get('/', 'index');
-            Route::put('/', 'update');
-        });
-
-        Route::controller(SecondSectionController::class)->prefix('second-section')->name('second-section')->group(function() {
-            Route::get('/', 'index');
-            Route::put('/', 'update');
-        });
-
         Route::controller(ConsultantController::class)->prefix('consultant')->name('consultant.')->group(function() {
             Route::get('/', 'index')->name('index');
             Route::delete('{id}', 'delete')->name('delete');
         });
-
-        Route::controller(TitleController::class)->prefix('titles')->name('titles')->group(function() {
-            Route::get('/', 'index');
-            Route::put('/', 'update');
-        });
     });
 });
+
+Route::get('sitemap-generate', function() {
+    Artisan::call('sitemap:generate');
+});
+
+function shortRoute($controller, $prefix): void {
+    Route::controller($controller)->prefix($prefix)->name($prefix)->group(function() {
+        Route::get('/', 'index');
+        Route::put('/', 'update');
+    });
+}
+
+function longRoute($prefix, $controller, $imageController): void {
+    Route::prefix($prefix)->name("$prefix.")->group(function() use ($imageController, $controller) {
+        Route::post('status', [$controller, 'status'])->name('status');
+        Route::post('sort', [$controller, 'sort'])->name('sort');
+
+        Route::controller($imageController)->prefix('{id}/images')->name('images.')->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::post('/', 'store');
+            Route::post('status', 'status')->name('status');
+            Route::put('/', 'featured')->name('featured');
+            Route::delete('/', 'delete')->name('delete');
+            Route::post('sort', 'sort')->name('sort');
+        });
+    });
+}
 
 Auth::routes();

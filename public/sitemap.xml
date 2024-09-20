@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+    <url>
+        <loc>http://localhost:8000/</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/about</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/contact</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/blog</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/portfolio</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/o-nas</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/svyaz</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/blog</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/portfolio</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/haqqimizda</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/blog</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/elaqe</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/portfolio</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/meqale/kicik-biznesler-ucun-en-yaxsi-5-digital-marketinq-strategiyasi</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/meqale/sayt-sifarisi-zamani-nelere-diqqet-etmelisiniz</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/statya/klssmfs</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/statya/lorem-ipsum-odor-amet-consectetuer-adipiscing-elit</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/article/kicik-biznesler-ucun-en-yaxsi-5-digital-marketinq-strategiyasi</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/article/sayt-sifarisi-zamani-nelere-diqqet-etmelisiniz</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/layihe/dflkmg</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/layihe/ekl-v</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/layihe/rsklgm</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/layihe/maeef</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/proyekt/srlkgwskl</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/proyekt/klae-fme</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/proyekt/apeofm</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/proyekt/eklamf</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/project/lorem-ipsum-odor-amet-consectetuer-adipiscing-elit</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/project/aelkf-kl</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/project/seklfm</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/project/waklf</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/xidmet/mobil-tetbiq</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/xidmet/veb-dizayn</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/xidmet/seo</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/xidmet/veb-sayt</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/xidmet/redizayn</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/usluga/mobil-tetbiq</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/usluga/veb-dizayn</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/usluga/seo</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/usluga/veb-sayt</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/usluga/redizayn</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/service/mobil-tetbiq</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/service/veb-dizayn</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/service/seo</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/service/veb-sayt</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/service/redizayn</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/blgo/etiket/test</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/blog/teq/test</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/blog/tag/test</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/blog/kateqoriya/pisik</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/portfolio/kateqoriya/pisik</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/blog/kateqoriya/it</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/portfolio/kateqoriya/it</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/blog/kateqoria/kat</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/portfolio/kateqoria/kat</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/blog/kateqoria/sobaka</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/ru/portfolio/kateqoria/sobaka</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/blog/category/cat</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/portfolio/category/cat</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/blog/category/dog</loc>
+    
+            </url>
+    <url>
+        <loc>http://localhost:8000/en/portfolio/category/dog</loc>
+    
+            </url>
+</urlset>
